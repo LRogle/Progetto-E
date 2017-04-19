@@ -5,6 +5,7 @@
  */
 package parcheggio;
 
+import static java.lang.Math.floor;
 import java.util.ArrayList;
 
 /**
@@ -13,30 +14,60 @@ import java.util.ArrayList;
  */
 public class Parcheggio {
     
-    private int nOccupati=0;
-    private int nMaxParcheggi=20;
-    ArrayList<Biglietto> BigliettiAttivi = new ArrayList();
-    ArrayList<Biglietto> BigliettiUscita = new ArrayList();
-    ArrayList<Biglietto> RegistroBiglietti = new ArrayList();
-    MacchinettaIngresso MI = new MacchinettaIngresso();
-    Cassa C = new Cassa();
-    MacchinettaUscita MU = new MacchinettaUscita();
+    private int nOccupati;
+    private int nMaxParcheggi;
+    private ArrayList<Biglietto> BigliettiAttivi;
+    private ArrayList<Biglietto> BigliettiUscita;
+    private ArrayList<Biglietto> RegistroBiglietti;
+    private MacchinettaIngresso MI;
+    private Cassa C;
+    private MacchinettaUscita MU;
+    private ArrayList<PostoAuto> PostiAuto;
     
+    public Parcheggio(){
+        nOccupati=0;
+        nMaxParcheggi=20;
+        BigliettiAttivi = new ArrayList();
+        BigliettiUscita = new ArrayList();
+        RegistroBiglietti = new ArrayList();
+        PostiAuto = new ArrayList();
+        MI = new MacchinettaIngresso();
+        C = new Cassa();
+        MU = new MacchinettaUscita();
+        for(int i=1;i<=nMaxParcheggi;i++){
+            PostiAuto.add(new PostoAuto(i));
+        }
+    }
     
-    public int displayPostiLiberi(){
+    public int contaPostiLiberi(){
         int liberi=0;
         liberi = nMaxParcheggi - nOccupati;
         return liberi;
     }
     
+    
     public Biglietto Ingresso(){
-        if(displayPostiLiberi()!=0){ 
+        if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
             BigliettiAttivi.add(B);
+            occupaPosto();
             nOccupati++;
             return B;}
         else
             return null;
+    }
+    
+    //INGRESSO PER GRAFICA
+    public int IngressoGUI(){
+        if(contaPostiLiberi()!=0){ 
+            Biglietto B=MI.erogaBiglietto();
+            BigliettiAttivi.add(B);
+            occupaPosto();
+            nOccupati++;
+            return B.getCodice();
+        }
+        else
+            return 0;
     }
     
     public void stampaBigliettiAttivi(){
@@ -98,10 +129,18 @@ public class Parcheggio {
     }
 
     public void decrementaOccupati() {
+        liberaPosto();
         this.nOccupati = nOccupati--;
-        if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}
-        
+        if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}    
     }
+    
+    public void liberaPosto(){
+        for(PostoAuto PA : PostiAuto){
+            if(PA.isOccupato())
+                PA.setOccupato(false);
+        }
+    }
+    
 //in uscita si deve:
 //                      -   (alzare la sbarra) da fare con interfaccia                  (DA FARE)                 
 //                      -   liberare il postoauto                                       (DA FARE)
@@ -116,6 +155,19 @@ public class Parcheggio {
         }
     }
     
+    private int postoRandom(){
+        int b = nMaxParcheggi; // numero massimo
+        double cod= floor(Math.random() * b);
+        int postoRandom=(int) cod;
+        return postoRandom;
+    }
+    
+    private void occupaPosto(){
+        for(PostoAuto PA : PostiAuto){
+            if(PA.getNumeroPosto()==postoRandom())
+                PA.setOccupato(true);
+        }
+    }
     
     
     

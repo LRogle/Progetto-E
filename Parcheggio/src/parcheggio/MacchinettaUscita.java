@@ -29,7 +29,7 @@ public class MacchinettaUscita{
         if(B.convalida.isConvalidato()){
             //è convalidato deve:   -   controllare il tempo dopo il pagamento                      
             //supponiamo che il tempo per uscire sia 15 minuti altrimenti interviene l'operatore?
-            if(B.convalida.dataConvalida.equals(data)){
+            if(B.convalida.getDataConvalida().equals(data)){
                 if(minuti-B.convalida.getMinuti()<=15){   
                     System.out.println("Grazie. Arrivederci!");
                     return true;

@@ -114,16 +114,5 @@ public class Biglietto {
         return "Biglietto{" + " codice=" + codice + ", data=" + data + ", ora=" + ora + " "+ '}';
     }
 
-   
-
-    
-
-    
-    
-    
-    
-    
-    
-    
     
 }

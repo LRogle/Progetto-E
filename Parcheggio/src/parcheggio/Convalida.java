@@ -10,8 +10,8 @@ package parcheggio;
  * @author luca
  */
 public class Convalida {
-    String dataConvalida = null;
-    boolean convalidato = false;
+    private String dataConvalida = null;
+    private boolean convalidato = false;
     private int ore=0;
     private int minuti=0;
     private int secondi=0;

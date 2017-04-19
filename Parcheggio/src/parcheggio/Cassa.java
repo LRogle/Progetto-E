@@ -18,10 +18,11 @@ public class Cassa {
     private int ore=0;
     private int minuti=0;
     private int secondi=0;
-    private String data;
-    private String ora;
+    private String data = null;
+    private String ora = null;
     private int prezzo=0;
-    int prezzoOrario = 1; //prezzo parcheggio: 1€ all'ora
+    private int prezzoOrario = 1; //prezzo parcheggio: 1€ all'ora
+    private int ammount=0;
     
     public int calcolaImporto(Biglietto big){
         getDate();// vanno bene anche qua basta che si usino nello stesso momento
@@ -90,7 +91,7 @@ public class Cassa {
             return false;
         }else{
             //convalida!(viene fatta in parcheggio) e dai resto mostra messaggio tempo di uscita dal parcheggio
-            
+            this.ammount+=prezzo;
             int resto = somma-prezzo; 
             System.out.println("Resto:"+resto);
             int ce=0;
@@ -130,6 +131,7 @@ public class Cassa {
     public int getMinuti() {
         return minuti;
     }
+    
     
     
     

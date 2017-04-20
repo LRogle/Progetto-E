@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -65,6 +67,12 @@ public class MIngresso extends JFrame{
                 if(ing!=0){
                     S.setVisibile(false);
                     S = new Sbarra(true);
+//                    try {          
+//                            Thread.sleep(2500);    // il parametro in input è il tempo espresso in millesimi
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(MIngresso.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    S = new Sbarra(false);
                     postiliberi.setText("POSTI LIBERI:\t"+P.contaPostiLiberi()+"");
                 }else{
                     text.setText(null);

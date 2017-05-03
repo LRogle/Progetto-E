@@ -14,7 +14,7 @@ import java.net.Socket;
 
 /**
  *
- * @author aench
+ * @author angelo
  */
 public class Client {
     

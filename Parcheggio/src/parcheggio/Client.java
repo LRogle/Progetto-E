@@ -10,7 +10,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  *
@@ -19,14 +21,12 @@ import java.net.Socket;
 public class Client {
     
     public Client() throws IOException {
-       /*
-       // vorrei avere l'indirizzo ip da terminale, ma non trova il carattere \n per qualche motivo
-       Process p = Runtime.getRuntime().exec("ifconfig | grep \"192\" ; echo -e \"\n\" ");
-       BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-       System.out.println(in.readLine());
-       in.close();
-       */
-       Socket clientSocket = new Socket("192.168.0.113",8888);
+       
+       Scanner scanner = new Scanner(System.in);
+       System.out.println("Inserire indirizzo IP del sever:");
+       String ip = scanner.nextLine();
+       Socket clientSocket = new Socket(ip,8888);
+       System.out.println("Se leggi questa riga vuol dire che sei connesso senza problemi!");
     }
     
     public static void main(String args[]) throws IOException {

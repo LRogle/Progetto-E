@@ -33,20 +33,31 @@ public class Server {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         
-        System.out.println("Attendo messaggio client:");
-        String string = in.readLine();
-        if (string.equals("y")) {
-            out.write("Entra!");
-        }
-        else if (string.equals("n")) {
-            out.write("Arrivederci!");
-        }
-        else if (string.equals("exit")) {
-            out.write("exit");
-        }
-        else {
-            out.write("Error: Invalid input!");
+        for (;;) {
+            out.println("Buongiorno vuole entrare nel parcheggio? (y/n)");
+            //System.out.println("Attendo messaggio client:");
+            String string = in.readLine();
+            //System.out.println(string);
+            if (string.equals("y")) {
+                out.println("Entra!");
+                parcheggio.Ingresso();
+                System.out.println(" --- biglietti attivi:");
+                parcheggio.stampaBigliettiAttivi();
+            }
+            else if (string.equals("n")) {
+                out.println("Arrivederci!");
+            }
+            else if (string.equals("exit")) {
+                out.println("exit");
+                break;
+            }
+            else {
+                out.println("Error: Invalid input!");
+            }
         }
         
+        parcheggio.Pagamento(1);
+        
     }
+
 }

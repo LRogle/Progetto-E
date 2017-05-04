@@ -19,24 +19,20 @@ import java.util.Scanner;
 public class ClientIngresso {
     
     public static void main(String args[]) throws IOException {
+       
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Inserire indirizzo IP del sever:");
+        String ip = scanner.nextLine();
+        Socket socket = new Socket(ip,8888);
+        System.out.println("Connesso al sever.");
+       
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         
-       Scanner scanner = new Scanner(System.in);
-       System.out.println("Inserire indirizzo IP del sever:");
-       String ip = scanner.nextLine();
-       Socket socket = new Socket(ip,8888);
-       System.out.println("Connesso al sever.");
-       
-       PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-       BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-       
-       for (;;) {
-            
-            System.out.println("Buongiorno vuole entrare nel parcheggio? (y/n)");
-            String input = scanner.nextLine()+"\n";
-            System.out.println("");
-            System.out.print("Invio questo: "+input);
-            System.out.println("");
-            out.write(input);
+        for (;;) {
+            System.out.println("\n"+in.readLine());
+            String input = scanner.nextLine();
+            out.println(input);
             String risposta = in.readLine();
             if (risposta.equals("exit")) {
                 break;
@@ -44,7 +40,7 @@ public class ClientIngresso {
             else {
                 System.out.println(risposta);
             }
-            
         }
+            
     }
 }

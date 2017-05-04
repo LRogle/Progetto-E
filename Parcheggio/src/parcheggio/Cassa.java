@@ -45,10 +45,11 @@ public class Cassa {
         if(giornipermanenza>=7){return 20*(giornipermanenza/7);}
         
         if(minpermanenza==0){
+            System.out.println("Ore di permanenza: "+orepermanenza);
             if(orepermanenza!=0){
                 return prezzo=orepermanenza*prezzoOrario;
             }else{
-                System.out.println("Corretto! perche non cè l interfaccia e quindi il tempo di permanenza è zero\naltrimenti calcolerebbe l'importo da pagare");
+                System.out.println("Ore di permanenza nulle, ritorno prezzo 404");
                 return prezzo=404;
             }
         }else{
@@ -93,7 +94,7 @@ public class Cassa {
             //convalida!(viene fatta in parcheggio) e dai resto mostra messaggio tempo di uscita dal parcheggio
             this.ammount+=prezzo;
             int resto = somma-prezzo; 
-            System.out.println("Resto:"+resto);
+            System.out.println("Totale resto: "+resto+"€");
             int ce=0;
             for(int i=100;i<=resto;i=i+100){ ce++; }
             resto=resto-(100*ce);

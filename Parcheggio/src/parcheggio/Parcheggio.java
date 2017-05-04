@@ -7,6 +7,7 @@ package parcheggio;
 
 import static java.lang.Math.floor;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -112,7 +113,28 @@ public class Parcheggio {
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));
             System.out.println("-----\ttransazione");
-        if(C.transazione(4, 4, 4, 4, 4)){
+            int euro = 0;
+            int cent50 = 0;
+            int cent20 = 0;
+            int cent10 = 0;
+            int cent5 = 0;
+            Scanner scanner = new Scanner(System.in);
+            for (;;) {
+                System.out.println("Inserisci importo:");
+                System.out.print("1 €: ");
+                euro = scanner.nextInt();
+                System.out.print("50 cent: ");
+                cent50 = scanner.nextInt();
+                System.out.print("20 cent: ");
+                cent20 = scanner.nextInt();
+                System.out.print("10 cent: ");
+                cent10 = scanner.nextInt();
+                System.out.print("5 cent: ");
+                cent5 = scanner.nextInt();
+                if (C.transazione(cent5, cent10, cent20, cent50, euro)) {
+                    break;
+                }
+            }
             getBigliettoAttivo(cod).setConvalida(true);
             getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
             getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
@@ -124,7 +146,6 @@ public class Parcheggio {
             //se voglio metterlo qua incontro un errore perche in uscita non posso cercare il biglietto tra gli attivi e 
             //quindi dovrei utilizzare un altra lista apposta per i biglietti pagati in attesa di uscita dal parcheggio
             //abbastanza inutile? no guardare main
-        }
         }catch(NullPointerException e){ System.out.println("biglietto non trovato per il pagamento"); }
     }
 

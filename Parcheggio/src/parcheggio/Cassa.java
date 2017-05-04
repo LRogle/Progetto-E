@@ -28,17 +28,11 @@ public class Cassa {
         getDate();// vanno bene anche qua basta che si usino nello stesso momento
         getHours();//calcolaimporto() e transazione()
        
-        int orepermanenza=0;
-        int minpermanenza=0;
-        int secpermanenza=0;
-        int annipermanenza=0;
-        int mesipermanenza=0;
-        int giornipermanenza=0;
-        orepermanenza=ore-big.getOre();
-        minpermanenza=minuti-big.getMinuti();
-        annipermanenza=anno-big.getAnno();
-        mesipermanenza=mese-big.getMese();
-        giornipermanenza=giorno-big.getGiorno();
+        int orepermanenza=ore-big.getOre();
+        int minpermanenza=minuti-big.getMinuti();
+        int annipermanenza=anno-big.getAnno();
+        int mesipermanenza=mese-big.getMese();
+        int giornipermanenza=giorno-big.getGiorno();
         
         if(annipermanenza!=0){return prezzo=750*annipermanenza;}
         if(mesipermanenza!=0){return prezzo=100*mesipermanenza;}
@@ -49,7 +43,7 @@ public class Cassa {
             if(orepermanenza!=0){
                 return prezzo=orepermanenza*prezzoOrario;
             }else{
-                System.out.println("Ore di permanenza nulle, ritorno prezzo 404");
+                System.out.println("Ore di permanenza nulle, ritorno prezzo default 4,04 €");
                 return prezzo=404;
             }
         }else{
@@ -86,15 +80,25 @@ public class Cassa {
         int cento = e;
         
         int somma = 100*cento+50*cinquanta+20*venti+10*dieci+5*cinque;
-        System.out.println("hai inserito: "+somma);
+        //System.out.println("hai inserito: "+somma);
+        int centinaia = somma/100;
+        int decine = (somma-centinaia*100)/10;
+        int unita = (somma - centinaia*100 - decine*10);
+        System.out.println("Importo inserito: "+centinaia+","+decine+unita+"€");
         if(somma<=prezzo){
             System.out.println("denaro insufficiente. rieseguire la transazione.");
             return false;
         }else{
             //convalida!(viene fatta in parcheggio) e dai resto mostra messaggio tempo di uscita dal parcheggio
             this.ammount+=prezzo;
-            int resto = somma-prezzo; 
-            System.out.println("Totale resto: "+resto+"€");
+            int resto = somma-prezzo;
+            
+            int centinaiaR = resto/100;
+            int decineR = (resto-centinaiaR*100)/10;
+            int unitaR = (resto - centinaiaR*100 - decineR*10);
+            
+            //System.out.println("Totale resto: "+resto);
+            System.out.println("Resto: "+centinaiaR+","+decineR+unitaR+"€");
             int ce=0;
             for(int i=100;i<=resto;i=i+100){ ce++; }
             resto=resto-(100*ce);
@@ -116,7 +120,7 @@ public class Cassa {
             int un=0;
             for(int g=1;g<=resto;g=g+1){ un++; }
             
-            System.out.println("cento: "+ce+" cinquanta: "+ci+" venti: "+ ve+ " dieci: "+di+" cinque: " + cin+" due: "+du+" uno: "+ un);
+            System.out.println("1 €: "+ce+"\n50 cent: "+ci+"\n20 cent: "+ ve+ "\n10 cent: "+di+"\n5 cent: " + cin+"\n2 cent: "+du+"\n1 cent: "+ un);
             return true;
         }
     }

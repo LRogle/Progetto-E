@@ -41,8 +41,7 @@ public class Parcheggio {
     }
     
     public int contaPostiLiberi(){
-        int liberi=0;
-        liberi = nMaxParcheggi - nOccupati;
+        int liberi = nMaxParcheggi - nOccupati;
         return liberi;
     }
     
@@ -113,11 +112,11 @@ public class Parcheggio {
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));
             System.out.println("-----\ttransazione");
-            int euro = 0;
-            int cent50 = 0;
-            int cent20 = 0;
-            int cent10 = 0;
-            int cent5 = 0;
+            int euro;
+            int cent50;
+            int cent20;
+            int cent10;
+            int cent5;
             Scanner scanner = new Scanner(System.in);
             for (;;) {
                 System.out.println("Inserisci importo:");
@@ -146,7 +145,9 @@ public class Parcheggio {
             //se voglio metterlo qua incontro un errore perche in uscita non posso cercare il biglietto tra gli attivi e 
             //quindi dovrei utilizzare un altra lista apposta per i biglietti pagati in attesa di uscita dal parcheggio
             //abbastanza inutile? no guardare main
-        }catch(NullPointerException e){ System.out.println("biglietto non trovato per il pagamento"); }
+        } catch(NullPointerException e) { 
+            System.out.println("biglietto non trovato per il pagamento");
+        }
     }
 
     public void decrementaOccupati() {

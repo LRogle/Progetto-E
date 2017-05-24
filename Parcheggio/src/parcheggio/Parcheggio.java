@@ -8,12 +8,13 @@ package parcheggio;
 import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
+import parcheggio.observerpattern.Observable;
 
 /**
  *
  * @author luca
  */
-public class Parcheggio {
+public class Parcheggio extends Observable {
     
     private int nOccupati;
     private int nMaxParcheggi;
@@ -26,6 +27,7 @@ public class Parcheggio {
     private ArrayList<PostoAuto> PostiAuto;
     
     public Parcheggio(){
+        super();
         nOccupati=0;
         nMaxParcheggi=20;
         BigliettiAttivi = new ArrayList();
@@ -153,7 +155,8 @@ public class Parcheggio {
     public void decrementaOccupati() {
         liberaPosto();
         this.nOccupati = nOccupati--;
-        if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}    
+        if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}
+        this.notifyObserver();
     }
     
     public void liberaPosto(){
@@ -190,7 +193,11 @@ public class Parcheggio {
                 PA.setOccupato(true);
         }
     }
-    
+
+    @Override
+    public int getState() {
+        return this.contaPostiLiberi();
+    }
     
     
     

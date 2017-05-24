@@ -34,6 +34,12 @@ public class test {
         P.stampaBigliettiUscita();
         System.out.println("-----\tstampa registro");
         P.stampaRegistroBiglietti();
+        
+        System.out.println("-----\tcrea un semaforo e lo aggiorna");
+        Semaforo semaforo = new Semaforo();
+        P.attach(semaforo);
+        P.notifyObserver();
+        System.out.println("numero di posti liberi: "+semaforo.getState());
     }
     
 }

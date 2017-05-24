@@ -8,7 +8,7 @@ package parcheggio;
 import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
-import parcheggio.observerpattern.Observable;
+import observerpattern.Observable;
 
 /**
  *

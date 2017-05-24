@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package parcheggio.observerpattern;
+package observerpattern;
 
-import parcheggio.observerpattern.Observable;
+import observerpattern.Observable;
 
 /**
  *

@@ -5,7 +5,7 @@
  */
 package parcheggio;
 
-import parcheggio.observerpattern.Observer;
+import observerpattern.Observer;
 
 /**
  *

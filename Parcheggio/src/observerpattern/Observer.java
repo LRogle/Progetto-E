@@ -11,17 +11,10 @@ import observerpattern.Observable;
  *
  * @author aench
  */
-public abstract class Observer {
+public interface Observer {
 
-    public int getState() {
-        return -1;
-    }
+    public int getState();
+    public void setState(int state);
+    public void update(Observable observable);
 
-    public void setState(int state) {
-    }
-    
-    
-    public void update(Observable observable){
-        setState(observable.getState());
-    }
 }

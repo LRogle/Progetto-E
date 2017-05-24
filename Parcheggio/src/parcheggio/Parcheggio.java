@@ -54,6 +54,7 @@ public class Parcheggio extends Observable {
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
+            this.notifyObserver();
             return B;}
         else
             return null;
@@ -66,6 +67,7 @@ public class Parcheggio extends Observable {
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
+            this.notifyObserver();
             return B.getCodice();
         }
         else

@@ -6,6 +6,7 @@
 package GUI;
 
 import java.io.IOException;
+import parcheggio.Parcheggio;
 
 /**
  *
@@ -15,10 +16,15 @@ public class testGUI {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        MIngresso G = new MIngresso();
         
+        Parcheggio parcheggio = new Parcheggio();
+        MIngresso G = new MIngresso(parcheggio);
+        FinestraSemaforo finestraSemaforo = new FinestraSemaforo();
+        parcheggio.attach(finestraSemaforo);
+        parcheggio.notifyObserver();
         
     }
     

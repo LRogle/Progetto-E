@@ -32,8 +32,8 @@ public class MIngresso extends JFrame{
     private JTextField postiliberi = new JTextField(); 
     
     
-    public MIngresso(){
-        P=new Parcheggio();
+    public MIngresso(Parcheggio parcheggio){
+        this.P=parcheggio;
         this.setVisible(true);
         this.setSize(500, 500);
         this.setBackground(Color.gray);

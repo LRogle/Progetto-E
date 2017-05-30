@@ -27,8 +27,7 @@ import javax.swing.JTextField;
 public class GUIIng extends JFrame{
     private JPanel panel1;    //bottone,codice biglietto erogato
     private JPanel panel2;    //decidere per la sbarra il semaforo e i posti liberi
-    private SbarraChiusaClient SC = new SbarraChiusaClient(); 
-    private SbarraApertaClient SA = new SbarraApertaClient(); 
+    
     private SbarraClient S;
     private JTextField postiliberi = new JTextField(); 
     private PrintWriter out;

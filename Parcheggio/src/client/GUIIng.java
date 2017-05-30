@@ -71,13 +71,14 @@ public class GUIIng extends JFrame{
                     text.setText("CODICE BIGLIETTO:\t"+cod);
                 
                 out.println("posti");
+                
                     try {
                         String posti = in.readLine();
                         postiliberi.setText("POSTI LIBERI:\t"+posti);
                         
                         if(Integer.parseInt(posti)!=0){
-                    S.setVisibile(false);
-                    S = new SbarraClient(true);
+                            S.setVisibile(false);
+                            S = new SbarraClient(true);
 //                    try {          
 //                            Thread.sleep(2500);    // il parametro in input è il tempo espresso in millesimi
 //                    } catch (InterruptedException ex) {
@@ -85,16 +86,16 @@ public class GUIIng extends JFrame{
 //                    }
 //                    S = new Sbarra(false);
                         
-                }else{
-                    text.setText("Posti Esauriti");
-                    S.setVisibile(false);
-                    S = new SbarraClient(false);
-                }
+                        }else{
+                            text.setText("Posti Esauriti");
+                        S.setVisibile(false);
+                        S = new SbarraClient(false);
+                        }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
                     }    
                 
-               } catch (IOException ex) {
+                } catch (IOException ex) {
                     Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }

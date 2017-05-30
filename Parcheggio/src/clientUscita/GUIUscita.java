@@ -27,6 +27,8 @@ import javax.swing.JTextField;
  */
 public class GUIUscita extends JFrame {
     private JPanel panel1;   
+    private JPanel panel2; 
+    private JTextField textsotto = new JTextField();
    
     private SbarraClient S;
     private PrintWriter out;
@@ -46,7 +48,7 @@ public class GUIUscita extends JFrame {
 
     private void initComponent() {
         initPanel1();
-        
+        initPanel2();
     }
 
     private void initPanel1() {
@@ -66,11 +68,13 @@ public class GUIUscita extends JFrame {
                 try {
                     String s =in.readLine();
                     if(s.equals("Grazie. Arrivederci")){
+                        textsotto.setText("Grazie. Arrivederci");
                         S.setVisibile(false);      
                         S = new SbarraClient(true);
                     }else{
-                     S.setVisibile(false);   
-                     S = new SbarraClient(false); 
+                        textsotto.setText("Mancato pagamento o tempo scaduto");
+                        S.setVisibile(false);   
+                        S = new SbarraClient(false); 
                     }
                 } catch (IOException ex) {
                     Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);
@@ -81,7 +85,11 @@ public class GUIUscita extends JFrame {
         
     }
 
-
+    private void initPanel2() {
+        panel2 = new JPanel();
+        panel2.setLayout(new GridLayout(1,1));
+        panel1.add(textsotto);
+    }
 
     
 }

@@ -63,8 +63,6 @@ public class Server {
             
         }
         
-        parcheggio.Pagamento(1);
-        
     }
 
 }

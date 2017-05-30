@@ -23,6 +23,8 @@ public class Server {
         System.out.println("Creo server in ascolto:");
         ServerSocket serverSocket = new ServerSocket(8888);
         Socket socket = serverSocket.accept();
+        ServerSocket serverSocket1 = new ServerSocket(8887);
+        Socket socket1 = serverSocket1.accept();
         System.out.println("Connesso.");
         
         System.out.println("Creo un parcheggio:");
@@ -32,10 +34,11 @@ public class Server {
         
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        BufferedReader in1 = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
+        PrintWriter out1 = new PrintWriter(socket1.getOutputStream(), true);
         
         for (;;) {
-//            out.println("Buongiorno vuole entrare nel parcheggio? (y/n)");
-//            //System.out.println("Attendo messaggio client:");
+//          System.out.println("Attendo messaggio client:");
             String string = in.readLine();
             //System.out.println(string);
             if (string.equals("hello")) {
@@ -45,24 +48,18 @@ public class Server {
                 }
                 System.out.println(" --- biglietti attivi:");
                 parcheggio.stampaBigliettiAttivi();
-            }else if (string.equals("Arrivederci")) {
-                String cod=in.readLine();
+            }
+            
+            String string1 = in1.readLine();
+            if (string1.equals("Arrivederci")) {
+                String cod=in1.readLine();
                     if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){
                         String S=parcheggio.Uscita(Integer.parseInt(cod));
-                        out.println(S);
-                    }
-               
-                
-            }else if(string.equals("exit")) {
-                out.println("exit");
-                break;
+                        out1.println(S);
+                    }           
             }
-            else {
-                out.println("Error: Invalid input!");
-                }
-            
-        }
         
-    }
+        }
 
+    }
 }

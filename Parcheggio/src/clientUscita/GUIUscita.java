@@ -88,7 +88,8 @@ public class GUIUscita extends JFrame {
     private void initPanel2() {
         panel2 = new JPanel();
         panel2.setLayout(new GridLayout(1,1));
-        panel1.add(textsotto);
+        panel2.add(textsotto);
+        this.add(panel2);
     }
 
     

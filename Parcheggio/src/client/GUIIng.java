@@ -65,20 +65,20 @@ public class GUIIng extends JFrame{
         button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                out.println("hello");
-                try {
-                    String cod = in.readLine();
-                    text.setText("CODICE BIGLIETTO:\t"+cod);
+                out.println("hello");//All'azione del pulsante mandiamo un messaggio in codice per il server in modo che capisce
+                try {                // che ci siamo connessi. Tutto questo serve per far si che il server ci invierà i dati 
+                    String cod = in.readLine(); // da far leggere al client(numero posti, codice biglietto).
+                    text.setText("CODICE BIGLIETTO:\t"+cod); //cod biglietto
                 
                 out.println("posti");
                 
                     try {
-                        String posti = in.readLine();
-                        postiliberi.setText("POSTI LIBERI:\t"+posti);
+                        String posti = in.readLine();// Abbiamo 
+                        postiliberi.setText("POSTI LIBERI:\t"+posti);// numro posti
                         
-                        if(Integer.parseInt(posti)!=0){
-                            S.setVisibile(false);
-                            S = new SbarraClient(true);
+                        if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
+                            S.setVisibile(false);      
+                            S = new SbarraClient(true);// apertura sbarra 
 //                    try {          
 //                            Thread.sleep(2500);    // il parametro in input è il tempo espresso in millesimi
 //                    } catch (InterruptedException ex) {
@@ -88,8 +88,8 @@ public class GUIIng extends JFrame{
                         
                         }else{
                             text.setText("Posti Esauriti");
-                        S.setVisibile(false);
-                        S = new SbarraClient(false);
+                        S.setVisibile(false);   
+                        S = new SbarraClient(false); // chiusura sbarra
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);

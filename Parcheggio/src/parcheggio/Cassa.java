@@ -25,6 +25,8 @@ public class Cassa {
     private int ammount=0;
     
     public int calcolaImporto(Biglietto big){
+        
+        
         getDate();// vanno bene anche qua basta che si usino nello stesso momento
         getHours();//calcolaimporto() e transazione()
        
@@ -136,6 +138,22 @@ public class Cassa {
     public int getMinuti() {
         return minuti;
     }
+
+    public int getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(int prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public int getPrezzoOrario() {
+        return prezzoOrario = 1;
+    }
+    
+    
+    
+    
     
     
     

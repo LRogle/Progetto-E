@@ -42,6 +42,10 @@ public class Parcheggio extends Observable {
         }
     }
     
+    public Cassa getCassa() {
+        return this.C;
+    }
+    
     public int contaPostiLiberi(){
         int liberi = nMaxParcheggi - nOccupati;
         return liberi;
@@ -111,7 +115,35 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-    
+  
+    public String Calcolo(int cod){
+    String S= "";
+    for(int i=0; i<BigliettiAttivi.size(); i++){
+        if(BigliettiAttivi.get(i).getCodice()==cod){
+            int orepermanenza=C.getOre()-BigliettiAttivi.get(i).getOre();
+            int minpermanenza=C.getMinuti()-BigliettiAttivi.get(i).getMinuti();
+       
+        
+        if(minpermanenza==0){
+            System.out.println("Ore di permanenza: "+orepermanenza);
+            if(orepermanenza!=0){
+               C.setPrezzo(C.getOre()*C.getPrezzoOrario());
+               S= ""+C.getPrezzo();
+                
+            }else{
+                System.out.println("Ore di permanenza nulle, ritorno prezzo default 4,04 €");
+                C.setPrezzo(404);
+                S=""+C.getPrezzo();
+            }
+        }else{
+            C.setPrezzo((orepermanenza+1)*C.getPrezzoOrario());
+        }
+        
+        
+    }
+    }
+    return null;
+    }
     public void Pagamento(int cod){
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));

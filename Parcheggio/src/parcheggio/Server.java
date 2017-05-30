@@ -25,6 +25,8 @@ public class Server {
         Socket socket = serverSocket.accept();
         ServerSocket serverSocket1 = new ServerSocket(8887);
         Socket socket1 = serverSocket1.accept();
+        ServerSocket serverSocket2 = new ServerSocket(8886);
+        Socket socket2 = serverSocket.accept();
         System.out.println("Connesso.");
         
         System.out.println("Creo un parcheggio:");
@@ -36,6 +38,8 @@ public class Server {
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in1 = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
         PrintWriter out1 = new PrintWriter(socket1.getOutputStream(), true);
+        BufferedReader in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
+        PrintWriter out2 = new PrintWriter(socket2.getOutputStream(), true);
         
         for (;;) {
 //          System.out.println("Attendo messaggio client:");
@@ -58,6 +62,8 @@ public class Server {
                         out1.println(S);
                     }           
             }
+            
+            String string2 = in2.readLine();
         
         }
 

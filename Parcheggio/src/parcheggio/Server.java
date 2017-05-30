@@ -34,13 +34,15 @@ public class Server {
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         
         for (;;) {
-            out.println("Buongiorno vuole entrare nel parcheggio? (y/n)");
-            //System.out.println("Attendo messaggio client:");
+//            out.println("Buongiorno vuole entrare nel parcheggio? (y/n)");
+//            //System.out.println("Attendo messaggio client:");
             String string = in.readLine();
             //System.out.println(string);
-            if (string.equals("y")) {
-                out.println("Entra!");
-                parcheggio.Ingresso();
+            if (string.equals("hello")) {
+                out.println(parcheggio.IngressoGUI());
+                if(in.readLine().equals("posti")){
+                    out.println(parcheggio.contaPostiLiberi());
+                }
                 System.out.println(" --- biglietti attivi:");
                 parcheggio.stampaBigliettiAttivi();
             }

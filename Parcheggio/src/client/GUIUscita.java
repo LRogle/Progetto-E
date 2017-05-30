@@ -50,7 +50,7 @@ public class GUIUscita extends JFrame {
 
     private void initPanel1() {
         JButton button = new JButton("USCITA");
-        JTextField text = new JTextField();
+        JTextField text = new JTextField("Inserisci il Codice");
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(1,2));
         button.addActionListener(new ActionListener() {

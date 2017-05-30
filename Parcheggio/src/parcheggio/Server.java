@@ -45,17 +45,22 @@ public class Server {
                 }
                 System.out.println(" --- biglietti attivi:");
                 parcheggio.stampaBigliettiAttivi();
-            }
-            else if (string.equals("n")) {
-                out.println("Arrivederci!");
-            }
-            else if (string.equals("exit")) {
+            }else if (string.equals("Arrivederci")) {
+                String cod=in.readLine();
+                    if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){
+                        String S=parcheggio.Uscita(Integer.parseInt(cod));
+                        out.println(S);
+                    }
+               
+                
+            }else if(string.equals("exit")) {
                 out.println("exit");
                 break;
             }
             else {
                 out.println("Error: Invalid input!");
-            }
+                }
+            
         }
         
         parcheggio.Pagamento(1);

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package clientUscita;
 
+import clientIngresso.*;
 import GUI.*;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,13 +20,13 @@ import javax.swing.JPanel;
  *
  * @author luca
  */
-public class SbarraApertaClient extends Component {
+public class SbarraApertaClientUscita extends Component {
           
     private BufferedImage img;
     private String saperta = "./nbproject/Immagini/Aperto.png";
     
     
-    public SbarraApertaClient() {
+    public SbarraApertaClientUscita() {
            try {
            img = ImageIO.read(new File(saperta));
        } catch (IOException e) {
@@ -51,7 +52,7 @@ public class SbarraApertaClient extends Component {
     
     public JPanel functionMain(){
         JPanel panel = new JPanel();
-        panel.add(new SbarraApertaClient());
+        panel.add(new SbarraApertaClientUscita());
         
         panel.setVisible(true);
         return panel;

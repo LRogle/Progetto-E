@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package clientUscita;
 
+import clientIngresso.*;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -50,9 +51,11 @@ public class GUIUscita extends JFrame {
 
     private void initPanel1() {
         JButton button = new JButton("USCITA");
-        JTextField text = new JTextField("Inserisci il Codice");
+        JTextField text = new JTextField();
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(1,2));
+        panel1.add(button);
+        panel1.add(text);
         button.addActionListener(new ActionListener() {
 
             @Override

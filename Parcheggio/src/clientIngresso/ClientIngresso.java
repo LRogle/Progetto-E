@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package clientIngresso;
 
 import parcheggio.*;
 import java.io.BufferedReader;
@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author angelo
  */
-public class Client {
+public class ClientIngresso {
     
     public static void main(String args[]) throws IOException {
        
@@ -31,7 +31,7 @@ public class Client {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         
         GUIIng G = new GUIIng(out, in);
-        GUIUscita G1 = new GUIUscita(out, in);
+        
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());
 //            String input = scanner.nextLine();

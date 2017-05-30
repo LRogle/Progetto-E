@@ -31,7 +31,7 @@ public class Client {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         
         GUIIng G = new GUIIng(out, in);
-        
+        GUIUscita G1 = new GUIUscita(out, in);
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());
 //            String input = scanner.nextLine();

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package clientIngresso;
 
 import parcheggio.*;
 import java.io.BufferedReader;
@@ -17,7 +17,7 @@ import java.util.Scanner;
  *
  * @author angelo
  */
-public class Client {
+public class ClientIngresso {
     
     public static void main(String args[]) throws IOException {
        

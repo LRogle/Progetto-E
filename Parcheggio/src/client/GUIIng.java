@@ -67,12 +67,15 @@ public class GUIIng extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 out.println("hello");
                 try {
-                    //                int ing = P.IngressoGUI();
-                    text.setText("CODICE BIGLIETTO:\t"+in.readLine());
-                } catch (IOException ex) {
-                    Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if(!in.equals("0")){
+                    String cod = in.readLine();
+                    text.setText("CODICE BIGLIETTO:\t"+cod);
+                
+                out.println("posti");
+                    try {
+                        String posti = in.readLine();
+                        postiliberi.setText("POSTI LIBERI:\t"+posti);
+                        
+                        if(Integer.parseInt(posti)!=0){
                     S.setVisibile(false);
                     S = new SbarraClient(true);
 //                    try {          
@@ -81,18 +84,22 @@ public class GUIIng extends JFrame{
 //                        Logger.getLogger(MIngresso.class.getName()).log(Level.SEVERE, null, ex);
 //                    }
 //                    S = new Sbarra(false);
-                        out.println("posti");
-                    try {
-                        postiliberi.setText("POSTI LIBERI:\t"+in.readLine()+"");
+                        
+                }else{
+                    text.setText("Posti Esauriti");
+                    S.setVisibile(false);
+                    S = new SbarraClient(false);
+                }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }else{
-                    text.setText(null);
-                    S.setVisibile(false);
-                    S = new SbarraClient(false);}
+                    }    
+                
+               } catch (IOException ex) {
+                    Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
+        
         this.add(panel1);
     }
 

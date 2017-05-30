@@ -33,6 +33,8 @@ public class ClientUscita {
         
         GUIUscita GU = new GUIUscita(out, in);
         
+        if(socket.isConnected()){
+        System.out.println("OK");}
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());
 //            String input = scanner.nextLine();

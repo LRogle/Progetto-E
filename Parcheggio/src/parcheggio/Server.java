@@ -23,11 +23,13 @@ public class Server {
         System.out.println("Creo server in ascolto:");
         ServerSocket serverSocket = new ServerSocket(8888);//ingresso
         Socket socket = serverSocket.accept();
+        System.out.println("Connected 1");
         ServerSocket serverSocket1 = new ServerSocket(8886);//uscita
         Socket socket1 = serverSocket1.accept();
+        System.out.println("Connected 2");
         ServerSocket serverSocket2 = new ServerSocket(8887);//cassa
-        Socket socket2 = serverSocket.accept();
-        System.out.println("Connesso.");
+        Socket socket2 = serverSocket2.accept();
+        System.out.println("Connected 3");
         
         System.out.println("Creo un parcheggio:");
         Parcheggio parcheggio = new Parcheggio();
@@ -55,6 +57,7 @@ public class Server {
             }
             
             String string1 = in1.readLine();
+            System.out.println("Post in1.readLine() reached!");
             if (string1.equals("Arrivederci")) {
                 String cod=in1.readLine();
                     if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){

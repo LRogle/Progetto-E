@@ -79,9 +79,9 @@ public class Cassa {
         int dieci = b;
         int venti = c;
         int cinquanta = d;
-        int cento = e;
+        int uno = e;
         
-        int somma = 100*cento+50*cinquanta+20*venti+10*dieci+5*cinque;
+        int somma = 100*uno+50*cinquanta+20*venti+10*dieci+5*cinque;
         //System.out.println("hai inserito: "+somma);
         int centinaia = somma/100;
         int decine = (somma-centinaia*100)/10;
@@ -90,6 +90,7 @@ public class Cassa {
         if(somma<=prezzo){
             System.out.println("denaro insufficiente. rieseguire la transazione.");
             return false;
+            //ritorna false se non è corretto il pagamento
         }else{
             //convalida!(viene fatta in parcheggio) e dai resto mostra messaggio tempo di uscita dal parcheggio
             this.ammount+=prezzo;

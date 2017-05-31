@@ -22,11 +22,11 @@ public class ClientCassa {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserire indirizzo IP del sever:");
         String ip = scanner.nextLine();
-        Socket socket = new Socket(ip,8886);
+        Socket socket = new Socket(ip,8887);
         System.out.println("Connesso al sever.");
        
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

@@ -22,7 +22,7 @@ import parcheggio.Parcheggio;
  *
  * @author luca
  */
-public class MIngresso extends JFrame{
+public class IngressoGUI extends JFrame{
     private Parcheggio P;
     private JPanel panel1;    //bottone,codice biglietto erogato
     private JPanel panel2;    //decidere per la sbarra il semaforo e i posti liberi
@@ -32,7 +32,7 @@ public class MIngresso extends JFrame{
     private JTextField postiliberi = new JTextField(); 
     
     
-    public MIngresso(Parcheggio parcheggio){
+    public IngressoGUI(Parcheggio parcheggio){
         this.P=parcheggio;
         this.setVisible(true);
         this.setSize(500, 500);

@@ -20,12 +20,6 @@ import parcheggio.Parcheggio;
  *
  * @author Gabri
  */
-
-
-/**
- *
- * @author Gabri
- */
 public class CassaGui extends JFrame{
 
     private Parcheggio P;
@@ -33,29 +27,32 @@ public class CassaGui extends JFrame{
     JPanel panelMonete;
     JPanel panelTesto;
     
-    JTextArea testo = new JTextArea("BENVENUTO");
+    JTextField testo = new JTextField("BENVENUTO");
     JLabel biglietto=new JLabel("INSERISCI CODICE");
+    JButton bottone = new JButton("CONFERMA CODICE");
 
     JLabel uno = new JLabel("\t1 euro");
     JLabel cinquanta = new JLabel("\t50 cent");
     JLabel venti = new JLabel("\t20 cent");
     JLabel dieci = new JLabel("\t10 cent");
     JLabel cinque = new JLabel("\t5 cent");
+    JButton bottonepaga = new JButton("PAGA ORA");
     
     JTextField codice =new JTextField();
-    JTextField a5 = new JTextField();
-    JTextField a4 = new JTextField();
-    JTextField a3 = new JTextField();
-    JTextField a2 = new JTextField();
-    JTextField a1 = new JTextField();
-
+    JTextField a5 = new JTextField("0");
+    JTextField a4 = new JTextField("0");
+    JTextField a3 = new JTextField("0");
+    JTextField a2 = new JTextField("0");
+    JTextField a1 = new JTextField("0");
+    
+    String codicebiglietto;
     
     
     public CassaGui(Parcheggio P) throws Exception{
         this.P= P;
         this.setVisible(true);
         this.setSize(500, 500);
-        this.setLayout(new GridLayout(6,1));
+        this.setLayout(new GridLayout(3,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InitComponent();
     }
@@ -69,21 +66,28 @@ public class CassaGui extends JFrame{
     public void InitpanelPagamento(){
         
         Pagamento = new JPanel();
-        Pagamento.setLayout(new GridLayout(2,2));
+        Pagamento.setLayout(new GridLayout(3,1));
         Pagamento.add(biglietto);
         Pagamento.add(codice);
-        String s= codice.getText();
-        if (s.equals(""))
-            s = "0";
-        testo.setText(P.Calcolo(Integer.parseInt(s)));
+        Pagamento.add(bottone);
+                
+        bottone.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String s= codice.getText();
+                codicebiglietto = s;
+                if(P.getBigliettoAttivo(Integer.parseInt(s))!=null){
+                testo.setText("PAGARE:\t"+P.getCassa().calcolaImporto(P.getBigliettoAttivo(Integer.parseInt(s))));
+                }
+            }
+        });
         this.add(Pagamento);
-       
     }
     
     public void InitpanelMonete(){
         
         panelMonete = new JPanel();
-        panelMonete.setLayout(new GridLayout(2,4));
+        panelMonete.setLayout(new GridLayout(2,5));
         panelMonete.add(uno);
         panelMonete.add(cinquanta);
         panelMonete.add(venti);
@@ -98,11 +102,24 @@ public class CassaGui extends JFrame{
     }
 
     public void InitpanelTesto() {
+        testo.setVisible(true);
         testo.setEditable(false);
         panelTesto = new JPanel();
+        panelTesto.setLayout(new GridLayout(2,1));
+        panelTesto.add(bottonepaga);
         panelTesto.add(testo);
+        bottonepaga.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(P.PagamentoGUI(Integer.parseInt(a1.getText()), Integer.parseInt(a2.getText()), Integer.parseInt(a3.getText()), Integer.parseInt(a4.getText()), Integer.parseInt(a5.getText()), Integer.parseInt(codicebiglietto))){
+                    testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+P.getBigliettoUscita(Integer.parseInt(codicebiglietto)).getDataConvalida());
+                }else{
+                    testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                }
+            }
+        });
         this.add(panelTesto);
     }
-}
+} 
     
 

@@ -115,35 +115,6 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-  
-    public String Calcolo(int cod){
-    String S= "";
-    for(int i=0; i<BigliettiAttivi.size(); i++){
-        if(BigliettiAttivi.get(i).getCodice()==cod){
-            int orepermanenza=C.getOre()-BigliettiAttivi.get(i).getOre();
-            int minpermanenza=C.getMinuti()-BigliettiAttivi.get(i).getMinuti();
-       
-        
-        if(minpermanenza==0){
-            System.out.println("Ore di permanenza: "+orepermanenza);
-            if(orepermanenza!=0){
-               C.setPrezzo(C.getOre()*C.getPrezzoOrario());
-               S= ""+C.getPrezzo();
-                
-            }else{
-                System.out.println("Ore di permanenza nulle, ritorno prezzo default 4,04 €");
-                C.setPrezzo(404);
-                S=""+C.getPrezzo();
-            }
-        }else{
-            C.setPrezzo((orepermanenza+1)*C.getPrezzoOrario());
-        }
-        
-        
-    }
-    }
-    return null;
-    }
     public void Pagamento(int cod){
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));
@@ -185,6 +156,32 @@ public class Parcheggio extends Observable {
             System.out.println("biglietto non trovato per il pagamento");
         }
     }
+    
+    public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod){
+        try{
+            if (C.transazione(cent5, cent10, cent20, cent50, euro)){
+                
+                //pagamento andato a buon fine
+                getBigliettoAttivo(cod).setConvalida(true);
+                getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
+                getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
+                
+                BigliettiUscita.add(getBigliettoAttivo(cod));
+                BigliettiAttivi.remove(getBigliettoAttivo(cod));
+                return true;
+            }else{ 
+                return false;
+                //pagamento errato
+            }
+            
+        } catch(NullPointerException e) { 
+            System.out.println("biglietto non trovato per il pagamento");
+            return false;
+        }
+        
+    }
+
+    
 
     public void decrementaOccupati() {
         liberaPosto();

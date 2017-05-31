@@ -100,6 +100,10 @@ public class Biglietto {
         convalida.setDataConvalida(data);
     }
 
+    public String getDataConvalida(){
+        return convalida.getDataConvalida();
+    }
+    
     public String getData() {
         return data;
     }

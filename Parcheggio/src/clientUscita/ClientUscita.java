@@ -25,7 +25,7 @@ public class ClientUscita {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserire indirizzo IP del sever:");
         String ip = scanner.nextLine();
-        Socket socket = new Socket(ip,8887);
+        Socket socket = new Socket(ip,8886);
         System.out.println("Connesso al sever.");
        
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

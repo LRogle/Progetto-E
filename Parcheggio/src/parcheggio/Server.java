@@ -21,11 +21,11 @@ public class Server {
     public static void main(String args[]) throws IOException {
         
         System.out.println("Creo server in ascolto:");
-        ServerSocket serverSocket = new ServerSocket(8888);
+        ServerSocket serverSocket = new ServerSocket(8888);//ingresso
         Socket socket = serverSocket.accept();
-        ServerSocket serverSocket1 = new ServerSocket(8887);
+        ServerSocket serverSocket1 = new ServerSocket(8886);//uscita
         Socket socket1 = serverSocket1.accept();
-        ServerSocket serverSocket2 = new ServerSocket(8886);
+        ServerSocket serverSocket2 = new ServerSocket(8887);//cassa
         Socket socket2 = serverSocket.accept();
         System.out.println("Connesso.");
         
@@ -64,7 +64,34 @@ public class Server {
             }
             
             String string2 = in2.readLine();
-        
+            
+            if (string2.equals("Pagamento")) {
+                String s=in2.readLine();
+                    if(parcheggio.getBigliettoAttivo(Integer.parseInt(s))!=null){
+                        String S=""+parcheggio.getCassa().calcolaImporto(parcheggio.getBigliettoAttivo(Integer.parseInt(s)));
+                        out2.println(S);
+                    }else{
+                        out2.println("Biglietto non trovato tra quelli attivi");
+                    }
+            }
+            
+            if (string2.equals("Monetine")){
+                String cinqueCent = in2.readLine();
+                String dieciCent = in2.readLine();
+                String ventiCent = in2.readLine();
+                String cinquantaCent = in2.readLine();
+                String euro = in2.readLine();
+                String codice = in2.readLine();
+                if(parcheggio.PagamentoGUI(Integer.parseInt(cinqueCent), Integer.parseInt(dieciCent), Integer.parseInt(ventiCent), Integer.parseInt(cinquantaCent), Integer.parseInt(euro), Integer.parseInt(codice))){
+                    out2.println("pronto");
+                    out2.println(parcheggio.getBigliettoUscita(Integer.parseInt(codice)).getDataConvalida());
+                }else{
+                    out2.println("abort");
+                }
+                
+                
+            }
+            
         }
 
     }

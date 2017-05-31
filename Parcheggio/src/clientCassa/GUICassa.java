@@ -54,6 +54,8 @@ public class GUICassa extends JFrame{
     PrintWriter out;
     
     public GUICassa( PrintWriter out, BufferedReader in) throws Exception{
+        this.in = in;
+        this.out = out;
         this.setVisible(true);
         this.setSize(500, 500);
         this.setLayout(new GridLayout(3,1));
@@ -124,7 +126,7 @@ public class GUICassa extends JFrame{
         panelTesto.setLayout(new GridLayout(2,1));
         panelTesto.add(bottonepaga);
         panelTesto.add(testo);
-        bottonepaga.disable();
+//        bottonepaga.disable();
         bottonepaga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -142,7 +144,7 @@ public class GUICassa extends JFrame{
                     dataconvalida = in.readLine();
                     if(controllo.equals("pronto")){
                         testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
-                    }else{
+                    }else if (controllo.equals("abort")){
                         testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
                     }
                 } catch (IOException ex) {

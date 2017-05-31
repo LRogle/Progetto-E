@@ -54,6 +54,7 @@ public class GUIUscita extends JFrame {
     private void initPanel1() {
         JButton button = new JButton("USCITA");
         JTextField text = new JTextField();
+//        text.setText("Prova");
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(1,2));
         panel1.add(button);
@@ -63,21 +64,26 @@ public class GUIUscita extends JFrame {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String cod=text.getText();
-                out.println("Arrivederci");
-                out.println(cod);
-                try {
-                    String s =in.readLine();
-                    if(s.equals("Grazie. Arrivederci")){
-                        textsotto.setText("Grazie. Arrivederci");
-                        S.setVisibile(false);      
-                        S = new SbarraClient(true);
-                    }else{
-                        textsotto.setText("Mancato pagamento o tempo scaduto");
-                        S.setVisibile(false);   
-                        S = new SbarraClient(false); 
+                if (cod.equals("")) {
+                    textsotto.setText("inserire codice!");
+                }
+                else {
+                    out.println("Arrivederci");
+                    out.println(cod);
+                    try {
+                        String s =in.readLine();
+                        if(s.equals("Grazie. Arrivederci")){
+                            textsotto.setText("Grazie. Arrivederci");
+                            S.setVisibile(false);      
+                            S = new SbarraClient(true);
+                        } else {
+                            textsotto.setText("Mancato pagamento o tempo scaduto");
+                            S.setVisibile(false);   
+                            S = new SbarraClient(false); 
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

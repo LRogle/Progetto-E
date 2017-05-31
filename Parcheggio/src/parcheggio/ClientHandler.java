@@ -54,6 +54,10 @@ public class ClientHandler implements Runnable {
                         out.println(S);
                         out.flush();
                     } 
+                    else {
+                        out.println("Error!");
+                        out.flush();
+                    }
                 }
                 
                 else if (string.equals("Pagamento")) {

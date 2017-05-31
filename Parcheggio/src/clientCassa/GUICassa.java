@@ -42,14 +42,14 @@ public class GUICassa extends JFrame{
     JLabel cinque = new JLabel("\t5 cent");
     JButton bottonepaga = new JButton("PAGA ORA");
     
-    JTextField codice =new JTextField();
+    JTextField codice =new JTextField("");
     JTextField a5 = new JTextField("0");
     JTextField a4 = new JTextField("0");
     JTextField a3 = new JTextField("0");
     JTextField a2 = new JTextField("0");
     JTextField a1 = new JTextField("0");
     
-    String codicebiglietto;
+    String codicebiglietto="";
     BufferedReader in;
     PrintWriter out;
     
@@ -82,6 +82,10 @@ public class GUICassa extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String s= codice.getText();
                 codicebiglietto = s;
+                if (codicebiglietto.equals("")) {
+                    testo.setText("prima devi inserire il codice!");
+                }
+                else {
                 out.println("Pagamento");
                 out.println(s);
                 String prezzo;
@@ -96,6 +100,7 @@ public class GUICassa extends JFrame{
                     
                 } catch (IOException ex) {
                     Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 }
             }
         });
@@ -130,6 +135,10 @@ public class GUICassa extends JFrame{
         bottonepaga.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (codicebiglietto.equals("")) {
+                    testo.setText("prima devi inserire il codice!");
+                }
+                else {
                 out.println("Monetine");
                 out.println(a1.getText());
                 out.println(a2.getText());
@@ -150,6 +159,7 @@ public class GUICassa extends JFrame{
                 } catch (IOException ex) {
                     Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
                 } 
+                }
             }
         });
         this.add(panelTesto);

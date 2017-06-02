@@ -70,9 +70,9 @@ public class GUIIng extends JFrame{
                     text.setText("CODICE BIGLIETTO:\t"+cod); //cod biglietto
                 
                 out.println("posti");
-                
+
                     try {
-                        String posti = in.readLine();// Abbiamo 
+                        String posti = in.readLine();// Abbiamo
                         postiliberi.setText("POSTI LIBERI:\t"+posti);// numro posti
                         
                         if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
@@ -85,10 +85,10 @@ public class GUIIng extends JFrame{
 //                    }
 //                    S = new Sbarra(false);
                         
-                        }else{
+                        } else {
                             text.setText("Posti Esauriti");
-                        S.setVisibile(false);   
-                        S = new SbarraClient(false); // chiusura sbarra
+                            S.setVisibile(false);   
+                            S = new SbarraClient(false); // chiusura sbarra
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);

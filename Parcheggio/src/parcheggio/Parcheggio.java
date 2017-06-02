@@ -17,14 +17,14 @@ import observerpattern.Observable;
 public class Parcheggio extends Observable {
     
     private int nOccupati;
-    private int nMaxParcheggi;
-    private ArrayList<Biglietto> BigliettiAttivi;
-    private ArrayList<Biglietto> BigliettiUscita;
-    private ArrayList<Biglietto> RegistroBiglietti;
-    private MacchinettaIngresso MI;
-    private Cassa C;
-    private MacchinettaUscita MU;
-    private ArrayList<PostoAuto> PostiAuto;
+    private final int nMaxParcheggi;
+    private final ArrayList<Biglietto> BigliettiAttivi;
+    private final ArrayList<Biglietto> BigliettiUscita;
+    private final ArrayList<Biglietto> RegistroBiglietti;
+    private final MacchinettaIngresso MI;
+    private final Cassa C;
+    private final MacchinettaUscita MU;
+    private final ArrayList<PostoAuto> PostiAuto;
     
     public Parcheggio(){
         super();
@@ -42,16 +42,28 @@ public class Parcheggio extends Observable {
         }
     }
     
+    /**
+     * 
+     * @return Cassa
+     */
     public Cassa getCassa() {
         return this.C;
     }
     
+    /**
+     * 
+     * @return int
+     */
     public int contaPostiLiberi(){
         int liberi = nMaxParcheggi - nOccupati;
+        System.out.println("Totale parcheggi:\t"+nMaxParcheggi+"\tparcheggi occupati:\t"+nOccupati);
         return liberi;
     }
     
-    
+    /**
+     *
+     * @return Biglietto
+     */
     public Biglietto Ingresso(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
@@ -65,6 +77,10 @@ public class Parcheggio extends Observable {
     }
     
     //INGRESSO PER GRAFICA
+    /**
+     *
+     * @return int
+     */
     public int IngressoGUI(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
@@ -97,6 +113,11 @@ public class Parcheggio extends Observable {
     }
     
     //Metodo per la ricerca del biglietto quando si inserisce il codice(biglietto) nella cassa
+    /**
+     *
+     * @param cod
+     * @return Biglietto
+     */
     public Biglietto getBigliettoAttivo(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiAttivi){
             if(BigliettiAttivi1.getCodice()==cod)
@@ -106,6 +127,11 @@ public class Parcheggio extends Observable {
         return null;
     }
     
+    /**
+     *
+     * @param cod
+     * @return Biglietto
+     */
     public Biglietto getBigliettoUscita(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiUscita){
             if(BigliettiAttivi1.getCodice()==cod)
@@ -115,6 +141,10 @@ public class Parcheggio extends Observable {
         return null;
     }
     
+    /**
+     *
+     * @param cod
+     */
     public void Pagamento(int cod){
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));
@@ -157,6 +187,16 @@ public class Parcheggio extends Observable {
         }
     }
     
+    /**
+     *
+     * @param cent5
+     * @param cent10
+     * @param cent20
+     * @param cent50
+     * @param euro
+     * @param cod
+     * @return boolean
+     */
     public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod){
         try{
             if (C.transazione(cent5, cent10, cent20, cent50, euro)){
@@ -181,11 +221,9 @@ public class Parcheggio extends Observable {
         
     }
 
-    
-
     public void decrementaOccupati() {
         liberaPosto();
-        this.nOccupati = nOccupati--;
+        nOccupati--;
         if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}
         this.notifyObserver();
     }
@@ -202,7 +240,9 @@ public class Parcheggio extends Observable {
 //                      -   liberare il postoauto                                       (DA FARE)
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
+            System.err.println("Ok, decremento posti!!");
             decrementaOccupati();
+            System.err.println("Numero posti occupati:\t"+nOccupati);
             RegistroBiglietti.add(getBigliettoUscita(cod));
             BigliettiUscita.remove(getBigliettoUscita(cod));
             return "Grazie. Arrivederci";}
@@ -225,6 +265,10 @@ public class Parcheggio extends Observable {
         }
     }
 
+    /**
+     *
+     * @return int
+     */
     @Override
     public int getState() {
         return this.contaPostiLiberi();

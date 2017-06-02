@@ -39,7 +39,9 @@ public class ClientHandler implements Runnable {
                 
                 if (string.equals("hello")) {
                     out.println(parcheggio.IngressoGUI());
-                    if(in.readLine().equals("posti")){
+                    String posti = in.readLine();
+                    if(posti.equals("posti")){
+                        System.out.println("contaPostiLiberi:\t"+parcheggio.contaPostiLiberi());
                         out.println(parcheggio.contaPostiLiberi());
                     }
                     out.flush();

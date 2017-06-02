@@ -240,9 +240,7 @@ public class Parcheggio extends Observable {
 //                      -   liberare il postoauto                                       (DA FARE)
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
-            System.err.println("Ok, decremento posti!!");
             decrementaOccupati();
-            System.err.println("Numero posti occupati:\t"+nOccupati);
             RegistroBiglietti.add(getBigliettoUscita(cod));
             BigliettiUscita.remove(getBigliettoUscita(cod));
             return "Grazie. Arrivederci";}

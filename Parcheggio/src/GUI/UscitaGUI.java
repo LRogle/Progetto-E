@@ -38,6 +38,7 @@ public class UscitaGUI extends JFrame {
     private JTextArea textsotto = new JTextArea();
    
     private Sbarra S;
+    String cod= "";
     
      
     public UscitaGUI (Parcheggio p){
@@ -67,7 +68,10 @@ public class UscitaGUI extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String cod=text.getText();
+                cod = text.getText();
+                if(cod.equals("")){
+                    textsotto.setText("Codice non valido");
+                }else{
                 if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){
                         String s= parcheggio.Uscita(Integer.parseInt(cod));
                     if(s.equals("Grazie. Arrivederci")){
@@ -82,6 +86,7 @@ public class UscitaGUI extends JFrame {
                 
                 }else{
                     textsotto.setText("Codice non trovato tra i biglietti in uscita");
+                }
                 }
             }
         });

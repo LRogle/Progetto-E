@@ -6,12 +6,14 @@
 package parcheggio;
 
 import java.util.Calendar;
+import java.util.Scanner;
 
 /**
  *
  * @author luca
  */
 public class Cassa {
+    private PagamentoStrategy pagamento;
     private int giorno=0;
     private int mese=0;
     private int anno=0;
@@ -24,6 +26,10 @@ public class Cassa {
     private int prezzoOrario = 1;
     private int somma=0;
     private int ammount=0;
+
+    public void setPagamento(PagamentoStrategy pagamento) {
+        this.pagamento = pagamento;
+    }
     
     public int calcolaImporto(Biglietto big){
         
@@ -70,59 +76,21 @@ public class Cassa {
     }
     
     //accetta solo banconote da 5      10     20     50     100
-    public boolean transazione(int a, int b, int c, int d, int e){
-        
-        int cinque = a;
-        int dieci = b;
-        int venti = c;
-        int cinquanta = d;
-        int uno = e;
-        somma = 100*uno+50*cinquanta+20*venti+10*dieci+5*cinque;
-        //System.out.println("hai inserito: "+somma);
-        int centinaia = somma/100;
-        int decine = (somma-centinaia*100)/10;
-        int unita = (somma - centinaia*100 - decine*10);
-        System.out.println("Importo inserito: "+centinaia+","+decine+unita+"€");
-            if(somma<=prezzo){
-                System.out.println("denaro insufficiente. rieseguire la transazione.");
-                return false;
-            }else{
-                erogaResto();
-                return true;        
+    public boolean transazione(int a, int b, int c, int d, int e,String metodo){
+        if (metodo.equals("contanti")){
+            this.pagamento = new ConcreteStrategyA();
         }
-        
-    }
-    public void erogaResto(){    
-        this.ammount+=prezzo;
-        int resto = getSomma()-prezzo;
-            
-        int centinaiaR = resto/100;
-        int decineR = (resto-centinaiaR*100)/10;
-        int unitaR = (resto - centinaiaR*100 - decineR*10);
-            
-        System.out.println("Resto: "+centinaiaR+","+decineR+unitaR+"€");
-        int ce=0;
-            for(int i=100;i<=resto;i=i+100){ ce++; }
-            resto=resto-(100*ce);
-        int ci=0;
-            for(int o=50;o<=resto;o=o+50){ ci++; }
-            resto=resto-(50*ci);
-        int ve=0;
-            for(int p=20;p<=resto;p=p+20){ ve++; }
-            resto=resto-(20*ve);
-        int di=0;
-            for(int q=10;q<=resto;q=q+10){ di++; }
-            resto=resto-(10*di);
-        int cin=0;
-            for(int w=5;w<=resto;w=w+5){ cin++;}
-            resto=resto-(5*cin);
-        int du=0;
-            for(int f=2;f<=resto;f=f+2){ du++; }
-            resto=resto-(2*du);
-        int un=0;
-            for(int g=1;g<=resto;g=g+1){ un++; }
-        
-        System.out.println("1 €: "+ce+"\n50 cent: "+ci+"\n20 cent: "+ ve+ "\n10 cent: "+di+"\n5 cent: " + cin+"\n2 cent: "+du+"\n1 cent: "+ un);
+        else if (metodo.equals("carta")){
+            this.pagamento = new ConcreteStrategyB();
+        }
+        else {
+            System.out.println("altro");
+        }
+        boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
+        System.out.println("bool: "+bool);
+        if (bool)
+            this.ammount+=prezzo;
+        return bool;
     }
 
     public int getSomma() {

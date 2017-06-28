@@ -29,7 +29,10 @@ import parcheggio.Parcheggio;
 public class GUICassa extends JFrame{
     JPanel Pagamento;
     JPanel panelMonete;
+    JPanel panelMetodo;
     JPanel panelTesto;
+    
+    JButton carta = new JButton("CARTA");
     
     JTextField testo = new JTextField("BENVENUTO");
     JLabel biglietto=new JLabel("INSERISCI CODICE");
@@ -58,7 +61,7 @@ public class GUICassa extends JFrame{
         this.out = out;
         this.setVisible(true);
         this.setSize(500, 500);
-        this.setLayout(new GridLayout(3,1));
+        this.setLayout(new GridLayout(4,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         InitComponent();
     }
@@ -66,6 +69,7 @@ public class GUICassa extends JFrame{
     public void InitComponent(){
         InitpanelPagamento();
         InitpanelMonete();
+        InitpanelMetodo();
         InitpanelTesto();
     }
 
@@ -124,6 +128,45 @@ public class GUICassa extends JFrame{
         this.add(panelMonete);
     }
 
+    private void InitpanelMetodo(){
+        panelMetodo = new JPanel();
+        panelMetodo.setLayout(new GridLayout(1,1));
+        panelMetodo.add(carta);
+        carta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (codicebiglietto.equals("")) {
+                    testo.setText("prima devi inserire il codice!");
+                }
+                else {
+                    out.println("Monetine");
+                    out.println(a1.getText());
+                    out.println(a2.getText());
+                    out.println(a3.getText());
+                    out.println(a4.getText());
+                    out.println(a5.getText());
+                    out.println(codicebiglietto);
+                    out.println("carta");
+                
+                    String dataconvalida;
+                    try {
+                        String controllo = in.readLine();
+                        dataconvalida = in.readLine();
+                    if(controllo.equals("pronto")){
+                        testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
+                    } else if (controllo.equals("abort")){
+                        testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                    }
+                    } catch (IOException ex) {
+                        Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+                }
+                
+            }
+        });
+        this.add(panelMetodo);
+    }
+    
     public void InitpanelTesto() {
         testo.setVisible(true);
         testo.setEditable(false);
@@ -146,6 +189,7 @@ public class GUICassa extends JFrame{
                 out.println(a4.getText());
                 out.println(a5.getText());
                 out.println(codicebiglietto);
+                out.println("contanti");
                 
                 String dataconvalida;
                 try {

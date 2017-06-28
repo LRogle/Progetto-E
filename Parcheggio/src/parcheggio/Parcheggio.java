@@ -149,7 +149,7 @@ public class Parcheggio extends Observable {
                 cent10 = scanner.nextInt();
                 System.out.print("5 cent: ");
                 cent5 = scanner.nextInt();
-                if (C.transazione(cent5, cent10, cent20, cent50, euro)) {
+                if (C.transazione(cent5, cent10, cent20, cent50, euro,"contanti")) {
                     break;
                 }
             }
@@ -164,9 +164,9 @@ public class Parcheggio extends Observable {
         }
     }
     
-    public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod){
+    public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod,String metodo){
         try{
-            if (C.transazione(cent5, cent10, cent20, cent50, euro)){
+            if (C.transazione(cent5, cent10, cent20, cent50, euro,metodo)){
                 //pagamento andato a buon fine
                 getBigliettoAttivo(cod).setConvalida(true);
                 getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());

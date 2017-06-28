@@ -118,7 +118,7 @@ public class CassaGui extends JFrame{
                 if (codicebiglietto.equals("")) {
                     testo.setText("prima devi inserire il codice!");
                 }else {
-                    if(P.PagamentoGUI(Integer.parseInt(a1.getText()), Integer.parseInt(a2.getText()), Integer.parseInt(a3.getText()), Integer.parseInt(a4.getText()), Integer.parseInt(a5.getText()), Integer.parseInt(codicebiglietto))){
+                    if(P.PagamentoGUI(Integer.parseInt(a1.getText()), Integer.parseInt(a2.getText()), Integer.parseInt(a3.getText()), Integer.parseInt(a4.getText()), Integer.parseInt(a5.getText()), Integer.parseInt(codicebiglietto),"contanti")){
                         testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+P.getBigliettoUscita(Integer.parseInt(codicebiglietto)).getDataConvalida());
                     }else{
                         testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");

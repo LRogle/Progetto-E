@@ -76,7 +76,8 @@ public class ClientHandler implements Runnable {
                     String cinquantaCent = in.readLine();
                     String euro = in.readLine();
                     String codice = in.readLine();
-                    if(parcheggio.PagamentoGUI(Integer.parseInt(cinqueCent), Integer.parseInt(dieciCent), Integer.parseInt(ventiCent), Integer.parseInt(cinquantaCent), Integer.parseInt(euro), Integer.parseInt(codice))){
+                    String metodo = in.readLine();
+                    if(parcheggio.PagamentoGUI(Integer.parseInt(cinqueCent), Integer.parseInt(dieciCent), Integer.parseInt(ventiCent), Integer.parseInt(cinquantaCent), Integer.parseInt(euro), Integer.parseInt(codice),metodo)){
                         out.println("pronto");
                         out.println(parcheggio.getBigliettoUscita(Integer.parseInt(codice)).getDataConvalida());
                         out.flush();

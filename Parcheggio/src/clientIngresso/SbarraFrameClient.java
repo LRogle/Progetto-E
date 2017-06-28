@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientUscita;
+package clientIngresso;
 
-import clientIngresso.*;
 import GUI.*;
-import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,30 +14,33 @@ import javax.swing.JPanel;
  *
  * @author luca
  */
-public class SbarraClientUscita extends JFrame{
+public class SbarraFrameClient extends JFrame{
     private JPanel panel;
-    private SbarraAperta SA = new SbarraAperta();
+    private Sbarra SA = new Sbarra();
     private SbarraChiusa SC = new SbarraChiusa();
-    
 
-    public SbarraClientUscita(boolean x) {
+    public SbarraFrameClient() {
         this.setVisible(true);
         this.setSize(500, 500);
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        if(x)
-            panel = SA.functionMain();
-        else
-            panel = SC.functionMain();
-        this.add(panel);
+        this.SA= new Sbarra();
+        this.add(SA);
+    }
+    
+    public void apri(){
+        this.SA.setAperta(true);
+        this.SA.repaint();
+    }
+    
+    public void chiudi(){
+        this.SA.setAperta(false);
+        this.SA.repaint();
     }
     
     public void setVisibile(boolean x){
         this.setVisible(x);
     }
-
-
-    
     
 }

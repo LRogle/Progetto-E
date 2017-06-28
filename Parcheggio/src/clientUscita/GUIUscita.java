@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 /**
  *
@@ -30,7 +31,7 @@ public class GUIUscita extends JFrame {
     private JPanel panel2; 
     private JTextField textsotto = new JTextField();
    
-    private SbarraClient S;
+    private SbarraFrameClientU S;
     private PrintWriter out;
     private BufferedReader in;
      
@@ -43,7 +44,7 @@ public class GUIUscita extends JFrame {
         this.setLayout(new GridLayout(2,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponent();
-        S = new SbarraClient(false);
+        S = new SbarraFrameClientU();
     }
 
     private void initComponent() {
@@ -74,12 +75,17 @@ public class GUIUscita extends JFrame {
                         String s =in.readLine();
                         if(s.equals("Grazie. Arrivederci")){
                             textsotto.setText("Grazie. Arrivederci");
-                            S.setVisibile(false);      
-                            S = new SbarraClient(true);
+                            S.apri();
+                            Timer timer = new Timer(1000, new ActionListener(){
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    S.chiudi();
+                                }
+                            });
+                            timer.start();
                         } else {
                             textsotto.setText("Mancato pagamento o tempo scaduto");
-                            S.setVisibile(false);   
-                            S = new SbarraClient(false); 
+                             
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);

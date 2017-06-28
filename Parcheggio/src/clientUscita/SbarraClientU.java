@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientIngresso;
+package clientUscita;
 
+import clientIngresso.*;
 import GUI.*;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,7 +20,7 @@ import javax.swing.JPanel;
  *
  * @author luca
  */
-public class SbarraClient extends Component {
+public class SbarraClientU extends Component {
           
     private BufferedImage img;
     private boolean aperta = false;
@@ -27,7 +28,7 @@ public class SbarraClient extends Component {
     private String schiusa = "./Immagini/Chiuso.png";
     
     
-    public SbarraClient() {
+    public SbarraClientU() {
         try {
             img = ImageIO.read(new File(schiusa));
         } catch (IOException e) {

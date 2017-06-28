@@ -8,6 +8,8 @@ package parcheggio;
 import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import observerpattern.Observable;
 
 /**
@@ -40,6 +42,13 @@ public class Parcheggio extends Observable {
         aggiungiPostiAuto();
     }
     
+    public void aspetta(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Parcheggio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void aggiungiPostiAuto(){
         for(int i=1;i<=nMaxParcheggi;i++){
             PostiAuto.add(new PostoAuto(i));
@@ -213,7 +222,7 @@ public class Parcheggio extends Observable {
     
     private void occupaPosto(){
         for(PostoAuto PA : PostiAuto){
-            if(PA.getNumeroPosto()==postoRandom())
+            if(!(PA.isOccupato()) && PA.getNumeroPosto()==postoRandom())
                 PA.setOccupato(true);
         }
     }

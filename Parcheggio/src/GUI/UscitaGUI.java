@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import parcheggio.Parcheggio;
 
 /**
@@ -36,12 +37,12 @@ public class UscitaGUI extends JFrame {
     
     
     private JTextArea textsotto = new JTextArea();
-   
-    private Sbarra S;
+    
+    private SbarraFrame S;
     String cod= "";
     
      
-    public UscitaGUI (Parcheggio p){
+    public UscitaGUI (Parcheggio p) throws InterruptedException{
         this.parcheggio= p;
         this.setVisible(true);
         this.setSize(500, 500);
@@ -49,7 +50,7 @@ public class UscitaGUI extends JFrame {
         this.setLayout(new GridLayout(2,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponent();
-        S = new Sbarra(false);
+        S = new SbarraFrame();
     }
 
     private void initComponent() {
@@ -76,12 +77,16 @@ public class UscitaGUI extends JFrame {
                         String s= parcheggio.Uscita(Integer.parseInt(cod));
                     if(s.equals("Grazie. Arrivederci")){
                         textsotto.setText("Grazie. Arrivederci");
-                        S.setVisibile(false);      
-                        S = new Sbarra(true);
-                    }else{
+                        S.apri();
+                        Timer timer = new Timer(1000, new ActionListener(){
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                S.chiudi();
+                            }
+                        });
+                        timer.start();
+                    } else {
                         textsotto.setText("Mancato pagamento o tempo scaduto");
-                        S.setVisibile(false);   
-                        S = new Sbarra(false); 
                     }
                 
                 }else{

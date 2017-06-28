@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 
 /**
  *
@@ -28,7 +29,7 @@ public class GUIIng extends JFrame{
     private JPanel panel1;    //bottone,codice biglietto erogato
     private JPanel panel2;    //decidere per la sbarra il semaforo e i posti liberi
     
-    private SbarraClient S;
+    private SbarraFrameClient S;
     private JTextField postiliberi = new JTextField(); 
     private PrintWriter out;
     private BufferedReader in;
@@ -42,7 +43,7 @@ public class GUIIng extends JFrame{
         this.setLayout(new GridLayout(2,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initComponent();
-        S = new SbarraClient(false);
+        S = new SbarraFrameClient();
     }
 
     private void initComponent() {
@@ -76,8 +77,14 @@ public class GUIIng extends JFrame{
                         postiliberi.setText("POSTI LIBERI:\t"+posti);// numro posti
                         
                         if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
-                            S.setVisibile(false);      
-                            S = new SbarraClient(true);// apertura sbarra 
+                            S.apri();
+                            Timer timer = new Timer(1000, new ActionListener(){
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    S.chiudi();
+                                }
+                            });
+                            timer.start(); 
 //                    try {          
 //                            Thread.sleep(2500);    // il parametro in input è il tempo espresso in millesimi
 //                    } catch (InterruptedException ex) {
@@ -87,8 +94,6 @@ public class GUIIng extends JFrame{
                         
                         } else {
                             text.setText("Posti Esauriti");
-                            S.setVisibile(false);   
-                            S = new SbarraClient(false); // chiusura sbarra
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);

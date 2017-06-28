@@ -22,9 +22,9 @@ public class testGUI {
         
         Parcheggio parcheggio = new Parcheggio();
         IngressoGUI G = new IngressoGUI(parcheggio);
-        FinestraSemaforo finestraSemaforo = new FinestraSemaforo();
-        parcheggio.attach(finestraSemaforo);
-        parcheggio.notifyObserver();
+        //FinestraSemaforo finestraSemaforo = new FinestraSemaforo();
+        //parcheggio.attach(finestraSemaforo);
+        //parcheggio.notifyObserver();
         CassaGui GC= new CassaGui(parcheggio);
         UscitaGUI GU = new UscitaGUI(parcheggio);
     }

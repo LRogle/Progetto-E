@@ -15,13 +15,13 @@ import java.util.Calendar;
  */
 public class Biglietto {
     public static int contabiglietti;
-    private int codice=0;
-    private int giorno=0;
-    private int mese=0;
-    private int anno=0;
-    private int ore=0;
-    private int minuti=0;
-    private int secondi=0;
+    private int codice;
+    private int giorno;
+    private int mese;
+    private int anno;
+    private int ore;
+    private int minuti;
+    private int secondi;
     private String data;
     private String ora;
     Convalida convalida= new Convalida();
@@ -37,31 +37,20 @@ public class Biglietto {
         return contabiglietti;
     }
     
-//codice random puo capitare uguale
-//    private int generaCodice(){
-//        
-//        int b = 10000; // numero massimo
-//        double cod= floor(Math.random() * b);
-//        codice=(int) cod;
-//        return codice;
-//    }
-    
     private void getDate(){
-        Calendar cal =  Calendar.getInstance();
-        giorno =cal.get(Calendar.DATE);
+        Calendar cal = Calendar.getInstance();
+        giorno = cal.get(Calendar.DATE);
         mese = cal.get(Calendar.MONTH) +1;
-        anno =cal.get(Calendar.YEAR);
-        
+        anno = cal.get(Calendar.YEAR);
         data =  giorno +"/"+ mese +"/"+ anno;
     }
 
     private void getHours() {
-        Calendar cal =  Calendar.getInstance();
-        ore=cal.get(Calendar.HOUR);
-        minuti=cal.get(Calendar.MINUTE);
-        secondi=cal.get(Calendar.SECOND);
-        
-        ora = cal.get(Calendar.HOUR) + ":"+ cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
+        Calendar cal = Calendar.getInstance();
+        ore = cal.get(Calendar.HOUR);
+        minuti = cal.get(Calendar.MINUTE);
+        secondi = cal.get(Calendar.SECOND);
+        ora = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
 
     public int getCodice() {
@@ -117,6 +106,4 @@ public class Biglietto {
     public String toString() {
         return "Biglietto{" + " codice=" + codice + ", data=" + data + ", ora=" + ora + " "+ '}';
     }
-
-    
 }

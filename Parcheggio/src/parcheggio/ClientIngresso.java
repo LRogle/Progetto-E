@@ -40,7 +40,7 @@ public class ClientIngresso {
             else {
                 System.out.println(risposta);
             }
-        }
-            
+        }  
+        
     }
 }

@@ -61,6 +61,4 @@ public class Convalida {
         return "Convalida{" + "dataConvalida=" + dataConvalida + ", convalidato=" + convalidato + '}';
     }
     
-    
-    
 }

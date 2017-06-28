@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
+
 
 /**
  *
@@ -28,9 +28,7 @@ public class ClientHandler implements Runnable {
     
     @Override
     public void run() {
-        
         try {
-            
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             // leggo e scrivo sulla connessione finche' non ricevo "quit"
@@ -48,7 +46,6 @@ public class ClientHandler implements Runnable {
                     System.out.println(" --- biglietti attivi:");
                     parcheggio.stampaBigliettiAttivi();
                 }
-                
                 else if (string.equals("Arrivederci")) {
                     String cod=in.readLine();
                     if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){
@@ -61,7 +58,6 @@ public class ClientHandler implements Runnable {
                         out.flush();
                     }
                 }
-                
                 else if (string.equals("Pagamento")) {
                     String s=in.readLine();
                     if(parcheggio.getBigliettoAttivo(Integer.parseInt(s))!=null){
@@ -73,7 +69,6 @@ public class ClientHandler implements Runnable {
                         out.flush();
                     }
                 }
-                
                 else if (string.equals("Monetine")) {
                     String cinqueCent = in.readLine();
                     String dieciCent = in.readLine();
@@ -90,10 +85,8 @@ public class ClientHandler implements Runnable {
                         out.println("error: no date");
                         out.flush();
                     }
-                }
-                
+                } 
             }
-            
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }

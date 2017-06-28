@@ -21,15 +21,14 @@ public class Cassa {
     private String data = null;
     private String ora = null;
     private int prezzo=0;
-    private int prezzoOrario = 1; //prezzo parcheggio: 1€ all'ora
+    private int prezzoOrario = 1;
     private int somma=0;
     private int ammount=0;
     
     public int calcolaImporto(Biglietto big){
         
-        
-        getDate();// vanno bene anche qua basta che si usino nello stesso momento
-        getHours();//calcolaimporto() e transazione()
+        getDate();
+        getHours();
        
         int orepermanenza=ore-big.getOre();
         int minpermanenza=minuti-big.getMinuti();
@@ -52,27 +51,24 @@ public class Cassa {
         }else{
             return prezzo=(orepermanenza+1)*prezzoOrario;
         }
-        
-        
     }
     
     private void getDate(){
         Calendar cal =  Calendar.getInstance();
-        giorno =cal.get(Calendar.DATE);
+        giorno = cal.get(Calendar.DATE);
         mese = cal.get(Calendar.MONTH) +1;
-        anno =cal.get(Calendar.YEAR);
-        
-        data =  giorno +"/"+ mese +"/"+ anno;
+        anno = cal.get(Calendar.YEAR);
+        data = giorno +"/"+ mese +"/"+ anno;
     }
 
-    private void getHours() {
-        Calendar cal =  Calendar.getInstance();
-        ore=cal.get(Calendar.HOUR);
-        minuti=cal.get(Calendar.MINUTE);
-        secondi=cal.get(Calendar.SECOND);
-        
+    private void getHours(){
+        Calendar cal = Calendar.getInstance();
+        ore = cal.get(Calendar.HOUR);
+        minuti = cal.get(Calendar.MINUTE);
+        secondi = cal.get(Calendar.SECOND);
         ora = cal.get(Calendar.HOUR) + ":"+ cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
+    
     //accetta solo banconote da 5      10     20     50     100
     public boolean transazione(int a, int b, int c, int d, int e){
         
@@ -90,9 +86,7 @@ public class Cassa {
             if(somma<=prezzo){
                 System.out.println("denaro insufficiente. rieseguire la transazione.");
                 return false;
-                //Ritorna false se il pagamento non è corretto.
             }else{
-                //Il biglietto viene convalidato e viene erogato un eventuale resto.
                 erogaResto();
                 return true;        
         }
@@ -137,7 +131,7 @@ public class Cassa {
 
     public String getDataCassa(){
             return data;
-        }
+    }
 
     public int getOre() {
         return ore;
@@ -158,13 +152,4 @@ public class Cassa {
     public int getPrezzoOrario() {
         return prezzoOrario = 1;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

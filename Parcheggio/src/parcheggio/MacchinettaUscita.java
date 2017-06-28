@@ -22,12 +22,13 @@ public class MacchinettaUscita{
     private String data;
     private String ora;
     
-    //funzione che deve essere utilizzata quando il conducente ( inserisce il codice [biglietto] e poi preme il bottone per verificare se è convalidato )
+    //funzione che deve essere utilizzata quando il conducente inserisce il codice [biglietto] 
+    //e poi preme il bottone per verificare se è convalidato 
     public boolean controllaBiglietto(Biglietto B){
         getDate();
         getHours();
         if(B.convalida.isConvalidato()){
-            //è convalidato deve:   -   controllare il tempo dopo il pagamento                      
+            //controllare il tempo dopo il pagamento                      
             //supponiamo che il tempo per uscire sia 15 minuti altrimenti interviene l'operatore?
             if(B.convalida.getDataConvalida().equals(data)){
                 if(minuti-B.convalida.getMinuti()<=15){   
@@ -37,8 +38,7 @@ public class MacchinettaUscita{
             }else{
                 System.out.println("Problema. Permanenza eccesiva dopo il pagamento");
                 return false;
-            }
-            
+            } 
         }else{
             System.out.println("Biglietto non convalidato, andare a pagare");
             return false;
@@ -47,23 +47,19 @@ public class MacchinettaUscita{
     }
     
     private void getDate(){
-        Calendar cal =  Calendar.getInstance();
-        giorno =cal.get(Calendar.DATE);
-        mese = cal.get(Calendar.MONTH) +1;
-        anno =cal.get(Calendar.YEAR);
-        
+        Calendar cal = Calendar.getInstance();
+        giorno = cal.get(Calendar.DATE);
+        mese = cal.get(Calendar.MONTH)+1;
+        anno = cal.get(Calendar.YEAR);
         data =  giorno +"/"+ mese +"/"+ anno;
     }
 
     private void getHours() {
-        Calendar cal =  Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         ore=cal.get(Calendar.HOUR);
         minuti=cal.get(Calendar.MINUTE);
         secondi=cal.get(Calendar.SECOND);
-        
         ora = cal.get(Calendar.HOUR) + ":"+ cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
-    
-    
     
 }

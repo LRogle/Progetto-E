@@ -37,33 +37,25 @@ public class Parcheggio extends Observable {
         MI = new MacchinettaIngresso();
         C = new Cassa();
         MU = new MacchinettaUscita();
+        aggiungiPostiAuto();
+    }
+    
+    private void aggiungiPostiAuto(){
         for(int i=1;i<=nMaxParcheggi;i++){
             PostiAuto.add(new PostoAuto(i));
         }
     }
     
-    /**
-     * 
-     * @return Cassa
-     */
     public Cassa getCassa() {
         return this.C;
     }
     
-    /**
-     * 
-     * @return int
-     */
     public int contaPostiLiberi(){
         int liberi = nMaxParcheggi - nOccupati;
         System.out.println("Totale parcheggi:\t"+nMaxParcheggi+"\tparcheggi occupati:\t"+nOccupati);
         return liberi;
     }
     
-    /**
-     *
-     * @return Biglietto
-     */
     public Biglietto Ingresso(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
@@ -77,10 +69,6 @@ public class Parcheggio extends Observable {
     }
     
     //INGRESSO PER GRAFICA
-    /**
-     *
-     * @return int
-     */
     public int IngressoGUI(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
@@ -112,12 +100,6 @@ public class Parcheggio extends Observable {
         }
     }
     
-    //Metodo per la ricerca del biglietto quando si inserisce il codice(biglietto) nella cassa
-    /**
-     *
-     * @param cod
-     * @return Biglietto
-     */
     public Biglietto getBigliettoAttivo(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiAttivi){
             if(BigliettiAttivi1.getCodice()==cod)
@@ -127,11 +109,6 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-    /**
-     *
-     * @param cod
-     * @return Biglietto
-     */
     public Biglietto getBigliettoUscita(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiUscita){
             if(BigliettiAttivi1.getCodice()==cod)
@@ -141,10 +118,6 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-    /**
-     *
-     * @param cod
-     */
     public void Pagamento(int cod){
         try{
             C.calcolaImporto(getBigliettoAttivo(cod));
@@ -177,54 +150,36 @@ public class Parcheggio extends Observable {
             System.out.println(getBigliettoAttivo(cod).convalida.toString());
             BigliettiUscita.add(getBigliettoAttivo(cod));
             BigliettiAttivi.remove(getBigliettoAttivo(cod));
-            
-            //PRIMA AVEVO MESSO LA RIMOZIONE DEL BIGLIETTO DAGLI ATTIVI QUI, SUBITO DOPO IL PAGAMENTO QUINDI ORA È IN USCITA
-            //se voglio metterlo qua incontro un errore perche in uscita non posso cercare il biglietto tra gli attivi e 
-            //quindi dovrei utilizzare un altra lista apposta per i biglietti pagati in attesa di uscita dal parcheggio
-            //abbastanza inutile? no guardare main
         } catch(NullPointerException e) { 
             System.out.println("biglietto non trovato per il pagamento");
         }
     }
     
-    /**
-     *
-     * @param cent5
-     * @param cent10
-     * @param cent20
-     * @param cent50
-     * @param euro
-     * @param cod
-     * @return boolean
-     */
     public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod){
         try{
             if (C.transazione(cent5, cent10, cent20, cent50, euro)){
-                
                 //pagamento andato a buon fine
                 getBigliettoAttivo(cod).setConvalida(true);
                 getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
                 getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
-                
                 BigliettiUscita.add(getBigliettoAttivo(cod));
                 BigliettiAttivi.remove(getBigliettoAttivo(cod));
                 return true;
             }else{ 
-                return false;
                 //pagamento errato
-            }
-            
-        } catch(NullPointerException e) { 
+                return false;
+            }  
+        }catch(NullPointerException e) { 
             System.out.println("biglietto non trovato per il pagamento");
             return false;
         }
-        
     }
 
     public void decrementaOccupati() {
         liberaPosto();
         nOccupati--;
-        if(nOccupati<0){System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");}
+        if(nOccupati<0)
+            System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
         this.notifyObserver();
     }
     
@@ -236,7 +191,7 @@ public class Parcheggio extends Observable {
     }
     
 //in uscita si deve:
-//                      -   (alzare la sbarra) da fare con interfaccia                  (DA FARE)                 
+               
 //                      -   liberare il postoauto                                       (DA FARE)
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
@@ -250,7 +205,7 @@ public class Parcheggio extends Observable {
     }
     
     private int postoRandom(){
-        int b = nMaxParcheggi; // numero massimo
+        int b = nMaxParcheggi; 
         double cod= floor(Math.random() * b);
         int postoRandom=(int) cod;
         return postoRandom;
@@ -262,19 +217,10 @@ public class Parcheggio extends Observable {
                 PA.setOccupato(true);
         }
     }
-
-    /**
-     *
-     * @return int
-     */
+    
     @Override
     public int getState() {
         return this.contaPostiLiberi();
     }
-    
-    
-    
-    
-    
     
 }

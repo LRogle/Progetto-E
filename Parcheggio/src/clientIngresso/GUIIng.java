@@ -35,6 +35,7 @@ public class GUIIng extends JFrame{
     private BufferedReader in;
     
     public GUIIng(PrintWriter out,BufferedReader in){
+        this.setTitle("Macchinetta Ingresso");
         this.out=out;
         this.in=in;
         this.setVisible(true);

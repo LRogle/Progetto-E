@@ -5,8 +5,6 @@
  */
 package observerpattern;
 
-import observerpattern.Observable;
-
 /**
  *
  * @author aench

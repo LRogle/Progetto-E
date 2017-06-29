@@ -34,6 +34,7 @@ public class GUIUscita extends JFrame {
     private BufferedReader in;
      
     public GUIUscita (PrintWriter out,BufferedReader in){
+        this.setTitle("Macchinetta Uscita");
         this.out=out;
         this.in=in;
         this.setVisible(true);

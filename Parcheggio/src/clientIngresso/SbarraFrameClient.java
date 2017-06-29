@@ -20,6 +20,7 @@ public class SbarraFrameClient extends JFrame{
     private SbarraChiusa SC = new SbarraChiusa();
 
     public SbarraFrameClient() {
+        this.setTitle("Sbarra Ingresso");
         this.setVisible(true);
         this.setSize(500, 500);
         this.setLocation(600, WIDTH);

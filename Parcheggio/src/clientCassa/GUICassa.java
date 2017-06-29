@@ -57,6 +57,7 @@ public class GUICassa extends JFrame{
     int minutilimite;
     
     public GUICassa( PrintWriter out, BufferedReader in) throws Exception{
+        this.setTitle("Cassa");
         this.in = in;
         this.out = out;
         this.setVisible(true);

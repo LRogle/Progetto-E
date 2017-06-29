@@ -70,14 +70,14 @@ public class ClientHandler implements Runnable {
                     }
                 }
                 else if (string.equals("Monetine")) {
-                    String cinqueCent = in.readLine();
-                    String dieciCent = in.readLine();
-                    String ventiCent = in.readLine();
-                    String cinquantaCent = in.readLine();
-                    String euro = in.readLine();
+                    String euro1 = in.readLine();
+                    String euro2 = in.readLine();
+                    String euro5 = in.readLine();
+                    String euro10 = in.readLine();
+                    String euro20 = in.readLine();
                     String codice = in.readLine();
                     String metodo = in.readLine();
-                    if(parcheggio.PagamentoGUI(Integer.parseInt(cinqueCent), Integer.parseInt(dieciCent), Integer.parseInt(ventiCent), Integer.parseInt(cinquantaCent), Integer.parseInt(euro), Integer.parseInt(codice),metodo)){
+                    if(parcheggio.PagamentoGUI(Integer.parseInt(euro1), Integer.parseInt(euro2), Integer.parseInt(euro5), Integer.parseInt(euro10), Integer.parseInt(euro20), Integer.parseInt(codice),metodo)){
                         out.println("pronto");
                         out.println(parcheggio.getBigliettoUscita(Integer.parseInt(codice)).getDataConvalida());
                         out.flush();

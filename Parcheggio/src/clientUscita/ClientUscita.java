@@ -5,8 +5,6 @@
  */
 package clientUscita;
 
-import clientIngresso.*;
-import parcheggio.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,6 +33,8 @@ public class ClientUscita {
         
         if(socket.isConnected()){
         System.out.println("OK");}
+        
+//        COMMENTI DA ELIMINARE
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());
 //            String input = scanner.nextLine();

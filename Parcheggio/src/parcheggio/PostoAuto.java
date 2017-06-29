@@ -37,8 +37,5 @@ public class PostoAuto {
     public void setOccupato(boolean occupato) {
         this.occupato = occupato;
     }
-    
-    
-    
-    
+  
 }

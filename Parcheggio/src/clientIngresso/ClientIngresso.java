@@ -5,7 +5,6 @@
  */
 package clientIngresso;
 
-import parcheggio.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +31,7 @@ public class ClientIngresso {
         
         GUIIng G = new GUIIng(out, in);
         
+//        COMMENTI DA ELIMINARE
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());
 //            String input = scanner.nextLine();

@@ -27,7 +27,7 @@ import javax.swing.Timer;
  */
 public class GUIIng extends JFrame{
     private JPanel panel1;    //bottone,codice biglietto erogato
-    private JPanel panel2;    //decidere per la sbarra il semaforo e i posti liberi
+    private JPanel panel2;    //posti liberi
     
     private SbarraFrameClient S;
     private JTextField postiliberi = new JTextField(); 
@@ -74,7 +74,7 @@ public class GUIIng extends JFrame{
 
                     try {
                         String posti = in.readLine();// Abbiamo
-                        postiliberi.setText("POSTI LIBERI:\t"+posti);// numro posti
+                        postiliberi.setText("POSTI LIBERI:\t"+posti);// numero posti
                         
                         if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
                             S.apri();
@@ -84,14 +84,7 @@ public class GUIIng extends JFrame{
                                     S.chiudi();
                                 }
                             });
-                            timer.start(); 
-//                    try {          
-//                            Thread.sleep(2500);    // il parametro in input è il tempo espresso in millesimi
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(MIngresso.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                    S = new Sbarra(false);
-                        
+                            timer.start();          
                         } else {
                             text.setText("Posti Esauriti");
                         }

@@ -6,7 +6,6 @@
 package parcheggio;
 
 import java.util.Calendar;
-import java.util.Scanner;
 
 /**
  *
@@ -23,8 +22,8 @@ public class Cassa {
     private String data = null;
     private String ora = null;
     private int prezzo=0;
-    private int prezzoOrario = 1;
-    private int somma=0;
+//    private int prezzoOrario = 1;
+//    private int somma=0;
     private int ammount=0;
 
     public void setPagamento(PagamentoStrategy pagamento) {
@@ -42,21 +41,16 @@ public class Cassa {
         int mesipermanenza=mese-big.getMese();
         int giornipermanenza=giorno-big.getGiorno();
         
-        if(annipermanenza!=0){return prezzo=750*annipermanenza;}
-        if(mesipermanenza!=0){return prezzo=100*mesipermanenza;}
-        if(giornipermanenza>=7){return 20*(giornipermanenza/7);}
-        
-        if(minpermanenza==0){
-            System.out.println("Ore di permanenza: "+orepermanenza);
-            if(orepermanenza!=0){
-                return prezzo=orepermanenza*prezzoOrario;
-            }else{
-                System.out.println("Ore di permanenza nulle, ritorno prezzo default 4,04 €");
-                return prezzo=404;
-            }
-        }else{
-            return prezzo=(orepermanenza+1)*prezzoOrario;
-        }
+        if(giornipermanenza>=7)                     {return prezzo = Math.round(20*(giornipermanenza/7));}
+        if(orepermanenza>=24)                       {return prezzo = giornipermanenza*15;}
+        if(orepermanenza<24 && orepermanenza>=10)   {return prezzo = 10;}
+        if(orepermanenza<10 && orepermanenza>=5)    {return prezzo = 5;}
+        if(orepermanenza<5 && orepermanenza>=2)     {return prezzo = 2;}
+        if(orepermanenza<2 && orepermanenza>=1)     {return prezzo = 1;}
+        if(minpermanenza<=10)                       {
+            System.out.println("sosta minore di 10 minuti, convalida gratuita");
+            return prezzo = 404;  
+        }else                                       {return prezzo = 1;}
     }
     
     private void getDate(){
@@ -75,7 +69,7 @@ public class Cassa {
         ora = cal.get(Calendar.HOUR) + ":"+ cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
     
-    //accetta solo banconote da 5      10     20     50     100
+    //accetta solo              1      2     5       10     20
     public boolean transazione(int a, int b, int c, int d, int e,String metodo){
         if (metodo.equals("contanti")){
             this.pagamento = new ConcreteStrategyA();
@@ -87,14 +81,11 @@ public class Cassa {
             System.out.println("altro");
         }
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
-        System.out.println("bool: "+bool);
-        if (bool)
+        if (bool){
             this.ammount+=prezzo;
+            System.out.println("\nAmmontare nella cassa:" + ammount);
+        }
         return bool;
-    }
-
-    public int getSomma() {
-        return somma;
     }
 
     public String getDataCassa(){
@@ -117,7 +108,4 @@ public class Cassa {
         this.prezzo = prezzo;
     }
 
-    public int getPrezzoOrario() {
-        return prezzoOrario = 1;
-    }
 }

@@ -5,22 +5,20 @@
  */
 package clientCassa;
 
-import GUI.*;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import parcheggio.Parcheggio;
 
 /**
  *
@@ -38,11 +36,11 @@ public class GUICassa extends JFrame{
     JLabel biglietto=new JLabel("INSERISCI CODICE");
     JButton bottone = new JButton("CONFERMA CODICE");
 
-    JLabel uno = new JLabel("\t1 euro");
-    JLabel cinquanta = new JLabel("\t50 cent");
-    JLabel venti = new JLabel("\t20 cent");
-    JLabel dieci = new JLabel("\t10 cent");
-    JLabel cinque = new JLabel("\t5 cent");
+    JLabel uno = new JLabel("\t20 €");
+    JLabel cinquanta = new JLabel("\t10 €");
+    JLabel venti = new JLabel("\t5 €");
+    JLabel dieci = new JLabel("\t2 €");
+    JLabel cinque = new JLabel("\t1 €");
     JButton bottonepaga = new JButton("PAGA ORA");
     
     JTextField codice =new JTextField("");
@@ -55,6 +53,8 @@ public class GUICassa extends JFrame{
     String codicebiglietto="";
     BufferedReader in;
     PrintWriter out;
+    
+    int minutilimite;
     
     public GUICassa( PrintWriter out, BufferedReader in) throws Exception{
         this.in = in;
@@ -90,6 +90,7 @@ public class GUICassa extends JFrame{
                     testo.setText("prima devi inserire il codice!");
                 }
                 else {
+                minutilimite=getMinutiAttuali()+5;
                 out.println("Pagamento");
                 out.println(s);
                 String prezzo;
@@ -98,7 +99,7 @@ public class GUICassa extends JFrame{
                     if(prezzo.equals("Biglietto non trovato tra quelli attivi")){
                         testo.setText(prezzo);
                     }else{
-                    testo.setText("PAGARE:\t"+prezzo);
+                    testo.setText("PAGARE:\t"+prezzo+"€");
                     bottonepaga.enable();
                     }
                     
@@ -121,10 +122,10 @@ public class GUICassa extends JFrame{
         panelMonete.add(dieci);
         panelMonete.add(cinque);
         panelMonete.add(a5);//1€
-        panelMonete.add(a4);//50
-        panelMonete.add(a3);//20
-        panelMonete.add(a2);//10
-        panelMonete.add(a1);//5cent
+        panelMonete.add(a4);//2€
+        panelMonete.add(a3);//5€
+        panelMonete.add(a2);//10€
+        panelMonete.add(a1);//20€
         this.add(panelMonete);
     }
 
@@ -139,29 +140,32 @@ public class GUICassa extends JFrame{
                     testo.setText("prima devi inserire il codice!");
                 }
                 else {
-                    out.println("Monetine");
-                    out.println(a1.getText());
-                    out.println(a2.getText());
-                    out.println(a3.getText());
-                    out.println(a4.getText());
-                    out.println(a5.getText());
-                    out.println(codicebiglietto);
-                    out.println("carta");
+                    if(getMinutiAttuali()>minutilimite){
+                        testo.setText("Biglietto non convalidato, tempo scaduto. Riprovare");
+                    } else {
+                        out.println("Monetine");
+                        out.println(a1.getText());
+                        out.println(a2.getText());
+                        out.println(a3.getText());
+                        out.println(a4.getText());
+                        out.println(a5.getText());
+                        out.println(codicebiglietto);
+                        out.println("carta");
                 
-                    String dataconvalida;
-                    try {
-                        String controllo = in.readLine();
-                        dataconvalida = in.readLine();
-                    if(controllo.equals("pronto")){
-                        testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
-                    } else if (controllo.equals("abort")){
-                        testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                        String dataconvalida;
+                        try {
+                            String controllo = in.readLine();
+                            dataconvalida = in.readLine();
+                        if(controllo.equals("pronto")){
+                            testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
+                        } else if (controllo.equals("abort")){
+                            testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                        }
+                        } catch (IOException ex) {
+                            Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
+                        }   
                     }
-                    } catch (IOException ex) {
-                        Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
-                    } 
-                }
-                
+                }  
             }
         });
         this.add(panelMetodo);
@@ -182,32 +186,40 @@ public class GUICassa extends JFrame{
                     testo.setText("prima devi inserire il codice!");
                 }
                 else {
-                out.println("Monetine");
-                out.println(a1.getText());
-                out.println(a2.getText());
-                out.println(a3.getText());
-                out.println(a4.getText());
-                out.println(a5.getText());
-                out.println(codicebiglietto);
-                out.println("contanti");
+                    if (codicebiglietto.equals("")) {
+                    testo.setText("prima devi inserire il codice!");
+                    }else {
+                        out.println("Monetine");
+                        out.println(a1.getText());
+                        out.println(a2.getText());
+                        out.println(a3.getText());
+                        out.println(a4.getText());
+                        out.println(a5.getText());
+                        out.println(codicebiglietto);
+                        out.println("contanti");
                 
-                String dataconvalida;
-                try {
-                    String controllo = in.readLine();
-                    dataconvalida = in.readLine();
-                    if(controllo.equals("pronto")){
-                        testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
-                    }else if (controllo.equals("abort")){
-                        testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                        String dataconvalida;
+                        try {
+                            String controllo = in.readLine();
+                            dataconvalida = in.readLine();
+                            if(controllo.equals("pronto")){
+                                testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
+                            }else if (controllo.equals("abort")){
+                                testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
+                        } 
                     }
-                } catch (IOException ex) {
-                    Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
-                } 
                 }
             }
         });
         this.add(panelTesto);
     }
-} 
     
-
+    private int getMinutiAttuali(){
+        Calendar cal = Calendar.getInstance();
+        return cal.get(Calendar.MINUTE);
+    }
+    
+}

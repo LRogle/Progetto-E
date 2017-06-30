@@ -19,12 +19,12 @@ public abstract class Observable {
         observers = new ArrayList<>();
     }
 
-    public int getState() {
-        return 0;
-    }
-
-    public void setState(int state) {
-    }
+//    public int getState() {
+//        return 0;
+//    }
+//
+//    public void setState(int state) {
+//    }
 
     public void attach(Observer observer) {
         observers.add(observer);
@@ -33,9 +33,22 @@ public abstract class Observable {
         observers.remove(observer);
     }
     
-    public void notifyObserver(){
+//    @Override
+//    public void notifyObserver(){
+//        for ( Observer observer : observers){
+//            observer.update(this);
+//        }
+//    }
+    
+    public void notifyLibera(){
         for ( Observer observer : observers){
-            observer.update(this);
+            observer.libera(this);
+        }
+    }
+    
+    public void notifyOccupa(){
+        for ( Observer observer : observers){
+            observer.occupa(this);
         }
     }
 }

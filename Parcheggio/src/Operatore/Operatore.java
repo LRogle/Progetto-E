@@ -32,7 +32,7 @@ public class Operatore {
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         
         
-        PostoFrame PF = new PostoFrame(out, in);    
+//        PostoFrame PF = new PostoFrame(out, in);    
     }
     
 }

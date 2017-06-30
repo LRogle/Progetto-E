@@ -13,6 +13,7 @@ public interface Observer {
 
     public int getState();
     public void setState(int state);
-    public void update(Observable observable);
-
+//    public void update(Observable observable)
+    public void occupa(Observable observable);
+    public void libera(Observable observable);
 }

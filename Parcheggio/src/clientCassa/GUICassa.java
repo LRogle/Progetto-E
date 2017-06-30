@@ -152,7 +152,7 @@ public class GUICassa extends JFrame{
                         out.println(a5.getText());
                         out.println(codicebiglietto);
                         out.println("carta");
-                
+                        AzzeraMonete();
                         String dataconvalida;
                         try {
                             String controllo = in.readLine();
@@ -198,7 +198,7 @@ public class GUICassa extends JFrame{
                         out.println(a5.getText());
                         out.println(codicebiglietto);
                         out.println("contanti");
-                
+                        AzzeraMonete();
                         String dataconvalida;
                         try {
                             String controllo = in.readLine();
@@ -223,4 +223,11 @@ public class GUICassa extends JFrame{
         return cal.get(Calendar.MINUTE);
     }
     
+    private void AzzeraMonete(){
+        a1.setText("0");
+        a2.setText("0");
+        a3.setText("0");
+        a4.setText("0");
+        a5.setText("0");
+    }
 }

@@ -53,17 +53,26 @@ public class FinestraSemaforo extends JFrame implements Observer {
         return numPostiLiberi;
     }
     
+//    public void update(Observable observable) {
+////        setState(observable.getState());
+//        //System.out.println("stato: "+this.getState());
+//        text.setText(String.valueOf(this.getState()));
+//        if (this.getState()==0) {
+//            text.setBackground(Color.red);
+//        } else if (this.getState()<0) {
+//            System.out.println("ERRORE!");
+//        } else {
+//            text.setBackground(Color.green);
+//        }
+//    }
+
     @Override
-    public void update(Observable observable) {
-        setState(observable.getState());
-        //System.out.println("stato: "+this.getState());
-        text.setText(String.valueOf(this.getState()));
-        if (this.getState()==0) {
-            text.setBackground(Color.red);
-        } else if (this.getState()<0) {
-            System.out.println("ERRORE!");
-        } else {
-            text.setBackground(Color.green);
-        }
+    public void occupa(Observable observable) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void libera(Observable observable) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

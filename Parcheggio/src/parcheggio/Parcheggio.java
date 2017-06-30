@@ -71,7 +71,7 @@ public class Parcheggio extends Observable {
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
-            this.notifyObserver();
+//            this.notifyObserver();
             return B;}
         else
             return null;
@@ -84,7 +84,7 @@ public class Parcheggio extends Observable {
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
-            this.notifyObserver();
+            this.notifyOccupa();
             return B.getCodice();
         }
         else
@@ -189,7 +189,7 @@ public class Parcheggio extends Observable {
         nOccupati--;
         if(nOccupati<0)
             System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
-        this.notifyObserver();
+        this.notifyLibera();
     }
     
     public void liberaPosto(){
@@ -227,9 +227,9 @@ public class Parcheggio extends Observable {
         }
     }
     
-    @Override
-    public int getState() {
-        return this.contaPostiLiberi();
-    }
+//    @Override
+//    public int getState() {
+//        return this.contaPostiLiberi();
+//    }
     
 }

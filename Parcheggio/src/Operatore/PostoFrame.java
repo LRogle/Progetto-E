@@ -13,27 +13,29 @@ import java.io.PrintWriter;
 import static java.lang.Math.floor;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import observerpattern.Observable;
+import observerpattern.Observer;
 
 /**
  *
  * @author luca
  */
-public class PostoFrame extends JFrame{
+public class PostoFrame extends JFrame implements Observer{
     private JPanel panel;
     private PostoComponent PC[] = new PostoComponent[20];
     
-    BufferedReader in;
-    PrintWriter out;
+//    BufferedReader in;
+//    PrintWriter out;
 
-    public PostoFrame(PrintWriter out, BufferedReader in) throws IOException {
+    public PostoFrame() throws IOException {
         this.setTitle("Parcheggio");
         this.setVisible(true);
         this.setSize(500, 500);
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.in=in;
-        this.out=out;
+//        this.in=in;
+//        this.out=out;
         initPanel();
         initComponent();
         this.add(panel);
@@ -94,6 +96,16 @@ public class PostoFrame extends JFrame{
         double cod= floor(Math.random() * b);
         int postoRandom=(int) cod;
         return postoRandom;
+    }
+
+    @Override
+    public void occupa(Observable observable) {
+        occupa(postoRandom());
+    }
+
+    @Override
+    public void libera(Observable observable) {
+        libera(postoRandom());
     }
     
 }

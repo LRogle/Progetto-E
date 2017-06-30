@@ -5,6 +5,7 @@
  */
 package parcheggio;
 
+import Operatore.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,11 +19,14 @@ import java.util.concurrent.Executors;
 public class Server {
     private final int port;
     private final Parcheggio parcheggio;
+    private final PostoFrame PF;
 
-    public Server(int port) {
+    public Server(int port) throws IOException {
         this.port = port;
         System.out.println("Creo un parcheggio:");
         this.parcheggio = new Parcheggio();
+        this.PF = new PostoFrame();
+        parcheggio.attach(PF);
         System.out.println("Parcheggio creato.");
         System.out.println("");
     }

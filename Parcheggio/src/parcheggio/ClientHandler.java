@@ -26,6 +26,11 @@ public class ClientHandler implements Runnable {
         this.parcheggio = parcheggio;
     }
     
+    public void serverDown() throws IOException {
+        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+        out.println("afk");
+    }
+    
     @Override
     public void run() {
         try {

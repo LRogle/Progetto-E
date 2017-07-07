@@ -154,12 +154,9 @@ public class GUICassa extends JFrame{
                         out.println("carta");
                         AzzeraMonete();
                         String dataConvalida;
-                        String resto;
                         try {
                             String controllo = in.readLine();
                             dataConvalida = in.readLine();
-                            resto = in.readLine();
-                            
                         if(controllo.equals("pronto")){
                             testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataConvalida);
                         } else if (controllo.equals("abort")){

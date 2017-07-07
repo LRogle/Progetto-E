@@ -23,6 +23,7 @@ public class Cassa {
     private String ora = null;
     private int prezzo=0;
     private int ammount=0;
+    private int resto=0;
 
     
 
@@ -73,6 +74,10 @@ public class Cassa {
     public boolean transazione(int a, int b, int c, int d, int e, String metodo){
         if (metodo.equals("contanti")){
             this.pagamento = new ConcreteStrategyA();
+            int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20);
+            setResto(somma-prezzo);
+            System.out.println("Resto: " + getResto() + "€");
+            
         }
         else if (metodo.equals("carta")){
             this.pagamento = new ConcreteStrategyB();
@@ -83,9 +88,6 @@ public class Cassa {
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
         if (bool){
             this.ammount+=prezzo;
-//            int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20);
-//            resto=somma-prezzo;
-//            System.out.println("Resto: " + getResto() + "€");
             System.out.println("\nAmmontare nella cassa:" + ammount);
         }
         return bool;
@@ -111,7 +113,18 @@ public class Cassa {
         this.prezzo = prezzo;
     }
 
+    public int getResto() {
+        return resto;
+    }
 
+    public void setResto(int resto) {
+        this.resto = resto;
+    }
+    
+    
+
+
+    
     
     
 

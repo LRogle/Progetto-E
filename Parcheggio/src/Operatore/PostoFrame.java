@@ -20,7 +20,7 @@ import observerpattern.Observer;
  *
  * @author luca
  */
-public class PostoFrame extends JFrame implements Observer{
+public class PostoFrame extends JFrame implements Observer {
     private JPanel panel;
     private PostoComponent PC[] = new PostoComponent[20];
     

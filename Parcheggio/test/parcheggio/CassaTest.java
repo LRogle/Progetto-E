@@ -50,7 +50,7 @@ public class CassaTest {
         Cassa instance = new Cassa();
         System.out.println("Caso di default: tempo sosta minore di 10 min");
         System.out.println("START");
-        int expResult = 404;
+        int expResult = 0;
         int result = instance.calcolaImporto(biglietto);
         assertEquals(expResult, result);
         System.out.println("END");

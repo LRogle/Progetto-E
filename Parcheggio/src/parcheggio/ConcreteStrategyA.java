@@ -10,7 +10,7 @@ package parcheggio;
  * @author aench
  */
 public class ConcreteStrategyA implements PagamentoStrategy {
-    int restoErogato=0;
+
 
     @Override
     public boolean Behavior(int a, int b, int c, int d, int e,int prezzo) {
@@ -34,11 +34,8 @@ public class ConcreteStrategyA implements PagamentoStrategy {
         
     }
 
-    @Override
-    public String erogaResto(int somma, int prezzo) { 
+    public void erogaResto(int somma, int prezzo) { 
         int resto = somma-prezzo;
-        restoErogato = resto;
-        String s;
 
         int resto20=0;
             for(int i=20;i<=resto;i=i+20){ resto20++; }
@@ -56,14 +53,8 @@ public class ConcreteStrategyA implements PagamentoStrategy {
             for(int w=1;w<=resto;w=w+1){ resto1++;}
             resto=resto-(1*resto1);
             
-        s = "\n20 €: "+resto20+"\n10 €: "+resto10+"\n5 €: "+ resto5+ "\n2 €: "+resto2+"\n1 €: " + resto1;
-        return s;
+        System.out.println("\n20 €: "+resto20+"\n10 €: "+resto10+"\n5 €: "+ resto5+ "\n2 €: "+resto2+"\n1 €: " + resto1);
 
-    }
-
-    @Override
-    public int getRestoErogato() {
-        return restoErogato;
     }
 
     

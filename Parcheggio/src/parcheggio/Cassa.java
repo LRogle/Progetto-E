@@ -23,7 +23,7 @@ public class Cassa {
     private String ora = null;
     private int prezzo=0;
     private int ammount=0;
-    private String stampaResto;
+
     
 
     public void setPagamento(PagamentoStrategy pagamento) {
@@ -49,7 +49,7 @@ public class Cassa {
         if(orepermanenza<2 && orepermanenza>=1)     {return prezzo = 1;}
         if(minpermanenza<=10)                       {
             System.out.println("sosta minore di 10 minuti, convalida gratuita");
-            return prezzo = 404;  
+            return prezzo = 0;  
         }else                                       {return prezzo = 1;}
     }
     
@@ -83,10 +83,9 @@ public class Cassa {
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
         if (bool){
             this.ammount+=prezzo;
-            int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20); 
-            this.stampaResto= pagamento.erogaResto(somma, prezzo);
-            System.out.println("Resto: " + pagamento.getRestoErogato() + "€");
-            System.out.println(getStampaResto());
+//            int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20);
+//            resto=somma-prezzo;
+//            System.out.println("Resto: " + getResto() + "€");
             System.out.println("\nAmmontare nella cassa:" + ammount);
         }
         return bool;
@@ -112,9 +111,7 @@ public class Cassa {
         this.prezzo = prezzo;
     }
 
-    public String getStampaResto() {
-        return stampaResto;
-    }
+
     
     
 

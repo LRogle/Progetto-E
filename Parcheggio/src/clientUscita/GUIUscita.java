@@ -88,6 +88,9 @@ public class GUIUscita extends JFrame {
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException ex) {
+                        System.err.println("Server down!");
+                        textsotto.setText("Impossibile contattare server!");
                     }
                 }
             }

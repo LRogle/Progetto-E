@@ -106,6 +106,9 @@ public class GUICassa extends JFrame{
                     
                 } catch (IOException ex) {
                     Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NullPointerException ex) {
+                    System.err.println("Server down!");
+                    testo.setText("Impossibile contattare il server!");
                 }
                 }
             }

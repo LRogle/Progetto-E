@@ -13,5 +13,10 @@ public class ConcreteStrategyB implements PagamentoStrategy {
         System.out.println("Carta di credito!");
         return true;
     }
+
+    @Override
+    public String erogaResto(int somma, int prezzo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

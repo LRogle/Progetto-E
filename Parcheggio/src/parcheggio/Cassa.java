@@ -22,9 +22,9 @@ public class Cassa {
     private String data = null;
     private String ora = null;
     private int prezzo=0;
-//    private int prezzoOrario = 1;
-//    private int somma=0;
     private int ammount=0;
+    private String resto;
+    
 
     public void setPagamento(PagamentoStrategy pagamento) {
         this.pagamento = pagamento;
@@ -70,7 +70,7 @@ public class Cassa {
     }
     
     //accetta solo              1      2     5       10     20
-    public boolean transazione(int a, int b, int c, int d, int e,String metodo){
+    public boolean transazione(int a, int b, int c, int d, int e, String metodo){
         if (metodo.equals("contanti")){
             this.pagamento = new ConcreteStrategyA();
         }
@@ -83,6 +83,8 @@ public class Cassa {
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
         if (bool){
             this.ammount+=prezzo;
+            int somma= a+b+c+d+e;
+            this.resto= pagamento.erogaResto(somma, prezzo);
             System.out.println("\nAmmontare nella cassa:" + ammount);
         }
         return bool;
@@ -107,5 +109,11 @@ public class Cassa {
     public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
     }
+
+    public String getResto() {
+        return resto;
+    }
+    
+    
 
 }

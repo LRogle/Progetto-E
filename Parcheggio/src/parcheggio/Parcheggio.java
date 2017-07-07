@@ -7,7 +7,6 @@ package parcheggio;
 
 import static java.lang.Math.floor;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import observerpattern.Observable;
@@ -127,46 +126,10 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-    public void Pagamento(int cod){
-        try{
-            C.calcolaImporto(getBigliettoAttivo(cod));
-            System.out.println("-----\ttransazione");
-            int euro;
-            int cent50;
-            int cent20;
-            int cent10;
-            int cent5;
-            Scanner scanner = new Scanner(System.in);
-            for (;;) {
-                System.out.println("Inserisci importo:");
-                System.out.print("1 €: ");
-                euro = scanner.nextInt();
-                System.out.print("50 cent: ");
-                cent50 = scanner.nextInt();
-                System.out.print("20 cent: ");
-                cent20 = scanner.nextInt();
-                System.out.print("10 cent: ");
-                cent10 = scanner.nextInt();
-                System.out.print("5 cent: ");
-                cent5 = scanner.nextInt();
-                if (C.transazione(cent5, cent10, cent20, cent50, euro,"contanti")) {
-                    break;
-                }
-            }
-            getBigliettoAttivo(cod).setConvalida(true);
-            getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
-            getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
-            System.out.println(getBigliettoAttivo(cod).convalida.toString());
-            BigliettiUscita.add(getBigliettoAttivo(cod));
-            BigliettiAttivi.remove(getBigliettoAttivo(cod));
-        } catch(NullPointerException e) { 
-            System.out.println("biglietto non trovato per il pagamento");
-        }
-    }
     
-    public boolean PagamentoGUI(int cent5, int cent10, int cent20, int cent50, int euro, int cod,String metodo){
+    public boolean Pagamento(int cent5, int cent10, int cent20, int cent50, int euro, int cod, String metodo){
         try{
-            if (C.transazione(cent5, cent10, cent20, cent50, euro,metodo)){
+            if (C.transazione(cent5, cent10, cent20, cent50, euro, metodo)){
                 //pagamento andato a buon fine
                 getBigliettoAttivo(cod).setConvalida(true);
                 getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());

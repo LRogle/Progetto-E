@@ -11,4 +11,5 @@ package parcheggio;
  */
 public interface PagamentoStrategy {
     public boolean Behavior(int a, int b, int c, int d, int e,int prezzo);
+    public String erogaResto(int somma, int prezzo);
 }

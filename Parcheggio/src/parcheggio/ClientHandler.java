@@ -77,11 +77,19 @@ public class ClientHandler implements Runnable {
                     String euro20 = in.readLine();
                     String codice = in.readLine();
                     String metodo = in.readLine();
-                    if(parcheggio.PagamentoGUI(Integer.parseInt(euro1), Integer.parseInt(euro2), Integer.parseInt(euro5), Integer.parseInt(euro10), Integer.parseInt(euro20), Integer.parseInt(codice),metodo)){
+                    try{
+                    if(parcheggio.Pagamento(Integer.parseInt(euro1), Integer.parseInt(euro2), Integer.parseInt(euro5), Integer.parseInt(euro10), Integer.parseInt(euro20), Integer.parseInt(codice),metodo)){
                         out.println("pronto");
                         out.println(parcheggio.getBigliettoUscita(Integer.parseInt(codice)).getDataConvalida());
+//                        out.println(parcheggio.getCassa().getResto());
                         out.flush();
                     } else {
+                        out.println("abort");
+                        out.println("error: no date");
+                        out.flush();
+                    }
+                    }catch(Exception ex){
+                        System.out.println("Errore: lettere invece che numeri!");
                         out.println("abort");
                         out.println("error: no date");
                         out.flush();

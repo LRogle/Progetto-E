@@ -153,13 +153,17 @@ public class GUICassa extends JFrame{
                         out.println(codicebiglietto);
                         out.println("carta");
                         AzzeraMonete();
-                        String dataconvalida;
+                        String dataConvalida;
+                        String resto;
                         try {
                             String controllo = in.readLine();
-                            dataconvalida = in.readLine();
+                            dataConvalida = in.readLine();
+                            resto = in.readLine();
+                            
                         if(controllo.equals("pronto")){
-                            testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
+                            testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataConvalida);
                         } else if (controllo.equals("abort")){
+                            
                             testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
                         }
                         } catch (IOException ex) {
@@ -199,12 +203,14 @@ public class GUICassa extends JFrame{
                         out.println(codicebiglietto);
                         out.println("contanti");
                         AzzeraMonete();
-                        String dataconvalida;
+                        String dataConvalida;
+                        String resto;
                         try {
                             String controllo = in.readLine();
-                            dataconvalida = in.readLine();
+                            dataConvalida = in.readLine();
+//                            resto=in.readLine();
                             if(controllo.equals("pronto")){
-                                testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataconvalida);
+                                testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataConvalida);
                             }else if (controllo.equals("abort")){
                                 testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
                             }

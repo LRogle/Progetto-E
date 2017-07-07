@@ -48,6 +48,7 @@ public class BigliettoTest {
         int expResult = 1;
         int result = instance.getCodice();
         assertEquals(expResult, result);
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -55,15 +56,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetGiorno() {
-        System.out.println("test getGiorno()");
-        Calendar cal = Calendar.getInstance();
+        System.out.println("test metodo: getGiorno()");
         Biglietto instance = new Biglietto();
-        int expResult = 1;
-        int result = 1;
-//        int expResult = cal.get(Calendar.DATE); 
-//        int result = instance.getGiorno();
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.DATE); 
+        int result = instance.getGiorno();
         assertEquals(expResult, result);
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -71,13 +69,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetMese() {
-        System.out.println("getMese");
+        System.out.println("test metodo: getMese()");
         Biglietto instance = new Biglietto();
-        int expResult = 0;
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.MONTH) +1;
         int result = instance.getMese();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -85,13 +82,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetAnno() {
-        System.out.println("getAnno");
+        System.out.println("test metodo: getAnno()");
         Biglietto instance = new Biglietto();
-        int expResult = 0;
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.YEAR);
         int result = instance.getAnno();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -99,13 +95,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetOre() {
-        System.out.println("getOre");
+        System.out.println("test metodo: getOre()");
         Biglietto instance = new Biglietto();
-        int expResult = 0;
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.HOUR);
         int result = instance.getOre();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -113,13 +108,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetMinuti() {
-        System.out.println("getMinuti");
+        System.out.println("test metodo: getMinuti()");
         Biglietto instance = new Biglietto();
-        int expResult = 0;
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.MINUTE);
         int result = instance.getMinuti();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -127,13 +121,12 @@ public class BigliettoTest {
      */
     @Test
     public void testGetSecondi() {
-        System.out.println("getSecondi");
+        System.out.println("test metodo: getSecondi()");
         Biglietto instance = new Biglietto();
-        int expResult = 0;
+        Calendar cal = Calendar.getInstance();
+        int expResult = cal.get(Calendar.SECOND);;
         int result = instance.getSecondi();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -181,13 +174,15 @@ public class BigliettoTest {
      */
     @Test
     public void testGetData() {
-        System.out.println("getData");
+        System.out.println("test metodo: getData()");
         Biglietto instance = new Biglietto();
-        String expResult = "";
+        Calendar cal = Calendar.getInstance();
+        int giorno = cal.get(Calendar.DATE);
+        int mese = cal.get(Calendar.MONTH) +1;
+        int anno = cal.get(Calendar.YEAR);
+        String expResult = giorno +"/"+ mese +"/"+ anno;
         String result = instance.getData();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -211,11 +206,15 @@ public class BigliettoTest {
     public void testToString() {
         System.out.println("toString");
         Biglietto instance = new Biglietto();
-        String expResult = "";
+        Calendar cal = Calendar.getInstance();
+        int giorno = cal.get(Calendar.DATE);
+        int mese = cal.get(Calendar.MONTH) +1;
+        int anno = cal.get(Calendar.YEAR);
+        int ora = cal.get(Calendar.HOUR);
+        String data = giorno +"/"+ mese +"/"+ anno;
+        String expResult = "Biglietto{" + " codice=" + 5 + ", data=" + data + ", ora=" + ora + " "+ '}';
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

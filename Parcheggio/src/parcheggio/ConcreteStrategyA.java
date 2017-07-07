@@ -23,7 +23,7 @@ public class ConcreteStrategyA implements PagamentoStrategy {
         somma = 20*venti+10*dieci+5*cinque+2*due+1*uno;
         System.out.println("hai inserito: "+somma);
         
-        if(somma<=prezzo){
+        if(somma < prezzo){
             System.out.println("denaro insufficiente. rieseguire la transazione.");
             return false;
         }else{

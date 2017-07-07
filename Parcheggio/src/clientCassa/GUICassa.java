@@ -158,10 +158,10 @@ public class GUICassa extends JFrame{
                             String controllo = in.readLine();
                             dataConvalida = in.readLine();
                         if(controllo.equals("pronto")){
-                            testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataConvalida);
+                            testo.setText("Pagamento effettuato, convalida effettuata in data: "+dataConvalida);
                         } else if (controllo.equals("abort")){
                             
-                            testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                            testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto.");
                         }
                         } catch (IOException ex) {
                             Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,11 +205,11 @@ public class GUICassa extends JFrame{
                         try {
                             String controllo = in.readLine();
                             dataConvalida = in.readLine();
-//                            resto=in.readLine();
+                            resto=in.readLine();
                             if(controllo.equals("pronto")){
-                                testo.setText("Pagamento avvenuto correttamente, il biglietto è stato convalidato in data: "+dataConvalida);
+                                testo.setText("Pagamento effettuato, convalida effettuata in data: "+dataConvalida +"\nResto: "+ resto +"€");
                             }else if (controllo.equals("abort")){
-                                testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto");
+                                testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto.");
                             }
                         } catch (IOException ex) {
                             Logger.getLogger(GUICassa.class.getName()).log(Level.SEVERE, null, ex);

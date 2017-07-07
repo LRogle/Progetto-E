@@ -50,7 +50,7 @@ public class Cassa {
         if(orepermanenza<2 && orepermanenza>=1)     {return prezzo = 1;}
         if(minpermanenza<=10)                       {
             System.out.println("sosta minore di 10 minuti, convalida gratuita");
-            return prezzo = 0;  
+            return prezzo = 0;
         }else                                       {return prezzo = 1;}
     }
     

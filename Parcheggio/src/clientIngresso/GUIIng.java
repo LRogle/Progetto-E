@@ -20,12 +20,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import observerpattern.Observable;
+import observerpattern.Observer;
 
 /**
  *
  * @author luca
  */
-public class GUIIng extends JFrame{
+public class GUIIng extends JFrame {
+    private boolean connected;
+    
     private JPanel panel1;    //bottone,codice biglietto erogato
     private JPanel panel2;    //posti liberi
     
@@ -46,12 +50,12 @@ public class GUIIng extends JFrame{
         initComponent();
         S = new SbarraFrameClient();
     }
-
+    
     private void initComponent() {
         initPanel1();
         initPanel2();
     }
-
+    
     private void initPanel1() {
         JButton button = new JButton("BIGLIETTO");
         JTextField text = new JTextField();
@@ -66,37 +70,38 @@ public class GUIIng extends JFrame{
         button.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
-                out.println("hello");//All'azione del pulsante mandiamo un messaggio in codice per il server in modo che capisce
-                try {                // che ci siamo connessi. Tutto questo serve per far si che il server ci invierà i dati 
-                    String cod = in.readLine(); // da far leggere al client(numero posti, codice biglietto).
-                    text.setText("CODICE BIGLIETTO:\t"+cod); //cod biglietto
-                
-                out.println("posti");
+                    out.println("hello");//All'azione del pulsante mandiamo un messaggio in codice per il server in modo che capisce
+                    try { // che ci siamo connessi. Tutto questo serve per far si che il server ci invierà i dati 
+                        String cod = in.readLine(); // da far leggere al client(numero posti, codice biglietto).
+                        text.setText("CODICE BIGLIETTO:\t"+cod); //cod biglietto
+                        out.println("posti");
 
-                    try {
-                        String posti = in.readLine();// Abbiamo
-                        postiliberi.setText("POSTI LIBERI:\t"+posti);// numero posti
+                        try {
+                            String posti = in.readLine();// Abbiamo
+                            postiliberi.setText("POSTI LIBERI:\t"+posti);// numero posti
                         
-                        if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
-                            S.apri();
-                            Timer timer = new Timer(1000, new ActionListener(){
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    S.chiudi();
-                                }
-                            });
-                            timer.start();          
-                        } else {
-                            text.setText("Posti Esauriti");
-                        }
+                            if(Integer.parseInt(posti)!=0){// verifica sul numero posti ancora disponibili
+                                S.apri();
+                                Timer timer = new Timer(1000, new ActionListener(){
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        S.chiudi();
+                                    }
+                                });
+                                timer.start();          
+                            } else {
+                                    text.setText("Posti Esauriti");
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
+                        }    
                     } catch (IOException ex) {
                         Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
-                    }    
-                
-                } catch (IOException ex) {
-                    Logger.getLogger(GUIIng.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NumberFormatException ex) {
+                        System.err.println("Error: server down!");
+                        postiliberi.setText("Error: server down!");
+                    }
                 }
-            }
         });
         
         this.add(panel1);
@@ -110,6 +115,6 @@ public class GUIIng extends JFrame{
         this.add(panel2);
         
     }
-    
+
     
 }

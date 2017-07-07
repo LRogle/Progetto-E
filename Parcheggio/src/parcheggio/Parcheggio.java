@@ -84,6 +84,7 @@ public class Parcheggio extends Observable {
             occupaPosto();
             nOccupati++;
             this.notifyOccupa(B.getCodice());
+            System.out.println("codice: "+B.getCodice());
             return B.getCodice();
         }
         else

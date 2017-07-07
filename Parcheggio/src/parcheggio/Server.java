@@ -9,6 +9,7 @@ import Operatore.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -20,8 +21,10 @@ public class Server {
     private final int port;
     private final Parcheggio parcheggio;
     private final PostoFrame PF;
+    private ArrayList<ClientHandler> listaClientHandlers;
 
     public Server(int port) throws IOException {
+        this.listaClientHandlers = new ArrayList<>();
         this.port = port;
         System.out.println("Creo un parcheggio:");
         this.parcheggio = new Parcheggio();
@@ -31,7 +34,7 @@ public class Server {
         System.out.println("");
     }
     
-    public void startServer() {
+    public void startServer() throws IOException {
         ExecutorService executor = Executors.newCachedThreadPool();
         ServerSocket serverSocket;
         try {
@@ -44,8 +47,13 @@ public class Server {
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
-                executor.submit(new ClientHandler(socket,parcheggio));
+                ClientHandler handler = new ClientHandler(socket,parcheggio);
+                this.listaClientHandlers.add(handler);
+                executor.submit(handler);
             } catch (IOException e) {
+                for (ClientHandler clientHand : listaClientHandlers){
+                    clientHand.serverDown();
+                }
                 break; // entrerei qui se serverSocket venisse chiuso
             }
         }

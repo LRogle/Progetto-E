@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import observerpattern.Observable;
 
 /**
  *
@@ -19,18 +20,18 @@ import java.util.Scanner;
 public class ClientIngresso {
     
     public static void main(String args[]) throws IOException {
-       
+    
         Scanner scanner = new Scanner(System.in);
         System.out.println("Inserire indirizzo IP del sever:");
         String ip = scanner.nextLine();
         Socket socket = new Socket(ip,8888);
         System.out.println("Connesso al server.");
-       
+        
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        
+         
         GUIIng G = new GUIIng(out, in);
-        
+
 //        COMMENTI DA ELIMINARE
 //        for (;;) {
 //            System.out.println("\n"+in.readLine());

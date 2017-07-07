@@ -36,10 +36,8 @@ public class ConcreteStrategyA implements PagamentoStrategy {
     @Override
     public String erogaResto(int somma, int prezzo) { 
         int resto = somma-prezzo;
-        String s="";
+        String s;
         
-            
-        System.out.println("Resto: "+resto+"€");
         int resto20=0;
             for(int i=20;i<=resto;i=i+20){ resto20++; }
             resto=resto-(20*resto20);
@@ -55,7 +53,9 @@ public class ConcreteStrategyA implements PagamentoStrategy {
         int resto1=0;
             for(int w=1;w<=resto;w=w+1){ resto1++;}
             resto=resto-(1*resto1);
-        s= s+"20 €: "+resto20+"\n10 €: "+resto10+"\n5 €: "+ resto5+ "\n2 €: "+resto2+"\n1 €: " + resto1;
+            
+        s = "20 €: "+resto20+"\n10 €: "+resto10+"\n5 €: "+ resto5+ "\n2 €: "+resto2+"\n1 €: " + resto1;
+        System.out.println(s);
         return s;
 
     }

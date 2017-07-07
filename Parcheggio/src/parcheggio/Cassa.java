@@ -83,7 +83,7 @@ public class Cassa {
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
         if (bool){
             this.ammount+=prezzo;
-            int somma= a+b+c+d+e;
+            int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20);
             this.resto= pagamento.erogaResto(somma, prezzo);
             System.out.println("\nAmmontare nella cassa:" + ammount);
         }

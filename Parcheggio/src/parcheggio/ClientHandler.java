@@ -87,7 +87,7 @@ public class ClientHandler implements Runnable {
                     if(parcheggio.Pagamento(Integer.parseInt(euro1), Integer.parseInt(euro2), Integer.parseInt(euro5), Integer.parseInt(euro10), Integer.parseInt(euro20), Integer.parseInt(codice),metodo)){
                         out.println("pronto");
                         out.println(parcheggio.getBigliettoUscita(Integer.parseInt(codice)).getDataConvalida());
-//                        out.println(parcheggio.getCassa().getResto());
+                        out.println(parcheggio.getCassa().getResto());
                         out.flush();
                     } else {
                         out.println("abort");

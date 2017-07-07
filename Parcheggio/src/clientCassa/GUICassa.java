@@ -205,9 +205,10 @@ public class GUICassa extends JFrame{
                         try {
                             String controllo = in.readLine();
                             dataConvalida = in.readLine();
-                            resto=in.readLine();
                             if(controllo.equals("pronto")){
+                                resto=in.readLine();
                                 testo.setText("Pagamento effettuato, convalida effettuata in data: "+dataConvalida +"\nResto: "+ resto +"€");
+                                
                             }else if (controllo.equals("abort")){
                                 testo.setText("Non è stato possibile completare il pagamento e convalidare il biglietto.");
                             }

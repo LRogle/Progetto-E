@@ -11,9 +11,9 @@ package observerpattern;
  */
 public interface Observer {
 
-    public int getState();
-    public void setState(int state);
-//    public void update(Observable observable)
+    public boolean getStato();
+    public void setState(boolean state);
+    public void update(Observable observable);
     public void occupa(Observable observable, int codice);
     public void libera(Observable observable, int codice);
 }

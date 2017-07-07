@@ -16,8 +16,8 @@ import javax.swing.JPanel;
  */
 public class SbarraFrameClientU extends JFrame{
     private JPanel panel;
-    private Sbarra SA = new Sbarra();
-    private SbarraChiusa SC = new SbarraChiusa();
+    private Sbarra sbarra = new Sbarra();
+
 
     public SbarraFrameClientU() {
         this.setTitle("Sbarra Uscita");
@@ -26,18 +26,18 @@ public class SbarraFrameClientU extends JFrame{
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.SA= new Sbarra();
-        this.add(SA);
+        this.sbarra= new Sbarra();
+        this.add(sbarra);
     }
     
     public void apri(){
-        this.SA.setAperta(true);
-        this.SA.repaint();
+        this.sbarra.setAperta(true);
+        this.sbarra.repaint();
     }
     
     public void chiudi(){
-        this.SA.setAperta(false);
-        this.SA.repaint();
+        this.sbarra.setAperta(false);
+        this.sbarra.repaint();
     }
     
     public void setVisibile(boolean x){

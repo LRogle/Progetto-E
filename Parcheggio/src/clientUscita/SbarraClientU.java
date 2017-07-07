@@ -21,13 +21,13 @@ public class SbarraClientU extends Component {
           
     private BufferedImage img;
     private boolean aperta = false;
-    private String saperta = "./Immagini/Aperto.png";
-    private String schiusa = "./Immagini/Chiuso.png";
+    private String sbarraAperta = "./Immagini/Aperto.png";
+    private String sbarraChiusa = "./Immagini/Chiuso.png";
     
     
     public SbarraClientU() {
         try {
-            img = ImageIO.read(new File(schiusa));
+            img = ImageIO.read(new File(sbarraChiusa));
         } catch (IOException e) {
         }
     }
@@ -42,14 +42,14 @@ public class SbarraClientU extends Component {
         if (this.aperta==true) {
         System.out.println("ridisegno");
             try {
-                img = ImageIO.read(new File(saperta));
+                img = ImageIO.read(new File(sbarraAperta));
             } catch (IOException e) {
             }
             g.drawImage(img, 0, 0, null);
         }
         else {
             try {
-                img = ImageIO.read(new File(schiusa));
+                img = ImageIO.read(new File(sbarraChiusa));
             } catch (IOException e) {
             }
             g.drawImage(img, 0, 0, null);
@@ -60,14 +60,14 @@ public class SbarraClientU extends Component {
     public void repaint() {
         if (this.aperta==true) {
             try {
-                img = ImageIO.read(new File(saperta));
+                img = ImageIO.read(new File(sbarraAperta));
             } catch (IOException e) {
             }
             super.repaint(); //To change body of generated methods, choose Tools | Templates.
         }
         else {
             try {
-                img = ImageIO.read(new File(schiusa));
+                img = ImageIO.read(new File(sbarraChiusa));
             } catch (IOException e) {
             }
             super.repaint();

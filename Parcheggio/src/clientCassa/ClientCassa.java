@@ -25,7 +25,7 @@ public class ClientCassa {
         System.out.println("Inserire indirizzo IP del sever:");
         String ip = scanner.nextLine();
         Socket socket = new Socket(ip,8888);
-        System.out.println("Connesso al sever.");
+        System.out.println("Connesso al server.");
        
         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));

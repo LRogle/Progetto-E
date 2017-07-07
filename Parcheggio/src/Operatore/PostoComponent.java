@@ -45,7 +45,6 @@ public class PostoComponent extends Component{
     @Override
     public void paint(Graphics g) {
         if (this.libero==true) {
-        System.out.println("ridisegno");
             try {
                 img = ImageIO.read(new File(fileverde));
             } catch (IOException e) {

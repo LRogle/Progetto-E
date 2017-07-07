@@ -52,7 +52,7 @@ public class Server {
                 executor.submit(handler);
             } catch (IOException e) {
                 for (ClientHandler clientHand : listaClientHandlers){
-                    clientHand.serverDown();
+                    
                 }
                 break; // entrerei qui se serverSocket venisse chiuso
             }

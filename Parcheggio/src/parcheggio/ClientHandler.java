@@ -59,12 +59,17 @@ public class ClientHandler implements Runnable {
                     }
                 }
                 else if (string.equals("Pagamento")) {
+                    try{
                     String s=in.readLine();
                     if(parcheggio.getBigliettoAttivo(Integer.parseInt(s))!=null){
                         String S=""+parcheggio.getCassa().calcolaImporto(parcheggio.getBigliettoAttivo(Integer.parseInt(s)));
                         out.println(S);
                         out.flush();
                     } else {
+                        out.println("Biglietto non trovato tra quelli attivi");
+                        out.flush();
+                    }
+                    }catch(Exception ex){
                         out.println("Biglietto non trovato tra quelli attivi");
                         out.flush();
                     }

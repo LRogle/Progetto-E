@@ -84,7 +84,7 @@ public class Parcheggio extends Observable {
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
-            this.notifyOccupa();
+            this.notifyOccupa(B.getCodice());
             return B.getCodice();
         }
         else
@@ -184,12 +184,12 @@ public class Parcheggio extends Observable {
         }
     }
 
-    public void decrementaOccupati() {
+    public void decrementaOccupati(int codice) {
         liberaPosto();
         nOccupati--;
         if(nOccupati<0)
             System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
-        this.notifyLibera();
+        this.notifyLibera(codice);
     }
     
     public void liberaPosto(){
@@ -204,7 +204,7 @@ public class Parcheggio extends Observable {
 //                      -   liberare il postoauto                                       (DA FARE)
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
-            decrementaOccupati();
+            decrementaOccupati(cod);
             RegistroBiglietti.add(getBigliettoUscita(cod));
             BigliettiUscita.remove(getBigliettoUscita(cod));
             return "Grazie. Arrivederci";}

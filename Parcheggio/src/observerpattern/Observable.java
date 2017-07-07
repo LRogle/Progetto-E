@@ -40,15 +40,15 @@ public abstract class Observable {
 //        }
 //    }
     
-    public void notifyLibera(){
+    public void notifyLibera(int codice){
         for ( Observer observer : observers){
-            observer.libera(this);
+            observer.libera(this, codice);
         }
     }
     
-    public void notifyOccupa(){
+    public void notifyOccupa(int codice){
         for ( Observer observer : observers){
-            observer.occupa(this);
+            observer.occupa(this, codice);
         }
     }
 }

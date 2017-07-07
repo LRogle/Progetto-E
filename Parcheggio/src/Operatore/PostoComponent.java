@@ -23,6 +23,7 @@ public class PostoComponent extends Component{
     private boolean libero = true;
     private String fileverde = "./Immagini/verde.png";
     private String filerosso = "./Immagini/rosso.png";
+    private int codice;
     
     
     public PostoComponent() {
@@ -87,6 +88,14 @@ public class PostoComponent extends Component{
         } else {
            return new Dimension(img.getWidth(null), img.getHeight(null));
        }
+    }
+
+    public void setCodice(int codice) {
+        this.codice = codice;
+    }
+
+    public int getCodice() {
+        return codice;
     }
     
     

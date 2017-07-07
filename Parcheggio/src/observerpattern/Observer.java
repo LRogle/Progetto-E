@@ -14,6 +14,6 @@ public interface Observer {
     public int getState();
     public void setState(int state);
 //    public void update(Observable observable)
-    public void occupa(Observable observable);
-    public void libera(Observable observable);
+    public void occupa(Observable observable, int codice);
+    public void libera(Observable observable, int codice);
 }

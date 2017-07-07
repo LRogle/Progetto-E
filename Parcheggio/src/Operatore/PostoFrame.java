@@ -24,6 +24,7 @@ public class PostoFrame extends JFrame implements Observer{
     private JPanel panel;
     private PostoComponent PC[] = new PostoComponent[20];
     
+    
 //    BufferedReader in;
 //    PrintWriter out;
 
@@ -68,20 +69,21 @@ public class PostoFrame extends JFrame implements Observer{
         }
     }
     
-    public void libera(int n){
-        while(PC[n].isLibero()){
-        PC[n]=PC[postoRandom()];
+    public void libera(int codice){
+        for(int i=0;i<20;i++){
+            if(PC[i].getCodice()==codice){
+                this.PC[i].setLibero(true);
+                this.PC[i].repaint();
+            }
         }
-        this.PC[n].setLibero(true);
-        this.PC[n].repaint();
-        
     }
     
-    public void occupa(int n){
+    public void occupa(int n, int codice){
         while(!PC[n].isLibero()){
         PC[n]=PC[postoRandom()];
         }
         this.PC[n].setLibero(false);
+        this.PC[n].setCodice(codice);
         this.PC[n].repaint();
     }
     
@@ -99,13 +101,13 @@ public class PostoFrame extends JFrame implements Observer{
     }
 
     @Override
-    public void occupa(Observable observable) {
-        occupa(postoRandom());
+    public void occupa(Observable observable, int codice) {
+        occupa(postoRandom(), codice);
     }
 
     @Override
-    public void libera(Observable observable) {
-        libera(postoRandom());
+    public void libera(Observable observable, int codice) {
+        libera(codice);
     }
     
 }

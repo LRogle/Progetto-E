@@ -42,16 +42,40 @@ public class Cassa {
         int mesipermanenza=mese-big.getMese();
         int giornipermanenza=giorno-big.getGiorno();
         
-        if(giornipermanenza>=7)                     {return prezzo = Math.round(20*(giornipermanenza/7));}
-        if(orepermanenza>=24)                       {return prezzo = giornipermanenza*15;}
-        if(orepermanenza<24 && orepermanenza>=10)   {return prezzo = 10;}
-        if(orepermanenza<10 && orepermanenza>=5)    {return prezzo = 5;}
-        if(orepermanenza<5 && orepermanenza>=2)     {return prezzo = 2;}
-        if(orepermanenza<2 && orepermanenza>=1)     {return prezzo = 1;}
-        if(minpermanenza<=10)                       {
+        int minutitotali = (giornipermanenza*1440)+(orepermanenza*60)+(minpermanenza);
+        
+        if(minutitotali<=10){
             System.out.println("sosta minore di 10 minuti, convalida gratuita");
-            return prezzo = 0;
-        }else                                       {return prezzo = 1;}
+            prezzo=0;  
+        }else{
+            
+        if(minutitotali>=(60*24*7)){   
+            prezzo = prezzo + 50*((minutitotali)/(60*24*7));
+            minutitotali = minutitotali - (60*24*7);
+        }
+        if(minutitotali>=60*24){   
+            prezzo = prezzo + (minutitotali/(60*24))*15;
+            minutitotali = minutitotali - (60*24);
+        }
+        if(minutitotali>=60*10){   
+            prezzo = prezzo + 10;
+        }
+        else if(minutitotali>=60*5){   
+            prezzo = prezzo + 5;
+        }
+        else if(minutitotali>=60*2){   
+            prezzo = prezzo + 2;
+        }
+        else if(minutitotali>=60){   
+            prezzo = prezzo + 1;
+        }
+        else if(minutitotali>10 && minutitotali<60){
+            prezzo = prezzo + 1;  
+        }
+        }
+        
+        return prezzo;
+        
     }
     
     private void getDate(){

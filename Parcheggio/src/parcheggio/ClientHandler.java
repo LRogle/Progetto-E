@@ -37,7 +37,7 @@ public class ClientHandler implements Runnable {
                 String string = in.readLine();
                 
                 if (string.equals("hello")) {
-                    out.println(parcheggio.IngressoGUI());
+                    out.println(parcheggio.Ingresso());
                     String posti = in.readLine();
                     if(posti.equals("posti")){
                         System.out.println("contaPostiLiberi:\t"+parcheggio.contaPostiLiberi());

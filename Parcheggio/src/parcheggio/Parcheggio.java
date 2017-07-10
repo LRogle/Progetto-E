@@ -64,7 +64,7 @@ public class Parcheggio extends Observable {
         return liberi;
     }
     
-    public int IngressoGUI(){
+    public int Ingresso(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
             BigliettiAttivi.add(B);

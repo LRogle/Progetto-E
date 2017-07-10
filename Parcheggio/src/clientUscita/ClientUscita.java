@@ -33,20 +33,6 @@ public class ClientUscita {
         
         if(socket.isConnected()){
         System.out.println("OK");}
-        
-//        COMMENTI DA ELIMINARE
-//        for (;;) {
-//            System.out.println("\n"+in.readLine());
-//            String input = scanner.nextLine();
-//            out.println(input);
-//            String risposta = in.readLine();
-//            if (risposta.equals("exit")) {
-//                break;
-//            }
-//            else {
-//                System.out.println(risposta);
-//            }
-//        }
             
     }
 }

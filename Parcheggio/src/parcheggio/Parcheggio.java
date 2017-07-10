@@ -64,19 +64,6 @@ public class Parcheggio extends Observable {
         return liberi;
     }
     
-    public Biglietto Ingresso(){
-        if(contaPostiLiberi()!=0){ 
-            Biglietto B=MI.erogaBiglietto();
-            BigliettiAttivi.add(B);
-            occupaPosto();
-            nOccupati++;
-//            this.notifyObserver();
-            return B;}
-        else
-            return null;
-    }
-    
-    //INGRESSO PER GRAFICA
     public int IngressoGUI(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
@@ -163,9 +150,6 @@ public class Parcheggio extends Observable {
         }
     }
     
-//in uscita si deve:
-               
-//                      -   liberare il postoauto                                       (DA FARE)
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
             decrementaOccupati(cod);
@@ -190,10 +174,5 @@ public class Parcheggio extends Observable {
                 PA.setOccupato(true);
         }
     }
-    
-//    @Override
-//    public int getState() {
-//        return this.contaPostiLiberi();
-//    }
     
 }

@@ -144,12 +144,5 @@ public class Cassa {
     public void setResto(int resto) {
         this.resto = resto;
     }
-    
-    
-
-
-    
-    
-    
 
 }

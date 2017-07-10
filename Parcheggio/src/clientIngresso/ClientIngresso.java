@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
-import observerpattern.Observable;
 
 /**
  *
@@ -32,19 +31,6 @@ public class ClientIngresso {
          
         GUIIng G = new GUIIng(out, in);
 
-//        COMMENTI DA ELIMINARE
-//        for (;;) {
-//            System.out.println("\n"+in.readLine());
-//            String input = scanner.nextLine();
-//            out.println(input);
-//            String risposta = in.readLine();
-//            if (risposta.equals("exit")) {
-//                break;
-//            }
-//            else {
-//                System.out.println(risposta);
-//            }
-//        }
             
     }
 }

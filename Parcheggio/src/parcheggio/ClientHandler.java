@@ -70,7 +70,8 @@ public class ClientHandler implements Runnable {
                         out.println("Biglietto non trovato tra quelli attivi");
                         out.flush();
                     }
-                    }catch(Exception ex){
+                    }catch(NumberFormatException ex){
+                        System.out.println("Errore: lettere invece che numeri!");
                         out.println("Biglietto non trovato tra quelli attivi");
                         out.flush();
                     }
@@ -95,7 +96,7 @@ public class ClientHandler implements Runnable {
                         out.println("error: no date");
                         out.flush();
                     }
-                    }catch(Exception ex){
+                    }catch(NumberFormatException ex){
                         System.out.println("Errore: lettere invece che numeri!");
                         out.println("abort");
                         out.println("error: no date");

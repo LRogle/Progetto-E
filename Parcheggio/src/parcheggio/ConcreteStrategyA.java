@@ -11,7 +11,18 @@ package parcheggio;
  */
 public class ConcreteStrategyA implements PagamentoStrategy {
 
-
+/**
+ * Questo comportamento rappresenta il pagamento in contanti. Viene calcolata la somma degli euro inseriti;
+ * se tale somma è inferiore al prezzo del biglietto, è impossibile pagare.
+ * Altrimenti viene effettuato il pagamento ed erogato l'eventuale resto.
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param e
+ * @param prezzo
+ * @return true oppure false
+ */
     @Override
     public boolean Behavior(int a, int b, int c, int d, int e,int prezzo) {
         int uno = a;//1€
@@ -34,6 +45,11 @@ public class ConcreteStrategyA implements PagamentoStrategy {
         
     }
 
+    /**
+     * Viene calcolato il resto e in base al risultato, si determina quante monete di ognuna devono essere erogate.
+     * @param somma
+     * @param prezzo 
+     */
     public void erogaResto(int somma, int prezzo) { 
         int resto = somma-prezzo;
 

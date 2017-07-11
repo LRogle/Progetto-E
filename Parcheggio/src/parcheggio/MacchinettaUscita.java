@@ -22,8 +22,14 @@ public class MacchinettaUscita{
     private String data;
     private String ora;
     
-    //funzione che deve essere utilizzata quando il conducente inserisce il codice [biglietto] 
-    //e poi preme il bottone per verificare se è convalidato 
+    /**
+     * Viene ricevuto in ingresso il biglietto, preleva la data e l'ora attuale.
+     * Verifica se è stato convalidato, se è stato convalidato, verifico che la data attuale siano corrispondenti con quella del biglietto.
+     * Nel caso in cui il tempo successivo al pagamento sia minore di 15 minuti, i controlli vengono effettuati con successo.
+     * Altrimenti, non è possibile l'uscita dal parcheggio, senza aver ricevuto una conferma.
+     * @param B
+     * @return true, se i controlli sul biglietto hanno esito positivo, altrimenti false
+     */
     public boolean controllaBiglietto(Biglietto B){
         getDate();
         getHours();

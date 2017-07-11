@@ -30,7 +30,13 @@ public class Cassa {
     public void setPagamento(PagamentoStrategy pagamento) {
         this.pagamento = pagamento;
     }
-    
+   
+    /**
+     * Vengono calcolati i minuti, le ore, i giorni, i mesi e gli anni di permanenza utilizzando la data e l'ora attuale.
+     * In base al risultato ottenuto e alle opportune verifiche sul tempo di permanenza, vengono applicate le tariffe fissate dalla tabella allegata alla documentazione.
+     * @param big
+     * @return prezzo calcolato
+     */
     public int calcolaImporto(Biglietto big){
         
         getDate();
@@ -94,7 +100,18 @@ public class Cassa {
         ora = cal.get(Calendar.HOUR) + ":"+ cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
     
-    //accetta solo              1      2     5       10     20
+    /**
+     * In base al metodo di pagamento scelto, viene implementata una delle due strategie di pagamento.
+     * Nel caso dell'utilizzo del pagamento in contanti, è prevista l'erogazione del resto.
+     * In caso il pagamento venga effettuato correttamente, l'importo del biglietto viene aggiunto all'ammontare della cassa.
+     * @param a
+     * @param b
+     * @param c
+     * @param d
+     * @param e
+     * @param metodo
+     * @return true, in caso in cui la transazione abbia esito positivo, oppure false,
+     */
     public boolean transazione(int a, int b, int c, int d, int e, String metodo){
         if (metodo.equals("contanti")){
             this.pagamento = new ConcreteStrategyA();

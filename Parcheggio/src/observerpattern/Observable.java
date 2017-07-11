@@ -41,13 +41,13 @@ public abstract class Observable {
     
     public void notifyLibera(int codice){
         for ( Observer observer : observers){
-            observer.libera(this, codice);
+            observer.liberaObserver(this, codice);
         }
     }
     
     public void notifyOccupa(int codice){
         for ( Observer observer : observers){
-            observer.occupa(this, codice);
+            observer.occupaObserver(this, codice);
         }
     }
 }

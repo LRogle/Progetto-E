@@ -83,8 +83,7 @@ public class GUIUscita extends JFrame {
                             });
                             timer.start();
                         } else {
-                            textsotto.setText("Mancato pagamento o tempo scaduto");
-                             
+                            textsotto.setText("Mancato pagamento o tempo scaduto"); 
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(GUIUscita.class.getName()).log(Level.SEVERE, null, ex);

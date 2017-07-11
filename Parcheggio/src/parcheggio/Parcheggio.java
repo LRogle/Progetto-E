@@ -138,8 +138,9 @@ public class Parcheggio extends Observable {
     public void decrementaOccupati(int codice) {
         liberaPosto();
         nOccupati--;
-        if(nOccupati<0)
+        if(nOccupati<0){
             System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
+        }
         this.notifyLibera(codice);
     }
     

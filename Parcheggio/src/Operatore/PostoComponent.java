@@ -66,6 +66,7 @@ public class PostoComponent extends Component{
             try {
                 img = ImageIO.read(new File(fileverde));
             } catch (IOException e) {
+                System.out.println("eccezione posto verde");
             }
             super.repaint(); //To change body of generated methods, choose Tools | Templates.
         }
@@ -73,6 +74,7 @@ public class PostoComponent extends Component{
             try {
                 img = ImageIO.read(new File(filerosso));
             } catch (IOException e) {
+                System.out.println("eccezione posto rosso");
             }
             super.repaint();
         }

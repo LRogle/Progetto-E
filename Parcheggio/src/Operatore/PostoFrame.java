@@ -58,13 +58,13 @@ public class PostoFrame extends JFrame implements Observer {
         }
     }
     
-    public void occupa(int n, int codice){
-        while(!PC[n].isLibero()){
-        PC[n]=PC[postoRandom()];
+    public void occupa(int rand, int codice){
+        while(!PC[rand].isLibero()){
+        PC[rand]=PC[postoRandom()];
         }
-        this.PC[n].setLibero(false);
-        this.PC[n].setCodice(codice);
-        this.PC[n].repaint();
+        this.PC[rand].setLibero(false);
+        this.PC[rand].setCodice(codice);
+        this.PC[rand].repaint();
     }
     
     public void setVisibile(boolean x){
@@ -81,12 +81,12 @@ public class PostoFrame extends JFrame implements Observer {
     }
 
     @Override
-    public void occupa(Observable observable, int codice) {
+    public void occupaObserver(Observable observable, int codice) {
         occupa(postoRandom(), codice);
     }
 
     @Override
-    public void libera(Observable observable, int codice) {
+    public void liberaObserver(Observable observable, int codice) {
         libera(codice);
     }
 

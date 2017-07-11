@@ -52,50 +52,99 @@ public class Biglietto {
         ora = cal.get(Calendar.HOUR) + ":" + cal.get(Calendar.MINUTE) + "." + cal.get(Calendar.SECOND);
     }
 
+    /**
+     * Getter del codice del biglietto.
+     * @return codice biglietto
+     */
     public int getCodice() {
         return codice;
     }
-
+    
+    /**
+     * Getter del giorno di erogazione del biglietto.
+     * @return giorno di erogazione
+     */
     public int getGiorno() {
         return giorno;
     }
 
+    /**
+     * Getter del mese di erogazione del biglietto.
+     * @return mese di erogazione.
+     */
     public int getMese() {
         return mese;
     }
 
+    /**
+     * Getter dell'anno di erogazione del biglietto.
+     * @return anno di erogazione
+     */
     public int getAnno() {
         return anno;
     }
 
+    /**
+     * Getter dell'ora di erogazione del biglietto.
+     * @return ora di erogazione
+     */
     public int getOre() {
         return ore;
     }
 
+    /**
+     * Getter del minuto di erogazione del biglietto.
+     * @return minuto di erogazione
+     */
     public int getMinuti() {
         return minuti;
     }
 
+    /**
+     * Getter del secondo di erogazione del biglietto.
+     * @return secondi di erogazione.
+     */
     public int getSecondi() {
         return secondi;
     }
 
+    /**
+     * Setter della convalida del biglietto.
+     * @param x 
+     */
     public void setConvalida(boolean x){
         convalida.setConvalidato(x);
     }
     
+    /**
+     * Setter della data di convalida del biglietto.
+     * @param data 
+     */
     public void setDataConvalida(String data){
         convalida.setDataConvalida(data);
     }
 
+    /**
+     * Getter della data di convalida del biglietto.
+     * @return data di convalida
+     */
     public String getDataConvalida(){
         return convalida.getDataConvalida();
     }
     
+    /**
+     * Getter della data di erogazione del biglietto.
+     * @return data di erogazione
+     */
     public String getData() {
         return data;
     }
     
+    /**
+     * Setter dei minuti e delle ore di convalida del biglietto.
+     * @param o
+     * @param m 
+     */
     public void setOreEMinutiConvalida(int o, int m){
         convalida.setOre(o);
         convalida.setMinuti(m);

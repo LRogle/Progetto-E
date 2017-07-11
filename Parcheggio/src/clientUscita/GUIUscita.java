@@ -32,7 +32,14 @@ public class GUIUscita extends JFrame {
     private SbarraFrameClientU S;
     private PrintWriter out;
     private BufferedReader in;
-     
+    
+    /**
+     * Creazione dell'interfaccia che mostra la macchinetta d'uscita.
+     * È possibile inserire il codice del biglietto e se il pagamento viene effettuato correttamente,
+     * la sbarra si alza permettendo l'uscita.
+     * @param out
+     * @param in 
+     */
     public GUIUscita (PrintWriter out,BufferedReader in){
         this.setTitle("Macchinetta Uscita");
         this.out=out;

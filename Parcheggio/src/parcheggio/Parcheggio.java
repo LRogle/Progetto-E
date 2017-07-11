@@ -53,11 +53,18 @@ public class Parcheggio extends Observable {
             PostiAuto.add(new PostoAuto(i));
         }
     }
-    
+    /**
+     * Getter che restituisce la cassa del parcheggio.
+     * @return Cassa
+     */
     public Cassa getCassa() {
         return this.C;
     }
     
+    /**
+     * Vengono calcolati i posti liberi, sottraendo alla capienza massima del parcheggio i posti occupati.
+     * @return numero posti liberi 
+     */
     public int contaPostiLiberi(){
         int liberi = nMaxParcheggi - nOccupati;
         System.out.println("Totale parcheggi:\t"+nMaxParcheggi+"\tparcheggi occupati:\t"+nOccupati);
@@ -82,24 +89,38 @@ public class Parcheggio extends Observable {
             return 0;
     }
     
+   /**
+    * Vengono stampati i biglietti nel registro degli attivi.
+    */
     public void stampaBigliettiAttivi(){
         for (Biglietto BigliettiAttivi1 : BigliettiAttivi) {
             System.out.println(BigliettiAttivi1.toString());
         }
     }
-    
+    /**
+     * Vengono stampati i biglietti nel registro dell'uscita.
+     */
     public void stampaBigliettiUscita(){
         for (Biglietto BigliettiUscita1 : BigliettiUscita) {
             System.out.println(BigliettiUscita1.toString());
         }
     }
     
+    /**
+     * Vengono stampati i biglietti registrati durante la giornata.
+     */
     public void stampaRegistroBiglietti(){
         for (Biglietto Biglietti : RegistroBiglietti) {
             System.out.println(Biglietti.toString());
         }
     }
     
+    /**
+     * Viene effettuato un controllo su tutti i biglietti attivi. Se si ha un riscontro con il codice inserito, 
+     * viene stampato il biglietto con il codice corrispondente.
+     * @param cod
+     * @return biglietto attivo oppure null, in caso il biglietto non sia attivo
+     */
     public Biglietto getBigliettoAttivo(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiAttivi){
             if(BigliettiAttivi1.getCodice()==cod)
@@ -108,7 +129,12 @@ public class Parcheggio extends Observable {
         System.out.println("biglietto non trovato tra gli attivi");
         return null;
     }
-    
+    /**
+     * Viene effettuato un controllo su tutti i biglietti in uscita. Se si ha un riscontro con il codice inserito, 
+     * viene stampato il biglietto con il codice corrispondente.
+     * @param cod
+     * @return biglietto in uscita oppure null, in caso il biglietto non sia in uscita
+     */
     public Biglietto getBigliettoUscita(int cod){
         for(Biglietto BigliettiAttivi1 : BigliettiUscita){
             if(BigliettiAttivi1.getCodice()==cod)

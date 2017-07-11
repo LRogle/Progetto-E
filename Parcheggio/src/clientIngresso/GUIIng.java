@@ -38,6 +38,13 @@ public class GUIIng extends JFrame {
     private PrintWriter out;
     private BufferedReader in;
     
+    /**
+     * Creazione dell'interfaccia che mostra la macchinetta d'ingresso.
+     * Attraverso un bottone è possibile richiedere il biglietto, nel caso ci siano posti disponibili,
+     * e visualizzare il numero di posti rimanenti. Nel caso in cui ci siano posti liberi, la sbarra si alza.
+     * @param out
+     * @param in 
+     */
     public GUIIng(PrintWriter out,BufferedReader in){
         this.setTitle("Macchinetta Ingresso");
         this.out=out;

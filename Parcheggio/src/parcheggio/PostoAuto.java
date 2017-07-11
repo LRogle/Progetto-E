@@ -22,18 +22,33 @@ public class PostoAuto {
         return "PostoAuto{" + "numeroPosto=" + numeroPosto + ", occupato=" + occupato + '}';
     }
 
+    /**
+     * Getter del numeroPosto.
+     * @return numeroPosto
+     */
     public int getNumeroPosto() {
         return numeroPosto;
     }
 
+    /**
+     * Setter del numeroPosto.
+     * @param numeroPosto 
+     */
     public void setNumeroPosto(int numeroPosto) {
         this.numeroPosto = numeroPosto;
     }
 
+    /**
+     * Verifica se il posto sia occupato o meno.
+     * @return occupato
+     */
     public boolean isOccupato() {
         return occupato;
     }
-
+    /**
+     * Setter dell'attributo occupato del posto.
+     * @param occupato 
+     */
     public void setOccupato(boolean occupato) {
         this.occupato = occupato;
     }

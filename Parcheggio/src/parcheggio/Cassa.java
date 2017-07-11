@@ -134,30 +134,58 @@ public class Cassa {
         return bool;
     }
 
+    /**
+     * Getter della data registrata dalla cassa.
+     * @return data registrata dalla cassa
+     */
     public String getDataCassa(){
             return data;
     }
 
+    /**
+     * Getter dell'ora attuale.
+     * @return 
+     */
     public int getOre() {
         return ore;
     }
 
+    /**
+     * Getter del minuto attuale.
+     * @return 
+     */
     public int getMinuti() {
         return minuti;
     }
 
+    /**
+     * Getter del prezzo del biglietto.
+     * @return prezzo del biglietto
+     */
     public int getPrezzo() {
         return prezzo;
     }
 
+    /**
+     * Setter del prezzo del biglietto.
+     * @param prezzo 
+     */
     public void setPrezzo(int prezzo) {
         this.prezzo = prezzo;
     }
 
+    /**
+     * Getter dell'eventuale resto erogato.
+     * @return resto erogato
+     */
     public int getResto() {
         return resto;
     }
 
+    /**
+     * Setter dell'eventuale resto erogato.
+     * @param resto 
+     */
     public void setResto(int resto) {
         this.resto = resto;
     }

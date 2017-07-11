@@ -56,6 +56,14 @@ public class GUICassa extends JFrame{
     
     int minutilimite;
     
+    /**
+     * Creazione della cassa, che permette il pagamento attraverso l'immissione del codice di un biglietto attivo.
+     * Nel momento viene verificato che tale biglietto sia attivo, è possibile procedere al pagamento dell'importo indicato tramite
+     * l'uso di contanti o carta.
+     * @param out
+     * @param in
+     * @throws Exception 
+     */
     public GUICassa( PrintWriter out, BufferedReader in) throws Exception{
         this.setTitle("Cassa");
         this.in = in;

@@ -63,8 +63,12 @@ public class Parcheggio extends Observable {
         System.out.println("Totale parcheggi:\t"+nMaxParcheggi+"\tparcheggi occupati:\t"+nOccupati);
         return liberi;
     }
-    
-    public int Ingresso(){
+    /**
+     * La macchinetta d'ingresso,nel caso in cui ci siano posti liberi, eroga un biglietto che si aggiunge alla lista degli attivi.
+     * Viene occupato un posto, quindi cresce il numero di posti occupati e viene lanciata una notifica che certifica che il posto è stato occupato.
+     * @return codice del biglietto erogato
+     */
+   public int Ingresso(){
         if(contaPostiLiberi()!=0){ 
             Biglietto B=MI.erogaBiglietto();
             BigliettiAttivi.add(B);
@@ -114,11 +118,22 @@ public class Parcheggio extends Observable {
         return null;
     }
     
-    
+    /**
+     * Se la transazione() è andata a buon fine, si convalida il biglietto corrisponde al codice immesso, viene settata la data e l'ora di convalida
+     * ed il biglietto viene aggiunto alla lista dei biglietti in uscita.
+     * Conseguentemente, il biglietto viene rimosso dalla lista degli attivi.
+     * @param cent5
+     * @param cent10
+     * @param cent20
+     * @param cent50
+     * @param euro
+     * @param cod
+     * @param metodo
+     * @return true, se il pagamento va a buon fine, oppure false
+     */
     public boolean Pagamento(int cent5, int cent10, int cent20, int cent50, int euro, int cod, String metodo){
         try{
             if (C.transazione(cent5, cent10, cent20, cent50, euro, metodo)){
-                //pagamento andato a buon fine
                 getBigliettoAttivo(cod).setConvalida(true);
                 getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
                 getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
@@ -126,7 +141,6 @@ public class Parcheggio extends Observable {
                 BigliettiAttivi.remove(getBigliettoAttivo(cod));
                 return true;
             }else{ 
-                //pagamento errato
                 return false;
             }  
         }catch(NullPointerException e) { 
@@ -134,16 +148,19 @@ public class Parcheggio extends Observable {
             return false;
         }
     }
-
-    public void decrementaOccupati(int codice) {
+/**
+ * Libera un posto attraverso il metodo liberaPosto(). Viene diminuito il numero dei posti occupati e gestisce il caso in cui i posti occupati siano minori di 0.
+ */
+    public void decrementaOccupati() {
         liberaPosto();
         nOccupati--;
         if(nOccupati<0){
             System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
         }
-        this.notifyLibera(codice);
     }
-    
+   /**
+    * Facendo un controllo sull'ArrayList di posti auto, viene liberato il primo posto che risulta essere occupato.
+    */ 
     public void liberaPosto(){
         for(PostoAuto PA : PostiAuto){
             if(PA.isOccupato())
@@ -151,17 +168,29 @@ public class Parcheggio extends Observable {
         }
     }
     
+    /**
+     * Controllando che il codice inserito corrisponda ad uno di quelli dei biglietti in uscita, viene chiamata la funzione decrementaOccupati(),
+     * che libera il posto. Il biglietto viene aggiunto alla lista dei codici utilizzati nel corso della giornata e poi viene rimosso dalla lista dei biglietti in uscita.
+     * Viene inviata una notifica con il codice del biglietto corrispondente.
+     * @param cod
+     * @return messaggio di avvenuta uscita
+     */
     public String Uscita(int cod){
         if(MU.controllaBiglietto(getBigliettoUscita(cod))){
-            decrementaOccupati(cod);
+            decrementaOccupati();
             RegistroBiglietti.add(getBigliettoUscita(cod));
             BigliettiUscita.remove(getBigliettoUscita(cod));
+            this.notifyLibera(cod);
             return "Grazie. Arrivederci";}
         else{
             return "Errore in uscita";
         }
     }
     
+    /**
+     * Viene scelto un numero a caso tra 0 e 20 che rappresenta il numero di posto che verrà occupato.
+     * @return postoRandom
+     */
     private int postoRandom(){
         int b = nMaxParcheggi; 
         double cod= floor(Math.random() * b);
@@ -169,6 +198,9 @@ public class Parcheggio extends Observable {
         return postoRandom;
     }
     
+    /**
+     *  Facendo un controllo sull'ArrayList di posti auto, viene occupato un posto random che risulta essere libero.
+     */
     private void occupaPosto(){
         for(PostoAuto PA : PostiAuto){
             if(!(PA.isOccupato()) && PA.getNumeroPosto()==postoRandom())

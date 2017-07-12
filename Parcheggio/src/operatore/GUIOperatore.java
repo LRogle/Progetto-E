@@ -42,20 +42,18 @@ public class GUIOperatore extends JFrame implements Observer {
         this.parcheggio = parcheggio;
         this.setTitle("Parcheggio");
         this.setVisible(true);
-        this.setSize(500, 500);
+        this.setSize(500, 700);
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(3,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initPanel1();
-        initComponentPanel1();
-        this.add(panel1);
         initPanel2();
         initPanel3();
         Scanner input = null;
         try {
             input = new Scanner(new File("./File/password"));
         } catch(FileNotFoundException ex){
-            System.err.println("Errore nell'apertura del file: password");
+            System.err.println("Errore: file password non trovato");
         }
         if (input!=null){
             if (input.hasNextLine()){
@@ -70,6 +68,8 @@ public class GUIOperatore extends JFrame implements Observer {
     private void initPanel1(){
         panel1 = new JPanel();
         panel1.setLayout(new GridLayout(5,4));
+        initComponentPanel1();
+        this.add(panel1);
     }
     
     private void initPanel2(){
@@ -120,7 +120,7 @@ public class GUIOperatore extends JFrame implements Observer {
                 try {
                 input = new Scanner(new File("./File/password"));
                 } catch(FileNotFoundException ex){
-                    System.err.println("Errore nell'apertura del file: password");
+                    System.err.println("Errore: file password non trovato");
                 }
                 if (input!=null){
                     if (input.hasNextLine()){

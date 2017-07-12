@@ -128,7 +128,6 @@ public class Cassa {
             this.pagamento = new ConcreteStrategyA();
             int somma= (a*1)+(b*2)+(c*5)+(d*10)+(e*20);
             setResto(somma-prezzo);
-            System.out.println("Resto: " + getResto() + "€");
             
         }
         else if (metodo.equals("carta")){
@@ -139,6 +138,9 @@ public class Cassa {
         }
         boolean bool = pagamento.Behavior(a, b, c, d, e, this.prezzo);
         if (bool){
+            if(pagamento instanceof ConcreteStrategyA){
+                System.out.println("Resto: " + getResto() + "€");
+            }
             this.ammount+=prezzo;
             System.out.println("\nAmmontare nella cassa:" + ammount);
         }

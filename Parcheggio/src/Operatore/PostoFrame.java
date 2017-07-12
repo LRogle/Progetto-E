@@ -25,9 +25,9 @@ public class PostoFrame extends JFrame implements Observer {
     public PostoFrame() throws IOException {
         this.setTitle("Parcheggio");
         this.setVisible(true);
-        this.setSize(500, 500);
+        this.setSize(1000, 1000);
         this.setLocation(600, WIDTH);
-        this.setLayout(new GridLayout(1,1));
+        //this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         initPanel();
         initComponent();
@@ -35,12 +35,12 @@ public class PostoFrame extends JFrame implements Observer {
  
     }
     
-    public void initPanel(){
+    private void initPanel(){
         panel = new JPanel();
         panel.setLayout(new GridLayout(5,4));
     }
     
-    public void initComponent(){
+    private void initComponent(){
         for(int i=0; i<20;i++){
             PC[i]=new PostoComponent();
         }
@@ -58,13 +58,17 @@ public class PostoFrame extends JFrame implements Observer {
         }
     }
     
-    public void occupa(int rand, int codice){
-        while(!PC[rand].isLibero()){
-        PC[rand]=PC[postoRandom()];
+    public void occupa(int codice){
+        while (true) {
+            int tmp = postoRandom();
+            if (PC[tmp].isLibero()) {
+                this.PC[tmp].setLibero(false);
+                this.PC[tmp].setCodice(codice);
+                this.PC[tmp].repaint();
+                break;
+            }
         }
-        this.PC[rand].setLibero(false);
-        this.PC[rand].setCodice(codice);
-        this.PC[rand].repaint();
+        
     }
     
     private int postoRandom(){
@@ -76,7 +80,7 @@ public class PostoFrame extends JFrame implements Observer {
 
     @Override
     public void occupaObserver(Observable observable, int codice) {
-        occupa(postoRandom(), codice);
+        occupa(codice);
     }
 
     @Override

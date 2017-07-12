@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  *
  * @author luca
  */
-public class PostoComponent extends Component{
+public class PostoComponent extends Component {
           
     private BufferedImage img;
     private boolean libero = true;

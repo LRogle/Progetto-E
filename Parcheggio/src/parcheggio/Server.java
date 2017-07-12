@@ -5,7 +5,7 @@
  */
 package parcheggio;
 
-import operatore.PostoFrame;
+import operatore.GUIOperatore;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,7 +22,7 @@ public class Server {
     
     private final int port;
     private final Parcheggio parcheggio;
-    private final PostoFrame PF;
+    private final GUIOperatore PF;
     private final GUIOperatoreLogin login;
     private final ArrayList<ClientHandler> listaClientHandlers;
 
@@ -32,7 +32,7 @@ public class Server {
         System.out.println("Creo un parcheggio:");
         this.parcheggio = new Parcheggio();
         this.login = new GUIOperatoreLogin(this);
-        this.PF = new PostoFrame();
+        this.PF = new GUIOperatore(parcheggio);
         PF.setVisible(false);
         parcheggio.attach(PF);
         System.out.println("Parcheggio creato.");

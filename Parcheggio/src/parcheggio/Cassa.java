@@ -27,6 +27,16 @@ public class Cassa {
 
     
 
+    public int ritira(){
+        int tmp = this.ammount;
+        ammount = 0;
+        return tmp;
+    }
+
+    public int getAmmount() {
+        return ammount;
+    }
+    
     public void setPagamento(PagamentoStrategy pagamento) {
         this.pagamento = pagamento;
     }

@@ -26,9 +26,9 @@ import parcheggio.Server;
  */
 public class GUIOperatoreLogin extends JFrame {
     
-    private String password;
+    private int password;
     
-    private ArrayList<Server> observers;
+    private final ArrayList<Server> observers;
     private boolean connected;
     
     private JPanel panel1;    //password
@@ -46,7 +46,7 @@ public class GUIOperatoreLogin extends JFrame {
             if (input.hasNextLine()){
                 String riga = input.nextLine();
                 System.out.println(riga);
-                setPassword(riga);
+                this.password=Integer.parseInt(riga);
             }
         }
         this.setTitle("Finestra Login Operatore");
@@ -78,7 +78,7 @@ public class GUIOperatoreLogin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String s = text.getText();
-                if (s.equals(password)) {
+                if (s.hashCode()==password) {
                     testo.setText("Benvenuto operatore!");
                     notifyObservers();
                 }
@@ -104,10 +104,6 @@ public class GUIOperatoreLogin extends JFrame {
         
         this.add(panel2);
         
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
     
     public void quit(){

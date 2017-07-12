@@ -36,7 +36,7 @@ public class GUIOperatore extends JFrame implements Observer {
     private JPanel panel2;
     private JPanel panel3;
     private final PostoComponent PC[] = new PostoComponent[20];
-    private String password;
+    private int password;
 
     public GUIOperatore(Parcheggio parcheggio) throws IOException {
         this.parcheggio = parcheggio;
@@ -61,7 +61,7 @@ public class GUIOperatore extends JFrame implements Observer {
             if (input.hasNextLine()){
                 String riga = input.nextLine();
                 System.out.println(riga);
-                this.password=riga;
+                this.password=Integer.parseInt(riga);
             }
         }
  
@@ -126,11 +126,11 @@ public class GUIOperatore extends JFrame implements Observer {
                     if (input.hasNextLine()){
                         String riga = input.nextLine();
                         System.out.println(riga);
-                        password=riga;
+                        password=Integer.parseInt(riga);
                     }
                 }
                 String vecchia = passwordVecchia.getText();
-                if (vecchia.equals(password)){
+                if (vecchia.hashCode()==password){
                     PrintWriter output = null;
                     try{
                         output=new PrintWriter("./File/password");
@@ -138,9 +138,10 @@ public class GUIOperatore extends JFrame implements Observer {
                         System.err.println("Errore nell'apertura del file password");
                         testo.setText("Errore nell'apertura del file password");
                     }
-                    output.println(passwordNuova.getText());
+                    output.println(passwordNuova.getText().hashCode());
                     output.close();
                     testo.setText("Complimenti, la vecchia password e' stata aggiornata.");
+                        
                 }
                 else {
                     testo.setText("Password vecchia non corrisponde.");

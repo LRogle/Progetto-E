@@ -41,18 +41,15 @@ public class Parcheggio extends Observable {
         aggiungiPostiAuto();
     }
     
-    public void aspetta(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Parcheggio.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    /**
+    * Metodo per istanziare i PostiAuto e aggiungerli al Parcheggio in base alla capacità massima di posti.
+    */
     private void aggiungiPostiAuto(){
         for(int i=1;i<=nMaxParcheggi;i++){
             PostiAuto.add(new PostoAuto(i));
         }
     }
+    
     /**
      * Getter che restituisce la cassa del parcheggio.
      * @return Cassa
@@ -70,6 +67,7 @@ public class Parcheggio extends Observable {
         System.out.println("Totale parcheggi:\t"+nMaxParcheggi+"\tparcheggi occupati:\t"+nOccupati);
         return liberi;
     }
+    
     /**
      * La macchinetta d'ingresso,nel caso in cui ci siano posti liberi, eroga un biglietto che si aggiunge alla lista degli attivi.
      * Viene occupato un posto, quindi cresce il numero di posti occupati e viene lanciata una notifica che certifica che il posto è stato occupato.
@@ -97,6 +95,7 @@ public class Parcheggio extends Observable {
             System.out.println(BigliettiAttivi1.toString());
         }
     }
+    
     /**
      * Vengono stampati i biglietti nel registro dell'uscita.
      */
@@ -129,6 +128,7 @@ public class Parcheggio extends Observable {
         System.out.println("biglietto non trovato tra gli attivi");
         return null;
     }
+    
     /**
      * Viene effettuato un controllo su tutti i biglietti in uscita. Se si ha un riscontro con il codice inserito, 
      * viene stampato il biglietto con il codice corrispondente.
@@ -174,9 +174,10 @@ public class Parcheggio extends Observable {
             return false;
         }
     }
-/**
- * Libera un posto attraverso il metodo liberaPosto(). Viene diminuito il numero dei posti occupati e gestisce il caso in cui i posti occupati siano minori di 0.
- */
+    
+    /**
+    * Libera un posto attraverso il metodo liberaPosto(). Viene diminuito il numero dei posti occupati e gestisce il caso in cui i posti occupati siano minori di 0.
+    */
     public void decrementaOccupati() {
         liberaPosto();
         nOccupati--;
@@ -184,7 +185,8 @@ public class Parcheggio extends Observable {
             System.out.println("Abbiamo un problema i posti occupati non possono essere < 0");
         }
     }
-   /**
+    
+    /**
     * Facendo un controllo sull'ArrayList di posti auto, viene liberato il primo posto che risulta essere occupato.
     */ 
     public void liberaPosto(){

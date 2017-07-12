@@ -67,12 +67,6 @@ public class PostoFrame extends JFrame implements Observer {
         this.PC[rand].repaint();
     }
     
-    public void setVisibile(boolean x){
-        this.setVisible(x);
-    }
-
-    
-    
     private int postoRandom(){
         int b = 20; 
         double cod= floor(Math.random() * b);

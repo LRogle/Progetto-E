@@ -40,8 +40,5 @@ public class SbarraFrameClientU extends JFrame{
         this.sbarra.repaint();
     }
     
-    public void setVisibile(boolean x){
-        this.setVisible(x);
-    }
     
 }

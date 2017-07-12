@@ -38,9 +38,6 @@ public class SbarraFrameClient extends JFrame{
         this.sbarra.setAperta(false);
         this.sbarra.repaint();
     }
-    
-    public void setVisibile(boolean x){
-        this.setVisible(x);
-    }
+
     
 }

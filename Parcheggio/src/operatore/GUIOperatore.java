@@ -5,6 +5,7 @@
  */
 package operatore;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,8 @@ public class GUIOperatore extends JFrame implements Observer {
     private JTextField testo;
     private JPanel panel2;
     private JPanel panel3;
+    private JPanel panel4;
+    private JPanel center;
     private final PostoComponent PC[] = new PostoComponent[20];
     private int password;
 
@@ -44,9 +47,9 @@ public class GUIOperatore extends JFrame implements Observer {
         this.setVisible(true);
         this.setSize(500, 700);
         this.setLocation(600, WIDTH);
-        this.setLayout(new GridLayout(3,1));
+        //this.setLayout(new GridLayout(3,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        initPanel1();
+        initCenter();
         initPanel2();
         initPanel3();
         Scanner input = null;
@@ -65,11 +68,29 @@ public class GUIOperatore extends JFrame implements Observer {
  
     }
     
-    private void initPanel1(){
+    private void initCenter(){
+        center = new JPanel();
+        center.setLayout(new GridLayout(2,1));
         panel1 = new JPanel();
+        panel4 = new JPanel();
         panel1.setLayout(new GridLayout(5,4));
         initComponentPanel1();
-        this.add(panel1);
+        center.add(panel1);
+        initPanel4();
+        center.add(panel4);
+        this.add(center,BorderLayout.CENTER);
+    }
+    
+    private void initPanel4() {
+        panel4 = new JPanel();
+        JButton cambiaPassword = new JButton("Mostra Cambia Password");
+        cambiaPassword.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel3.setVisible(true);
+            }
+        });
+        panel4.add(cambiaPassword);
     }
     
     private void initPanel2(){
@@ -102,7 +123,7 @@ public class GUIOperatore extends JFrame implements Observer {
         });
         panel2.add(bottone);
         panel2.add(testo);
-        this.add(panel2);
+        this.add(panel2,BorderLayout.NORTH);
     }
     
     private void initPanel3(){
@@ -152,12 +173,22 @@ public class GUIOperatore extends JFrame implements Observer {
                 }
             }
         });
+        JButton nascondi = new JButton("Nascondi Cambio Password");
+        nascondi.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel3.setVisible(false);
+            }
+            
+        });
         panel3.add(label1);
         panel3.add(passwordVecchia);
         panel3.add(label2);
         panel3.add(passwordNuova);
         panel3.add(passwordButton);
-        this.add(panel3);
+        panel3.add(nascondi);
+        panel3.setVisible(false);
+        this.add(panel3,BorderLayout.SOUTH);
     }
     
     private void initComponentPanel1(){

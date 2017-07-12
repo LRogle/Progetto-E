@@ -19,13 +19,6 @@ public abstract class Observable {
         observers = new ArrayList<>();
     }
 
-    public boolean getState() {
-        return true;
-    }
-
-    public void setState(boolean state) {
-    }
-
     public void attach(Observer observer) {
         observers.add(observer);
     }
@@ -41,13 +34,13 @@ public abstract class Observable {
     
     public void notifyLibera(int codice){
         for ( Observer observer : observers){
-            observer.liberaObserver(this, codice);
+            observer.updateLibera(this, codice);
         }
     }
     
     public void notifyOccupa(int codice){
         for ( Observer observer : observers){
-            observer.occupaObserver(this, codice);
+            observer.updateOccupa(this, codice);
         }
     }
 }

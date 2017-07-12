@@ -79,27 +79,17 @@ public class PostoFrame extends JFrame implements Observer {
     }
 
     @Override
-    public void occupaObserver(Observable observable, int codice) {
+    public void updateOccupa(Observable observable, int codice) {
         occupa(codice);
     }
 
     @Override
-    public void liberaObserver(Observable observable, int codice) {
+    public void updateLibera(Observable observable, int codice) {
         libera(codice);
     }
 
     @Override
-    public void setState(boolean state) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void update(Observable observable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean getStato() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -135,16 +135,20 @@ public class GUIOperatore extends JFrame implements Observer {
                     try{
                         output=new PrintWriter("./File/password");
                     } catch(FileNotFoundException ex) {
-                        System.err.println("Errore nell'apertura del file password");
+                        System.err.println("File password non trovato");
+                        testo.setText("Errore: File password non trovato!");
+                    }
+                    if (output==null) {
                         testo.setText("Errore nell'apertura del file password");
                     }
-                    output.println(passwordNuova.getText().hashCode());
-                    output.close();
-                    testo.setText("Complimenti, la vecchia password e' stata aggiornata.");
-                        
+                    else {
+                        output.println(passwordNuova.getText().hashCode());
+                        output.close();
+                        testo.setText("Complimenti, la vecchia password e' stata aggiornata.");
+                    }
                 }
                 else {
-                    testo.setText("Password vecchia non corrisponde.");
+                    testo.setText("La password attuale non corrisponde.");
                 }
             }
         });

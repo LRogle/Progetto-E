@@ -5,33 +5,43 @@
  */
 package parcheggio;
 
-import Operatore.*;
+import operatore.PostoFrame;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import operatore.GUIOperatoreLogin;
 
 /**
  *
  * @author angelo
  */
 public class Server {
+    
     private final int port;
     private final Parcheggio parcheggio;
     private final PostoFrame PF;
-    private ArrayList<ClientHandler> listaClientHandlers;
+    private final GUIOperatoreLogin login;
+    private final ArrayList<ClientHandler> listaClientHandlers;
 
     public Server(int port) throws IOException {
         this.listaClientHandlers = new ArrayList<>();
         this.port = port;
         System.out.println("Creo un parcheggio:");
         this.parcheggio = new Parcheggio();
+        this.login = new GUIOperatoreLogin(this);
         this.PF = new PostoFrame();
+        PF.setVisible(false);
         parcheggio.attach(PF);
         System.out.println("Parcheggio creato.");
         System.out.println("");
+    }
+    
+    public void update(){
+        this.login.quit();
+        this.PF.setVisible(true);
     }
     
     public void startServer() throws IOException {

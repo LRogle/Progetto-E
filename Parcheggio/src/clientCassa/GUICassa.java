@@ -75,14 +75,14 @@ public class GUICassa extends JFrame{
         InitComponent();
     }
 
-    public void InitComponent(){
+    private void InitComponent(){
         InitpanelPagamento();
         InitpanelMonete();
         InitpanelMetodo();
         InitpanelTesto();
     }
 
-    public void InitpanelPagamento(){
+    private void InitpanelPagamento(){
         
         Pagamento = new JPanel();
         Pagamento.setLayout(new GridLayout(3,1));

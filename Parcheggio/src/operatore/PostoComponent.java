@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Operatore;
+package operatore;
 
 import java.awt.Component;
 import java.awt.Dimension;

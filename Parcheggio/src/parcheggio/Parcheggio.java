@@ -9,7 +9,6 @@ import static java.lang.Math.floor;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import observerpattern.Observable;
 
 /**
  *

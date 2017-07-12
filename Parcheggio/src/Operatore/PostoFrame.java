@@ -11,8 +11,8 @@ import java.io.IOException;
 import static java.lang.Math.floor;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import observerpattern.Observable;
-import observerpattern.Observer;
+import parcheggio.Observable;
+import parcheggio.Observer;
 
 /**
  *

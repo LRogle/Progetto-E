@@ -20,8 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-import observerpattern.Observable;
-import observerpattern.Observer;
+import parcheggio.Observable;
+import parcheggio.Observer;
 
 /**
  *

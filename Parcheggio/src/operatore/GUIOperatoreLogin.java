@@ -26,7 +26,7 @@ import parcheggio.Server;
  */
 public class GUIOperatoreLogin extends JFrame {
     
-    private String password="password";
+    private String password;
     
     private ArrayList<Server> observers;
     private boolean connected;
@@ -36,6 +36,19 @@ public class GUIOperatoreLogin extends JFrame {
     private JPanel panel2;  //testo
     
     public GUIOperatoreLogin(Server server){
+        Scanner input = null;
+        try {
+            input = new Scanner(new File("./File/password"));
+        } catch(FileNotFoundException ex){
+            System.err.println("Errore nell'apertura del file: password");
+        }
+        if (input!=null){
+            if (input.hasNextLine()){
+                String riga = input.nextLine();
+                System.out.println(riga);
+                setPassword(riga);
+            }
+        }
         this.setTitle("Finestra Login Operatore");
         this.observers = new ArrayList<>();
         observers.add(server);
@@ -64,19 +77,6 @@ public class GUIOperatoreLogin extends JFrame {
         bottone.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Scanner input = null;
-                try {
-                    input = new Scanner(new File("password"));
-                } catch(FileNotFoundException ex){
-                    System.err.println("Errore nell'apertura del file: password");
-                }
-                if (input!=null){
-                    if (input.hasNextLine()){
-                        String riga = input.nextLine();
-                        System.out.println(riga);
-                        setPassword(riga);
-                    }
-                }
                 String s = text.getText();
                 if (s.equals(password)) {
                     testo.setText("Benvenuto operatore!");

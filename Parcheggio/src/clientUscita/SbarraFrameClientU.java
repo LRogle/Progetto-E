@@ -5,7 +5,6 @@
  */
 package clientUscita;
 
-import GUI.*;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class SbarraFrameClientU extends JFrame{
     private JPanel panel;
-    private Sbarra sbarra = new Sbarra();
+    private SbarraClientU sbarra = new SbarraClientU();
 
 
     public SbarraFrameClientU() {
@@ -26,7 +25,7 @@ public class SbarraFrameClientU extends JFrame{
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.sbarra= new Sbarra();
+        this.sbarra= new SbarraClientU();
         this.add(sbarra);
     }
     

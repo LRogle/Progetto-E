@@ -5,7 +5,6 @@
  */
 package clientIngresso;
 
-import GUI.*;
 import java.awt.GridLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class SbarraFrameClient extends JFrame{
     private JPanel panel;
-    private Sbarra sbarra = new Sbarra();
+    private SbarraClient sbarra = new SbarraClient();
     
     public SbarraFrameClient() {
         this.setTitle("Sbarra Ingresso");
@@ -25,7 +24,7 @@ public class SbarraFrameClient extends JFrame{
         this.setLocation(600, WIDTH);
         this.setLayout(new GridLayout(1,1));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.sbarra= new Sbarra();
+        this.sbarra= new SbarraClient();
         this.add(sbarra);
     }
     

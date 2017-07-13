@@ -21,9 +21,9 @@ public class Parcheggio extends Observable {
     private final ArrayList<Biglietto> BigliettiAttivi;
     private final ArrayList<Biglietto> BigliettiUscita;
     private final ArrayList<Biglietto> RegistroBiglietti;
-    private final MacchinettaIngresso MI;
+    private final MacchinettaIngresso macchinettaIngresso;
     private final Cassa C;
-    private final MacchinettaUscita MU;
+    private final MacchinettaUscita macchinettaUscita;
     private final ArrayList<PostoAuto> PostiAuto;
     
     public Parcheggio(){
@@ -34,9 +34,9 @@ public class Parcheggio extends Observable {
         BigliettiUscita = new ArrayList();
         RegistroBiglietti = new ArrayList();
         PostiAuto = new ArrayList();
-        MI = new MacchinettaIngresso();
+        macchinettaIngresso = new MacchinettaIngresso();
         C = new Cassa();
-        MU = new MacchinettaUscita();
+        macchinettaUscita = new MacchinettaUscita();
         aggiungiPostiAuto();
     }
     
@@ -74,7 +74,7 @@ public class Parcheggio extends Observable {
      */
    public int Ingresso(){
         if(contaPostiLiberi()!=0){ 
-            Biglietto B=MI.erogaBiglietto();
+            Biglietto B=macchinettaIngresso.erogaBiglietto();
             BigliettiAttivi.add(B);
             occupaPosto();
             nOccupati++;
@@ -203,13 +203,19 @@ public class Parcheggio extends Observable {
      * @return messaggio di avvenuta uscita
      */
     public String Uscita(int cod){
-        if(MU.controllaBiglietto(getBigliettoUscita(cod))){
+        if(macchinettaUscita.controllaBiglietto(getBigliettoUscita(cod))){
             decrementaOccupati();
             RegistroBiglietti.add(getBigliettoUscita(cod));
             BigliettiUscita.remove(getBigliettoUscita(cod));
             this.notifyLibera(cod);
             return "Grazie. Arrivederci";}
-        else{
+        else {
+            if (getBigliettoUscita(cod)!=null) {
+                BigliettiAttivi.add(getBigliettoUscita(cod));
+                BigliettiUscita.remove(getBigliettoUscita(cod));
+                return "Errore in uscita";
+            }
+            
             return "Errore in uscita";
         }
     }

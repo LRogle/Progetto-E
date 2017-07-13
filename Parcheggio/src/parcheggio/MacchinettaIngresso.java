@@ -11,8 +11,10 @@ package parcheggio;
  */
 public class MacchinettaIngresso {
     
-    //funzione che deve essere utilizzata dopo che il conducente ha premuto il 
-    //pulsante per richiedere il biglietto
+    /**
+     * Funzione che crea un nuovo biglietto e permette l'ingresso al parcheggio.
+     * @return biglietto
+     */
     public Biglietto erogaBiglietto(){
         Biglietto B = new Biglietto();
         return B;

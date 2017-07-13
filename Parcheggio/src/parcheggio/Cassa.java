@@ -26,17 +26,28 @@ public class Cassa {
     private int resto=0;
 
     
-
+    /**
+     * Metodo utilizzato dall'operatore per ritirare l'ammount della cassa.
+     * @return ammount della cassa
+     */
     public int ritira(){
         int tmp = this.ammount;
         ammount = 0;
         return tmp;
     }
 
+    /**
+     * Getter del ammount della cassa.
+     * @return ammount 
+     */
     public int getAmmount() {
         return ammount;
     }
     
+    /**
+     * Setter della modalità di pagamento scelta.
+     * @param pagamento 
+     */
     public void setPagamento(PagamentoStrategy pagamento) {
         this.pagamento = pagamento;
     }

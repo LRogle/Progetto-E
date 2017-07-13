@@ -41,6 +41,12 @@ public class GUIOperatore extends JFrame implements Observer {
     private final PostoComponent PC[] = new PostoComponent[20];
     private int password;
 
+    /**
+     * Crea la panoramica dei posti del parcheggio, indicando se siano liberi oppure no.
+     * Inoltre, permette di cambiare password all'operatore e visualizzare l'ammount della cassa.
+     * @param parcheggio
+     * @throws IOException 
+     */
     public GUIOperatore(Parcheggio parcheggio) throws IOException {
         this.parcheggio = parcheggio;
         this.setTitle("Parcheggio");
@@ -200,6 +206,11 @@ public class GUIOperatore extends JFrame implements Observer {
         }
     }
     
+    /**
+     * Facendo un controllo sulla lunghezza del parcheggio, viene liberato il posto corrispondente al codice immesso.
+     * Conseguentemente, viene ridisegnata la finestrella della panoramica dell'osservatore.
+     * @param codice 
+     */
     public void libera(int codice){
         for(int i=0;i<20;i++){
             if(PC[i].getCodice()==codice){
@@ -209,6 +220,12 @@ public class GUIOperatore extends JFrame implements Observer {
         }
     }
     
+    /**
+     * Controllando che il parcheggio sia libero, viene occupato un posto random e settato il codice di tale posto con quello 
+     * del biglietto corrispondente.
+     * Viene colorata  di rosso la finestra rappresentante il posteggio.
+     * @param codice 
+     */
     public void occupa(int codice){
         while (true) {
             int tmp = postoRandom();
@@ -229,19 +246,25 @@ public class GUIOperatore extends JFrame implements Observer {
         return postoRandom;
     }
 
+    /**
+     * Viene invocata la funzione occupa. 
+     * @param observable
+     * @param codice 
+     */
     @Override
     public void updateOccupa(Observable observable, int codice) {
         occupa(codice);
     }
 
+    /**
+     * Viene invocata la funzione libera.
+     * @param observable
+     * @param codice 
+     */
     @Override
     public void updateLibera(Observable observable, int codice) {
         libera(codice);
     }
 
-    @Override
-    public void update(Observable observable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

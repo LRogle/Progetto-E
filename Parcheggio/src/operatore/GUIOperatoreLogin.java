@@ -35,6 +35,10 @@ public class GUIOperatoreLogin extends JFrame {
     private final JTextField testo = new JTextField("");
     private JPanel panel2;  //testo
     
+    /**
+     * Attraverso l'immissione di una password, permette l'accesso alla panoramica del parcheggio all'operatore.
+     * @param server 
+     */
     public GUIOperatoreLogin(Server server){
         Scanner input = null;
         try {

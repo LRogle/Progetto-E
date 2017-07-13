@@ -35,11 +35,11 @@ public class MacchinettaUscita{
         getHours();
         if(B.convalida.isConvalidato()){
             if(B.convalida.getDataConvalida().equals(data)){
-                if((minuti-B.convalida.getMinuti())<=15){   
+                if((minuti-B.convalida.getMinuti())<=15){
                     System.out.println("Grazie. Arrivederci!");
                     return true;
                 }else{
-                System.out.println("Problema. Permanenza eccesiva dopo il pagamento");
+                    System.out.println("Problema. Permanenza eccesiva dopo il pagamento");
                 return false;
                 } 
             }

@@ -36,7 +36,7 @@ public class Biglietto {
         return contabiglietti;
     }
     
-    private void getDate(){
+    public void getDate(){
         Calendar cal = Calendar.getInstance();
         giorno = cal.get(Calendar.DATE);
         mese = cal.get(Calendar.MONTH) +1;
@@ -44,7 +44,7 @@ public class Biglietto {
         data =  giorno +"/"+ mese +"/"+ anno;
     }
 
-    private void getHours() {
+    public void getHours() {
         Calendar cal = Calendar.getInstance();
         ore = cal.get(Calendar.HOUR);
         minuti = cal.get(Calendar.MINUTE);

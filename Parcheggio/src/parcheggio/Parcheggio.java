@@ -213,6 +213,8 @@ public class Parcheggio extends Observable {
             if (getBigliettoUscita(cod)!=null) {
                 BigliettiAttivi.add(getBigliettoUscita(cod));
                 BigliettiUscita.remove(getBigliettoUscita(cod));
+                getBigliettoAttivo(cod).getDate();
+                getBigliettoAttivo(cod).getHours();
                 return "Errore in uscita";
             }
             

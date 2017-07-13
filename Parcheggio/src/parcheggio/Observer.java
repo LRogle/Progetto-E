@@ -13,7 +13,6 @@ import parcheggio.Observable;
  */
 public interface Observer {
 
-    public void update(Observable observable);
     public void updateOccupa(Observable observable, int codice);
     public void updateLibera(Observable observable, int codice);
     

@@ -36,7 +36,10 @@ public class SbarraClientU extends Component {
         this.aperta = aperta;
     }
     
-//standard
+    /**
+     * Carica l'immagine della sbarra chiusa o aperta a seconda del suo stato.
+     * @param g 
+     */
     @Override
     public void paint(Graphics g) {
         if (this.aperta==true) {
@@ -56,6 +59,9 @@ public class SbarraClientU extends Component {
         }
     }
 
+    /**
+     * Viene aggiornata l'immagine della sbarra.
+     */
     @Override
     public void repaint() {
         if (this.aperta==true) {
@@ -75,7 +81,7 @@ public class SbarraClientU extends Component {
         
     }
     
-//standard
+
     @Override
     public Dimension getPreferredSize() {
         if (img == null) {

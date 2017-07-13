@@ -34,8 +34,6 @@ public class MacchinettaUscita{
         getDate();
         getHours();
         if(B.convalida.isConvalidato()){
-            //controllare il tempo dopo il pagamento                      
-            //supponiamo che il tempo per uscire sia 15 minuti 
             if(B.convalida.getDataConvalida().equals(data)){
                 if((minuti-B.convalida.getMinuti())<=15){   
                     System.out.println("Grazie. Arrivederci!");

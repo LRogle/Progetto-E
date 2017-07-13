@@ -26,6 +26,11 @@ public class Server {
     private final GUIOperatoreLogin login;
     private final ArrayList<ClientHandler> listaClientHandlers;
 
+    /**
+     * Viene creato un nuovo parcheggio ed assegnato un operatore.
+     * @param port
+     * @throws IOException 
+     */
     public Server(int port) throws IOException {
         this.listaClientHandlers = new ArrayList<>();
         this.port = port;
@@ -39,11 +44,18 @@ public class Server {
         System.out.println("");
     }
     
+    /**
+     * Nasconde la finestra di login.
+     */
     public void update(){
         this.login.quit();
         this.PF.setVisible(true);
     }
     
+    /**
+     * Permette di iniziare la comunicazione con i client.
+     * @throws IOException 
+     */
     public void startServer() throws IOException {
         ExecutorService executor = Executors.newCachedThreadPool();
         ServerSocket serverSocket;
@@ -64,7 +76,7 @@ public class Server {
                 for (ClientHandler clientHand : listaClientHandlers){
                     
                 }
-                break; // entrerei qui se serverSocket venisse chiuso
+                break;
             }
         }
     }

@@ -41,7 +41,10 @@ public class PostoComponent extends Component {
         return libero;
     }
     
-//standard
+    /**
+     * Disegna le finestre della griglia che rappresentano il parcheggio.
+     * @param g 
+     */
     @Override
     public void paint(Graphics g) {
         if (this.libero==true) {
@@ -60,6 +63,9 @@ public class PostoComponent extends Component {
         }
     }
 
+    /**
+     * Ridisegna le finestre della griglia che rappresentano il parcheggio.
+     */
     @Override
     public void repaint() {
         if (this.libero==true) {
@@ -81,7 +87,7 @@ public class PostoComponent extends Component {
         
     }
     
-//standard
+
     @Override
     public Dimension getPreferredSize() {
         if (img == null) {

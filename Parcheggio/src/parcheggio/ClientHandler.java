@@ -26,13 +26,15 @@ public class ClientHandler implements Runnable {
         this.parcheggio = parcheggio;
     }
     
-       
+    /**
+     * Viene avviata la conversazione con il client.
+     * In base al messaggio ricevuto, viene eseguito un metodo diverso, implementato sull'interfaccia grafica.
+     */   
     @Override
     public void run() {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            // leggo e scrivo sulla connessione finche' non ricevo "quit"
             while (true) {
                 String string = in.readLine();
                 

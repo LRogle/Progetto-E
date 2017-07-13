@@ -18,6 +18,9 @@ public class SbarraFrameClientU extends JFrame{
     private SbarraClientU sbarra = new SbarraClientU();
 
 
+    /**
+     * Viene creata la rappresentazione grafica della sbarra che permette l'ingresso al parcheggio.
+     */
     public SbarraFrameClientU() {
         this.setTitle("Sbarra Uscita");
         this.setVisible(true);
@@ -29,11 +32,17 @@ public class SbarraFrameClientU extends JFrame{
         this.add(sbarra);
     }
     
+    /**
+     * Apertura della sbarra.
+     */
     public void apri(){
         this.sbarra.setAperta(true);
         this.sbarra.repaint();
     }
     
+    /**
+     * Chiusura della sbarra.
+     */
     public void chiudi(){
         this.sbarra.setAperta(false);
         this.sbarra.repaint();

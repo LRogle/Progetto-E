@@ -64,13 +64,29 @@ public class Cassa {
         getHours();
         prezzo=0;
        
-        int orepermanenza=ore-big.getOre();
-        int minpermanenza=minuti-big.getMinuti();
-        int annipermanenza=anno-big.getAnno();
-        int mesipermanenza=mese-big.getMese();
-        int giornipermanenza=giorno-big.getGiorno();
         
-        int minutitotali = (giornipermanenza*1440)+(orepermanenza*60)+(minpermanenza);
+        int annipermanenza=anno-big.getAnno();
+        int mesipermanenza=(mese)-big.getMese();
+            if(mesipermanenza<0){
+                mesipermanenza=12+mesipermanenza;
+                annipermanenza--;
+            }
+        int giornipermanenza=giorno-big.getGiorno();
+            if(giornipermanenza<0){
+                giornipermanenza=28+giornipermanenza;
+                mesipermanenza--;
+            }
+        int orepermanenza=ore-big.getOre();
+            if(orepermanenza<0){
+                orepermanenza=12+orepermanenza;
+                giornipermanenza--;
+            }
+        int minpermanenza=minuti-big.getMinuti();
+            if(minpermanenza<0){
+                minpermanenza=60+minpermanenza;
+            }
+        
+        int minutitotali = (annipermanenza*(12*28*1440))+(mesipermanenza*(28*1440))+(giornipermanenza*1440)+(orepermanenza*60)+(minpermanenza);
         
         if(minutitotali<=10){
             System.out.println("sosta minore di 10 minuti, convalida gratuita");

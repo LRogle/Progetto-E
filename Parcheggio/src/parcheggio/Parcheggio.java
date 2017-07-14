@@ -7,8 +7,6 @@ package parcheggio;
 
 import static java.lang.Math.floor;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -163,6 +161,8 @@ public class Parcheggio extends Observable {
                 getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
                 getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
                 BigliettiUscita.add(getBigliettoAttivo(cod));
+                getBigliettoAttivo(cod).getDate();
+                getBigliettoAttivo(cod).getHours();
                 BigliettiAttivi.remove(getBigliettoAttivo(cod));
                 return true;
             }else{ 
@@ -215,8 +215,6 @@ public class Parcheggio extends Observable {
             if (getBigliettoUscita(cod)!=null) {
                 BigliettiAttivi.add(getBigliettoUscita(cod));
                 BigliettiUscita.remove(getBigliettoUscita(cod));
-                getBigliettoAttivo(cod).getDate();
-                getBigliettoAttivo(cod).getHours();
                 return "Errore in uscita";
             }
             

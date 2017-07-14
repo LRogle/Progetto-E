@@ -5,8 +5,6 @@
  */
 package parcheggio;
 
-import parcheggio.Observable;
-
 /**
  *
  * @author aench

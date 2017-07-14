@@ -11,7 +11,7 @@ package parcheggio;
  */
 public interface Observer {
 
-    public void updateOccupa(Observable observable, int codice);
-    public void updateLibera(Observable observable, int codice);
+    public void updateOccupa(int codice);
+    public void updateLibera(int codice);
     
 }

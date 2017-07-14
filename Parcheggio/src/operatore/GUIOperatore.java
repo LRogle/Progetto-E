@@ -21,7 +21,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import parcheggio.Observable;
 import parcheggio.Observer;
 import parcheggio.Parcheggio;
 
@@ -248,21 +247,19 @@ public class GUIOperatore extends JFrame implements Observer {
 
     /**
      * Viene invocata la funzione occupa. 
-     * @param observable
      * @param codice 
      */
     @Override
-    public void updateOccupa(Observable observable, int codice) {
+    public void updateOccupa(int codice) {
         occupa(codice);
     }
 
     /**
      * Viene invocata la funzione libera.
-     * @param observable
      * @param codice 
      */
     @Override
-    public void updateLibera(Observable observable, int codice) {
+    public void updateLibera(int codice) {
         libera(codice);
     }
 

@@ -42,17 +42,17 @@ public abstract class Observable {
      */
     public void notifyLibera(int codice){
         for ( Observer observer : observers){
-            observer.updateLibera(this, codice);
+            observer.updateLibera(codice);
         }
     }
     
     /**
-     *Notifica l'osservatore che viene invocato il metodo notifyLibera(). 
+     * Notifica l'osservatore che viene invocato il metodo notifyLibera(). 
      * @param codice 
      */
     public void notifyOccupa(int codice){
         for ( Observer observer : observers){
-            observer.updateOccupa(this, codice);
+            observer.updateOccupa(codice);
         }
     }
 }

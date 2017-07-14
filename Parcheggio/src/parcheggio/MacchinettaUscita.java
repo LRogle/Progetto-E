@@ -24,9 +24,10 @@ public class MacchinettaUscita{
     
     /**
      * Viene ricevuto in ingresso il biglietto, preleva la data e l'ora attuale.
-     * Verifica se è stato convalidato, se è stato convalidato, verifico che la data attuale siano corrispondenti con quella del biglietto.
-     * Nel caso in cui il tempo successivo al pagamento sia minore di 15 minuti, i controlli vengono effettuati con successo.
-     * Altrimenti, non è possibile l'uscita dal parcheggio, senza aver ricevuto una conferma.
+     * Verifica se il biglietto è stato convalidato; in caso affermativo, si verifica che la data attuale sia corrispondente a quella del biglietto.
+     * L’uscita del veicolo dal parcheggio deve avvenire entro 15 minuti dal momento della convalida. 
+     * In tal caso, i controlli vengono effettuati con successo; 
+     * altrimenti, senza aver ricevuto una conferma, non è possibile l'uscita dal parcheggio.
      * @param B
      * @return true, se i controlli sul biglietto hanno esito positivo, altrimenti false
      */

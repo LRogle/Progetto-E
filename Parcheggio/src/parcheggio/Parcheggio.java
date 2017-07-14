@@ -198,6 +198,8 @@ public class Parcheggio extends Observable {
     /**
      * Controllando che il codice inserito corrisponda ad uno di quelli dei biglietti in uscita, viene chiamata la funzione decrementaOccupati(),
      * che libera il posto. Il biglietto viene aggiunto alla lista dei codici utilizzati nel corso della giornata e poi viene rimosso dalla lista dei biglietti in uscita.
+     * Trascorso 15 minuti dalla convalida, l’utente dovrà ripresentare il biglietto per effettuare il pagamento della tariffa applicabile a partire dal momento della 
+     * scadenza della precedente convalida. 
      * Viene inviata una notifica con il codice del biglietto corrispondente.
      * @param cod
      * @return messaggio di avvenuta uscita

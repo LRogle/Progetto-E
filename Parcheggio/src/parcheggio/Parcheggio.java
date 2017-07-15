@@ -158,7 +158,7 @@ public class Parcheggio extends Observable {
         try{
             if (C.transazione(cent5, cent10, cent20, cent50, euro, metodo)){
                 getBigliettoAttivo(cod).setConvalida(true);
-                getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa());
+                getBigliettoAttivo(cod).setDataConvalida(C.getDataCassa(), C.getGiorno(), C.getMese(), C.getAnno());
                 getBigliettoAttivo(cod).setOreEMinutiConvalida(C.getOre(), C.getMinuti());
                 BigliettiUscita.add(getBigliettoAttivo(cod));
                 getBigliettoAttivo(cod).getDate();

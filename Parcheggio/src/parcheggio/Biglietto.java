@@ -120,7 +120,10 @@ public class Biglietto {
      * Setter della data di convalida del biglietto.
      * @param data 
      */
-    public void setDataConvalida(String data){
+    public void setDataConvalida(String data, int day, int month, int year){
+        convalida.setDay(day);
+        convalida.setMonth(month);
+        convalida.setYear(year);
         convalida.setDataConvalida(data);
     }
 

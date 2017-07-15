@@ -36,7 +36,30 @@ public class MacchinettaUscita{
         getHours();
         if(B.convalida.isConvalidato()){
             if(B.convalida.getDataConvalida().equals(data)){
-                if((minuti-B.convalida.getMinuti())<=15){
+                int annipermanenza=anno-B.convalida.getYear();
+                int mesipermanenza=mese-B.convalida.getMonth();
+                    if(mesipermanenza<0){
+                        mesipermanenza=12+mesipermanenza;
+                        annipermanenza--;
+                    }
+                int giornipermanenza=giorno-B.convalida.getDay();
+                    if(giornipermanenza<0){
+                        giornipermanenza=28+giornipermanenza;
+                        mesipermanenza--;
+                    }
+                int orepermanenza=ore-B.convalida.getOre();
+                    if(orepermanenza<0){
+                        orepermanenza=12+orepermanenza;
+                        giornipermanenza--;
+                    }
+                int minpermanenza=minuti-B.convalida.getMinuti();
+                    if(minpermanenza<0){
+                        minpermanenza=60+minpermanenza;
+                    }
+
+                int minutitotali = (annipermanenza*(12*28*1440))+(mesipermanenza*(28*1440))+(giornipermanenza*1440)+(orepermanenza*60)+(minpermanenza);
+                
+                if(minutitotali<=15){
                     System.out.println("Grazie. Arrivederci!");
                     return true;
                 }else{

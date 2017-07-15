@@ -234,4 +234,16 @@ public class Cassa {
         this.resto = resto;
     }
 
+    public int getGiorno() {
+        return giorno;
+    }
+
+    public int getMese() {
+        return mese;
+    }
+
+    public int getAnno() {
+        return anno;
+    }
+    
 }

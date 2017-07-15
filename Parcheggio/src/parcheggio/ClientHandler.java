@@ -50,6 +50,7 @@ public class ClientHandler implements Runnable {
                     parcheggio.stampaBigliettiAttivi();
                 }
                 else if (string.equals("Arrivederci")) {
+                    try{
                     String cod=in.readLine();
                     if(parcheggio.getBigliettoUscita(Integer.parseInt(cod))!=null){
                         String S=parcheggio.Uscita(Integer.parseInt(cod));
@@ -57,6 +58,11 @@ public class ClientHandler implements Runnable {
                         out.flush();
                     } 
                     else {
+                        out.println("Error!");
+                        out.flush();
+                    }
+                    }catch(NumberFormatException ex){
+                        System.out.println("Errore: lettere invece che numeri!");
                         out.println("Error!");
                         out.flush();
                     }

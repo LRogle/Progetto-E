@@ -15,6 +15,9 @@ public class Convalida {
     private int ore=0;
     private int minuti=0;
     private int secondi=0;
+    private int day;
+    private int month;
+    private int year;    
 
     /**
      * Getter della dataConvalida.
@@ -100,5 +103,29 @@ public class Convalida {
     public String toString() {
         return "Convalida{" + "dataConvalida=" + dataConvalida + ", convalidato=" + convalidato + '}';
     }
+
+    public int getDay() {
+        return day;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    } 
     
 }

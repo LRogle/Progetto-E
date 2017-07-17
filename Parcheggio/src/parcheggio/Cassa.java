@@ -51,6 +51,7 @@ public class Cassa {
         
         getDate();
         getHours();
+        prezzo=0;
        
         int orepermanenza=ore-big.getOre();
         int minpermanenza=minuti-big.getMinuti();

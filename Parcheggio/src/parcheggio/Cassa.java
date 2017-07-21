@@ -74,36 +74,40 @@ public class Cassa {
         
         if(minutitotali<=10){
             System.out.println("sosta minore di 10 minuti, convalida gratuita");
-            prezzo=0;  
-        }else{
+            prezzo=0; 
+            return prezzo;
             
-        if(minutitotali>=(60*24*7)){   
-            prezzo = prezzo + 50*((minutitotali)/(60*24*7));
-            minutitotali = minutitotali - (60*24*7);
+        }else{
+            int sett;
+            int day;
+            int ten;
+            int five;
+            int two;
+            int zero;
+            
+            for(sett=0; minutitotali>=(60*24*7);sett++){
+                minutitotali= minutitotali-(60*24*7);
+            }
+            for(day=0; minutitotali>=(60*24);day++){
+                minutitotali= minutitotali-(60*24);
+            }
+            for(ten=0; minutitotali>=(60*10);ten++){
+                minutitotali= minutitotali-(60*10);
+            }
+            for(five=0; minutitotali>=(60*5);five++){
+                minutitotali= minutitotali-(60*5);
+            }
+            for(two=0; minutitotali>=(60*2);two++){
+                minutitotali= minutitotali-(60*2);
+            }
+            for(zero=0; minutitotali>0;zero++){
+                minutitotali=0;
+            }
+            
+            prezzo = (50*sett)+(15*day)+(10*ten)+(5*five)+(2*two)+(1*zero);    
+            return prezzo;
         }
-        if(minutitotali>=60*24){   
-            prezzo = prezzo + (minutitotali/(60*24))*15;
-            minutitotali = minutitotali - (60*24);
-        }
-        if(minutitotali>=60*10){   
-            prezzo = prezzo + 10;
-        }
-        else if(minutitotali>=60*5){   
-            prezzo = prezzo + 5;
-        }
-        else if(minutitotali>=60*2){   
-            prezzo = prezzo + 2;
-        }
-        else if(minutitotali>=60){   
-            prezzo = prezzo + 1;
-        }
-        else if(minutitotali>10 && minutitotali<60){
-            prezzo = prezzo + 1;  
-        }
-        }
-        
-        return prezzo;
-        
+           
     }
     
     private void getDate(){
